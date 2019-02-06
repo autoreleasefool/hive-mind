@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">HiveMind</string>
+
+    <!-- Units -->
+    <string name="ant">Ant</string>
+    <string name="hopper">Hopper</string>
+    <string name="beetle">Beetle</string>
+    <string name="spider">Spider</string>
+    <string name="mosquito">Mosquito</string>
+    <string name="lady_bug">Lady Bug</string>
+    <string name="pill_bug">Pill Bug</string>
+    <string name="queen">Queen</string>
+</resources>
