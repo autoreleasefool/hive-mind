@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">HiveMind</string>
+    <string name="train">Train</string>
+    <string name="play">Play</string>
 
     <!-- Units -->
     <string name="ant">Ant</string>
