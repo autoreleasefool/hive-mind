@@ -41,7 +41,7 @@ public enum Position: Hashable, Equatable {
 				.inPlay(x: x + 1, y: y - 1, z: z),
 				.inPlay(x: x, y: y - 1, z: z),
 				.inPlay(x: x - 1, y: y, z: z + 1),
-				.inPlay(x: x - 1, y: y + 1, z: z),
+				.inPlay(x: x - 1, y: y + 1, z: z)
 			]
 		}
 	}
@@ -54,8 +54,8 @@ public enum Position: Hashable, Equatable {
 		// Find the positions/stacks separating the two positions
 		let difference = other.subtracting(self)
 
-		var firstPositionModifier: Position? = nil
-		var secondPositionModifier: Position? = nil
+		var firstPositionModifier: Position?
+		var secondPositionModifier: Position?
 		if case let .inPlay(x, y, z) = difference {
 			if x == 0 {
 				firstPositionModifier = .inPlay(x: y, y: 0, z: z)

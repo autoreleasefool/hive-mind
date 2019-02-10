@@ -31,7 +31,7 @@ extension Unit {
 					specialAbilityMovements.insert(.yoink(pillBug: self, unit: unit, to: targetPosition))
 				}
 			}
-		
+
 		return self.movesAsQueen(in: state).union(specialAbilityMovements)
 	}
 }

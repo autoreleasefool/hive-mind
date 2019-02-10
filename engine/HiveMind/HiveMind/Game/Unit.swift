@@ -134,15 +134,15 @@ public struct Unit {
 // MARK: - Hashable
 
 extension Unit: Hashable {
-	public var hashValue: Int {
-		return id.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
 	}
 }
 
 // MARK: - Equatable
 
 extension Unit: Equatable {
-	public static func ==(lhs: Unit, rhs: Unit) -> Bool {
+	public static func == (lhs: Unit, rhs: Unit) -> Bool {
 		return lhs.id == rhs.id
 	}
 }

@@ -138,6 +138,7 @@
 				CA3775CF220C691200A2E1C3 /* Sources */,
 				CA3775D0220C691200A2E1C3 /* Frameworks */,
 				CA3775D1220C691200A2E1C3 /* CopyFiles */,
+				CADD1DA6221053C5001FCDC6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -179,6 +180,26 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CADD1DA6221053C5001FCDC6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CA3775CF220C691200A2E1C3 /* Sources */ = {
