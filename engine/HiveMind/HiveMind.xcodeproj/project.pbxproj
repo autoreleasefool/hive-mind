@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		CA3775D7220C691200A2E1C3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3775D6220C691200A2E1C3 /* main.swift */; };
+		CA3775E1220D239900A2E1C3 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3775E0220D239900A2E1C3 /* Unit.swift */; };
+		CA3775E4220D260200A2E1C3 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3775E3220D260200A2E1C3 /* GameState.swift */; };
+		CA3775E6220D266D00A2E1C3 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3775E5220D266D00A2E1C3 /* Position.swift */; };
+		CA3775E8220D267D00A2E1C3 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3775E7220D267D00A2E1C3 /* Movement.swift */; };
+		CADD1D92220DABAD001FCDC6 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D91220DABAD001FCDC6 /* Collection+Extensions.swift */; };
+		CADD1D94220DC860001FCDC6 /* Unit+Ant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D93220DC860001FCDC6 /* Unit+Ant.swift */; };
+		CADD1D97220DC8B5001FCDC6 /* Unit+Beetle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D96220DC8B5001FCDC6 /* Unit+Beetle.swift */; };
+		CADD1D99220DE328001FCDC6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D98220DE328001FCDC6 /* Player.swift */; };
+		CADD1D9B220DE6CD001FCDC6 /* Unit+Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D9A220DE6CD001FCDC6 /* Unit+Queen.swift */; };
+		CADD1D9D220E75D1001FCDC6 /* Unit+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D9C220E75D1001FCDC6 /* Unit+Spider.swift */; };
+		CADD1D9F220E75DD001FCDC6 /* Unit+PillBug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1D9E220E75DD001FCDC6 /* Unit+PillBug.swift */; };
+		CADD1DA1220E75E6001FCDC6 /* Unit+LadyBug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1DA0220E75E6001FCDC6 /* Unit+LadyBug.swift */; };
+		CADD1DA3220E75EE001FCDC6 /* Unit+Hopper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1DA2220E75EE001FCDC6 /* Unit+Hopper.swift */; };
+		CADD1DA5220E75F6001FCDC6 /* Unit+Mosquito.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD1DA4220E75F6001FCDC6 /* Unit+Mosquito.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +39,20 @@
 /* Begin PBXFileReference section */
 		CA3775D3220C691200A2E1C3 /* HiveMind */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HiveMind; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3775D6220C691200A2E1C3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CA3775E0220D239900A2E1C3 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		CA3775E3220D260200A2E1C3 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		CA3775E5220D266D00A2E1C3 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		CA3775E7220D267D00A2E1C3 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
+		CADD1D91220DABAD001FCDC6 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		CADD1D93220DC860001FCDC6 /* Unit+Ant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Ant.swift"; sourceTree = "<group>"; };
+		CADD1D96220DC8B5001FCDC6 /* Unit+Beetle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Beetle.swift"; sourceTree = "<group>"; };
+		CADD1D98220DE328001FCDC6 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		CADD1D9A220DE6CD001FCDC6 /* Unit+Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Queen.swift"; sourceTree = "<group>"; };
+		CADD1D9C220E75D1001FCDC6 /* Unit+Spider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Spider.swift"; sourceTree = "<group>"; };
+		CADD1D9E220E75DD001FCDC6 /* Unit+PillBug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+PillBug.swift"; sourceTree = "<group>"; };
+		CADD1DA0220E75E6001FCDC6 /* Unit+LadyBug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+LadyBug.swift"; sourceTree = "<group>"; };
+		CADD1DA2220E75EE001FCDC6 /* Unit+Hopper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Hopper.swift"; sourceTree = "<group>"; };
+		CADD1DA4220E75F6001FCDC6 /* Unit+Mosquito.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Mosquito.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +85,47 @@
 		CA3775D5220C691200A2E1C3 /* HiveMind */ = {
 			isa = PBXGroup;
 			children = (
+				CADD1D90220DAB6A001FCDC6 /* Extensions */,
+				CA3775E2220D25F200A2E1C3 /* Game */,
 				CA3775D6220C691200A2E1C3 /* main.swift */,
 			);
 			path = HiveMind;
+			sourceTree = "<group>";
+		};
+		CA3775E2220D25F200A2E1C3 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				CADD1D95220DC865001FCDC6 /* Bugs */,
+				CA3775E3220D260200A2E1C3 /* GameState.swift */,
+				CA3775E7220D267D00A2E1C3 /* Movement.swift */,
+				CADD1D98220DE328001FCDC6 /* Player.swift */,
+				CA3775E5220D266D00A2E1C3 /* Position.swift */,
+				CA3775E0220D239900A2E1C3 /* Unit.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		CADD1D90220DAB6A001FCDC6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CADD1D91220DABAD001FCDC6 /* Collection+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CADD1D95220DC865001FCDC6 /* Bugs */ = {
+			isa = PBXGroup;
+			children = (
+				CADD1D93220DC860001FCDC6 /* Unit+Ant.swift */,
+				CADD1D96220DC8B5001FCDC6 /* Unit+Beetle.swift */,
+				CADD1DA2220E75EE001FCDC6 /* Unit+Hopper.swift */,
+				CADD1DA0220E75E6001FCDC6 /* Unit+LadyBug.swift */,
+				CADD1DA4220E75F6001FCDC6 /* Unit+Mosquito.swift */,
+				CADD1D9E220E75DD001FCDC6 /* Unit+PillBug.swift */,
+				CADD1D9A220DE6CD001FCDC6 /* Unit+Queen.swift */,
+				CADD1D9C220E75D1001FCDC6 /* Unit+Spider.swift */,
+			);
+			path = Bugs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +185,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3775E4220D260200A2E1C3 /* GameState.swift in Sources */,
+				CADD1D94220DC860001FCDC6 /* Unit+Ant.swift in Sources */,
+				CADD1D97220DC8B5001FCDC6 /* Unit+Beetle.swift in Sources */,
 				CA3775D7220C691200A2E1C3 /* main.swift in Sources */,
+				CA3775E6220D266D00A2E1C3 /* Position.swift in Sources */,
+				CA3775E8220D267D00A2E1C3 /* Movement.swift in Sources */,
+				CADD1D9D220E75D1001FCDC6 /* Unit+Spider.swift in Sources */,
+				CADD1DA3220E75EE001FCDC6 /* Unit+Hopper.swift in Sources */,
+				CADD1D9B220DE6CD001FCDC6 /* Unit+Queen.swift in Sources */,
+				CADD1DA1220E75E6001FCDC6 /* Unit+LadyBug.swift in Sources */,
+				CA3775E1220D239900A2E1C3 /* Unit.swift in Sources */,
+				CADD1D99220DE328001FCDC6 /* Player.swift in Sources */,
+				CADD1D92220DABAD001FCDC6 /* Collection+Extensions.swift in Sources */,
+				CADD1D9F220E75DD001FCDC6 /* Unit+PillBug.swift in Sources */,
+				CADD1DA5220E75F6001FCDC6 /* Unit+Mosquito.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
