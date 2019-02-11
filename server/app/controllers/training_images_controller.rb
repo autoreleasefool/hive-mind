@@ -21,22 +21,8 @@ class TrainingImagesController < ApplicationController
     else
       render json: @training_image.errors, status: :unprocessable_entity
     end
-  end
 
-  # PATCH/PUT /training_images/1.json
-  def update
-    @training_image = TrainingImage.find(params[:id])
-    photo = params[:training_image][:photo]
-
-    if @training_image.update(training_image_params)
-      if photo
-        @training_image.photo.attach(photo)
-      end
-
-      render json: @training_image, status: :ok, location: @training_image, methods: :photo_url
-    else
-      render json: @training_image.errors, status: :unprocessable_entity
-      end
+    TrainingImageProcessingJob.perform_now(@training_image)
   end
 
   private
