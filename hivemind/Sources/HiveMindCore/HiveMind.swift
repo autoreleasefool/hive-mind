@@ -6,11 +6,20 @@
 //  Copyright © 2019 Joseph Roque. All rights reserved.
 //
 
+import Foundation
+import HiveMindEngine
+
 public class HiveMind {
 
-    var test = 0
+    private let state: GameState
 
-    public init() {
-        print("HiveMind initiated...")
+    public init(state: GameState) {
+        self.state = state
+    }
+
+    public func play() -> Movement {
+        let moves = state.availableMoves
+        let selectedMove = Int.random(in: 0..<moves.count)
+        return moves[selectedMove]
     }
 }
