@@ -5,13 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "HiveMind",
-    products: [.library(name: "HiveMind", targets: ["HiveMind"])
+    products: [
+        .executable(name: "HiveMind", targets: ["HiveMind"]),
+        .library(name: "HiveMindCore", targets: ["HiveMindCore"])
     ],
     dependencies: [
         .package(path: "../engine")
     ],
     targets: [
-        .target(name: "HiveMind", dependencies: []),
-        .testTarget(name: "HiveMindTests", dependencies: ["HiveMind"])
+        .target(name: "HiveMind", dependencies: ["HiveMindCore"]),
+        .target(name: "HiveMindCore", dependencies: []),
+        .testTarget(name: "HiveMindCoreTests", dependencies: ["HiveMindCore"])
     ]
 )

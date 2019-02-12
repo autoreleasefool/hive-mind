@@ -1,7 +1,14 @@
-import XCTest
+//
+//  LinuxMain.swift
+//  HiveMindCoreTests
+//
+//  Created by Joseph Roque on 2019-02-11.
+//  Copyright © 2019 Joseph Roque. All rights reserved.
+//
 
-import HiveMindTests
+import XCTest
+import HiveMindCoreTests
 
 var tests = [XCTestCaseEntry]()
-tests += HiveMindTests.allTests()
+tests += HiveMindCoreTests.allTests()
 XCTMain(tests)
