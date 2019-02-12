@@ -9,7 +9,7 @@
 import Foundation
 
 /// Immutable state of a game of hive.
-public class GameState {
+public class GameState: Codable {
 
 	/// Units and their positions
 	private(set) public var units: [Unit: Position]
@@ -86,6 +86,10 @@ public class GameState {
 
 	/// List the available movements from a GameState.
 	public lazy var availableMoves: [Movement] = {
+		if move == 0 {
+			return availablePieces(for: currentPlayer).map { .place(unit: $0, at: .inPlay(x: 0, y: 0, z: 0)) }
+		}
+
 		if (currentPlayer == .white && move == 6) || (currentPlayer == .black && move == 7),
 			let queen = availablePieces(for: currentPlayer).filter({ $0.class == .queen }).first {
 			return playableSpaces.map { .place(unit: queen, at: $0) }
