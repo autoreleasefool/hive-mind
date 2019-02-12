@@ -14,7 +14,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "HiveMind", dependencies: ["HiveMindCore"]),
-        .target(name: "HiveMindCore", dependencies: []),
+        .target(name: "HiveMindCore", dependencies: ["HiveMindEngine"]),
         .testTarget(name: "HiveMindCoreTests", dependencies: ["HiveMindCore"])
     ]
 )
