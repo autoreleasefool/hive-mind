@@ -11,15 +11,15 @@ import HiveMindEngine
 
 public class HiveMind {
 
-    private let state: GameState
+	private let state: GameState
 
-    public init(state: GameState) {
-        self.state = state
-    }
+	public init(state: GameState) {
+		self.state = state
+	}
 
-    public func play() -> Movement {
-        let moves = state.availableMoves
-        let selectedMove = Int.random(in: 0..<moves.count)
-        return moves[selectedMove]
-    }
+	public func play() -> Movement {
+		let moves = state.availableMoves
+		let selectedMove = Int.random(in: 0..<moves.count)
+		return moves[selectedMove]
+	}
 }

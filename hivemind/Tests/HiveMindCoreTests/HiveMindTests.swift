@@ -10,11 +10,11 @@ import XCTest
 @testable import HiveMindCore
 
 final class HiveMindCoreTests: XCTestCase {
-    func testExample() {
-        XCTAssertEqual(HiveMind().test, 0)
-    }
+	func testExample() {
+		XCTAssertEqual(HiveMind().test, 0)
+	}
 
-    static var allTests = [
-        ("testExample", testExample)
-    ]
+	static var allTests = [
+		("testExample", testExample)
+	]
 }

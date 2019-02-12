@@ -10,8 +10,8 @@ import XCTest
 
 #if !os(macOS)
 public func allTests() -> [XCTestCaseEntry] {
-    return [
-        testCase(HiveMindCoreTests.allTests)
-    ]
+	return [
+		testCase(HiveMindCoreTests.allTests)
+	]
 }
 #endif
