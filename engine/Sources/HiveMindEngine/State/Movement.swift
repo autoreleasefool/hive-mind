@@ -8,9 +8,6 @@
 
 import Foundation
 
-// swiftlint:disable identifier_name
-// Allow simple identifier names
-
 public enum Movement: Hashable, Equatable {
 	case move(unit: Unit, to: Position)
 	case yoink(pillBug: Unit, unit: Unit, to: Position)

@@ -14,7 +14,7 @@ final class PositionTests: XCTestCase {
 
     static var allTests = [
         ("testCodingInPlayPosition", testCodingInPlayPosition),
-        ("testCodingInHandPosition", testCodingInHandPosition),
+        ("testCodingInHandPosition", testCodingInHandPosition)
     ]
 
     func testCodingInPlayPosition() throws {

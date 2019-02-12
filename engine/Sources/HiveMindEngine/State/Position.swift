@@ -27,8 +27,6 @@ import Foundation
 ///          +z   \_____/   -y
 ///
 
-// swiftlint:disable identifier_name
-
 public enum Position: Hashable, Equatable {
 	case inHand
 	case inPlay(x: Int, y: Int, z: Int)
