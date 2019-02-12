@@ -111,3 +111,55 @@ public enum Position: Hashable, Equatable {
 		}
 	}
 }
+
+extension Position: Codable {
+	public init(from decoder: Decoder) throws {
+		self = try Position.Coding.init(from: decoder).position()
+	}
+
+	public func encode(to encoder: Encoder) throws {
+		try Position.Coding.init(position: self).encode(to: encoder)
+	}
+}
+
+// swiftlint:disable nesting
+// Allow deeper nesting for codable workaround
+
+extension Position {
+	enum CodingError: Error {
+		case standard(String)
+	}
+
+	fileprivate struct Coding: Codable {
+		private struct InPlay: Codable {
+			let x: Int
+			let y: Int
+			let z: Int
+		}
+
+		private var inPlay: InPlay?
+		private var inHand: Bool?
+
+		fileprivate init(position: Position) {
+			switch position {
+			case .inHand:
+				self.inHand = true
+			case .inPlay(let x, let y, let z):
+				self.inPlay = InPlay(x: x, y: y, z: z)
+			}
+		}
+
+		fileprivate func position() throws -> Position {
+			switch (inHand, inPlay) {
+			case (_, nil):
+				return .inHand
+			case (nil, .some(let position)):
+				return .inPlay(x: position.x, y: position.y, z: position.z)
+			default:
+				throw Position.CodingError.standard("Could not convert \(self) into either a Position")
+			}
+		}
+	}
+}
+
+//swiftlint:enable nesting

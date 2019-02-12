@@ -11,4 +11,5 @@ import HiveMindEngineTests
 
 var tests = [XCTestCaseEntry]()
 tests += CollectionExtensionTests.allTests()
+tests += PositionTests.allTests()
 XCTMain(tests)
