@@ -24,14 +24,17 @@ extension Unit {
 			let currentPosition = toVisit.popLast()!
 			visited.insert(currentPosition)
 
+			// Only consider valid playable positions that can be reached
 			currentPosition.adjacent()
-				.filter {
-					// Only consider valid playable positions that can be reached
-					return state.playableSpaces.contains($0) && // Target position is adjacent to another piece
-						currentPosition.freedomOfMovement(to: $0, in: state) && // Unit can freely move to the target position
-						visited.contains($0) == false && // Unit cannot backtrack
-						state.units(adjacentTo: currentPosition).intersection(state.units(adjacentTo: $0)).count > 0 // Target position shares at least 1 adjacent unit with the current position
-				}.forEach {
+				// Target position is adjacent to another piece
+				.filter { state.playableSpaces.contains($0) }
+				// Unit can freely move to the target position
+				.filter { currentPosition.freedomOfMovement(to: $0, in: state) }
+				// Unit cannot backtrack
+				.filter { visited.contains($0) == false }
+				// Target position shares at least 1 adjacent unit with the current position
+				.filter { state.units(adjacentTo: currentPosition).intersection(state.units(adjacentTo: $0)).count > 0 }
+				.forEach {
 					let distanceToRoot = distance[currentPosition]! + 1
 					if distanceToRoot == maxDistance {
 						// Spider moves exactly 3 spaces
@@ -40,7 +43,7 @@ extension Unit {
 						toVisit.append($0)
 						distance[$0] = distanceToRoot
 					}
-			}
+				}
 		}
 
 		return moves

@@ -38,7 +38,7 @@ public struct Unit {
 	// MARK: Properties
 
 	/// Unique ID for the unit which persists across game states
-	public let id = UUID()
+	public let identifier = UUID()
 	/// Class of the unit to determine its movements
 	public let `class`: Class
 	/// Owner of the unit
@@ -135,7 +135,7 @@ public struct Unit {
 
 extension Unit: Hashable {
 	public func hash(into hasher: inout Hasher) {
-		hasher.combine(id)
+		hasher.combine(identifier)
 	}
 }
 
@@ -143,6 +143,6 @@ extension Unit: Hashable {
 
 extension Unit: Equatable {
 	public static func == (lhs: Unit, rhs: Unit) -> Bool {
-		return lhs.id == rhs.id
+		return lhs.identifier == rhs.identifier
 	}
 }

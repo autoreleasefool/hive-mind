@@ -11,7 +11,12 @@ import Foundation
 extension Unit {
 	func movesAsBeetle(in state: GameState) -> Set<Movement> {
 		guard self.canMove(as: .beetle, in: state) else { return [] }
-		guard let position = state.units[self], position != .inHand, let height = self.stackPosition(in: state) else { return [] }
+
+		guard let position = state.units[self],
+			position != .inHand,
+			let height = self.stackPosition(in: state) else {
+			return []
+		}
 
 		let movesOntoStack = Set(
 			position.adjacent()

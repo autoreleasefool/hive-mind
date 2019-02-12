@@ -12,7 +12,7 @@ import XCTest
 final class CollectionExtensionTests: XCTestCase {
 
     static var allTests = [
-        ("testCollectionIsNotEmpty", testCollectionIsNotEmpty),
+        ("testCollectionIsNotEmpty", testCollectionIsNotEmpty)
     ]
 
     func testCollectionIsNotEmpty() {

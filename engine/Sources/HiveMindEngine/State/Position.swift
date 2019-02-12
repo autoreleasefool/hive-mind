@@ -27,6 +27,8 @@ import Foundation
 ///          +z   \_____/   -y
 ///
 
+// swiftlint:disable identifier_name
+
 public enum Position: Hashable, Equatable {
 	case inHand
 	case inPlay(x: Int, y: Int, z: Int)
@@ -47,7 +49,12 @@ public enum Position: Hashable, Equatable {
 	}
 
 	/// Returns true if there is freedom of movement between two positions at given heights
-	public func freedomOfMovement(to other: Position, startingHeight: Int = 1, endingHeight: Int = 1, in state: GameState) -> Bool {
+	public func freedomOfMovement(
+		to other: Position,
+		startingHeight: Int = 1,
+		endingHeight: Int = 1,
+		in state: GameState
+	) -> Bool {
 		// Can't move to anywhere but the top of a stack
 		guard let otherStack = state.stacks[other], endingHeight == otherStack.endIndex else { return false }
 
@@ -75,8 +82,11 @@ public enum Position: Hashable, Equatable {
 			let firstStack = state.stacks[self.adding(firstModifier)],
 			let secondStack = state.stacks[self.adding(secondModifier)] else { return true }
 
-		return (startingHeight > endingHeight && (firstStack.endIndex <= startingHeight || secondStack.endIndex <= startingHeight)) ||
-			(startingHeight <= endingHeight && (endingHeight <= firstStack.endIndex || endingHeight <= secondStack.endIndex))
+		if startingHeight > endingHeight {
+			return firstStack.endIndex <= startingHeight || secondStack.endIndex <= startingHeight
+		} else {
+			return endingHeight <= firstStack.endIndex || endingHeight <= secondStack.endIndex
+		}
 	}
 
 	public func subtracting(_ other: Position) -> Position {
