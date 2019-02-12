@@ -13,17 +13,26 @@ import XCTest
 final class PositionTests: XCTestCase {
 
     static var allTests = [
-        ("testEncodingInPlayPosition", testEncodingInPlayPosition),
-        ("testEncodingInHandPosition", testEncodingInHandPosition)
+        ("testCodingInPlayPosition", testCodingInPlayPosition),
+        ("testCodingInHandPosition", testCodingInHandPosition),
     ]
 
-    func testEncodingInPlayPosition() throws {
+    func testCodingInPlayPosition() throws {
         let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
         let position: Position = .inPlay(x: 1, y: -1, z: 0)
         let data = try encoder.encode(position)
 
-        let expectation = "{\"inPlay\":{\"x\":1,\"y\":-1,\"z\":0}}"
-
+        let expectation = """
+        {
+          "inPlay" : {
+            "x" : 1,
+            "y" : -1,
+            "z" : 0
+          }
+        }
+        """
         XCTAssertEqual(expectation, String.init(data: data, encoding: .utf8)!)
 
         let decoder = JSONDecoder()
@@ -31,14 +40,22 @@ final class PositionTests: XCTestCase {
         XCTAssertEqual(position, decodedPosition)
     }
 
-    func testEncodingInHandPosition() throws {
+    func testCodingInHandPosition() throws {
         let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
         let position: Position = .inHand
         let data = try encoder.encode(position)
+
+        let expectation = """
+        {
+          "inHand" : true
+        }
+        """
+        XCTAssertEqual(expectation, String.init(data: data, encoding: .utf8)!)
 
         let decoder = JSONDecoder()
         let decodedPosition: Position = try decoder.decode(Position.self, from: data)
         XCTAssertEqual(position, decodedPosition)
     }
-
 }

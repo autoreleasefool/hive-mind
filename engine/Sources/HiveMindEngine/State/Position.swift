@@ -112,6 +112,8 @@ public enum Position: Hashable, Equatable {
 	}
 }
 
+// MARK: - Codable
+
 extension Position: Codable {
 	public init(from decoder: Decoder) throws {
 		self = try Position.Coding.init(from: decoder).position()
@@ -151,12 +153,12 @@ extension Position {
 
 		fileprivate func position() throws -> Position {
 			switch (inHand, inPlay) {
-			case (_, nil):
-				return .inHand
 			case (nil, .some(let position)):
 				return .inPlay(x: position.x, y: position.y, z: position.z)
+			case (_, nil):
+				return .inHand
 			default:
-				throw Position.CodingError.standard("Could not convert \(self) into either a Position")
+				throw Position.CodingError.standard("Could not convert \(self) into a Position")
 			}
 		}
 	}

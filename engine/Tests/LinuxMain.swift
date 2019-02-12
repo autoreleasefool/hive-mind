@@ -12,4 +12,5 @@ import HiveMindEngineTests
 var tests = [XCTestCaseEntry]()
 tests += CollectionExtensionTests.allTests()
 tests += PositionTests.allTests()
+tests += MovementTests.allTests()
 XCTMain(tests)

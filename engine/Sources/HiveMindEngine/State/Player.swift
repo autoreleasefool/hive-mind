@@ -9,7 +9,7 @@
 import Foundation
 
 /// Players of the game
-public enum Player {
+public enum Player: String, Codable {
 	/// The first player, white
 	case white
 	/// The second player, black

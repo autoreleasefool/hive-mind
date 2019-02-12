@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct Unit {
+public struct Unit: Codable {
 
-	public enum Class: String, CaseIterable {
+	public enum Class: String, CaseIterable, Codable {
 		case ant = "Ant"
 		case beetle = "Beetle"
 		case hopper = "Hopper"
@@ -38,15 +38,16 @@ public struct Unit {
 	// MARK: Properties
 
 	/// Unique ID for the unit which persists across game states
-	public let identifier = UUID()
+	public let identifier: UUID
 	/// Class of the unit to determine its movements
 	public let `class`: Class
 	/// Owner of the unit
 	public let owner: Player
 
-	init(`class`: Class, owner: Player) {
+	init(`class`: Class, owner: Player, identifier: UUID = UUID()) {
 		self.class = `class`
 		self.owner = owner
+		self.identifier = identifier
 	}
 
 	// MARK: Movement
