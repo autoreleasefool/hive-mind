@@ -6,16 +6,11 @@
 //  Copyright © 2019 Joseph Roque. All rights reserved.
 //
 
-import Foundation
 import HiveMindCore
 
-let hivemind: HiveMind
-print(CommandLine.arguments)
-if CommandLine.arguments.count > 1,
-	let jsonHivemind = try? HiveMind(fromJSON: CommandLine.arguments[1]) {
-	hivemind = jsonHivemind
-} else {
-	hivemind = HiveMind()
+let tool = CommandLineTool()
+do {
+	try tool.run()
+} catch {
+	print("An error occurred: \(error)")
 }
-
-print(hivemind.playJSON())
