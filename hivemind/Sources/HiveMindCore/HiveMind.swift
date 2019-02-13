@@ -11,7 +11,7 @@ import HiveMindEngine
 
 class HiveMind {
 
-	private let state: GameState
+	private(set) var state: GameState
 
 	init(state: GameState) {
 		self.state = state
@@ -21,6 +21,15 @@ class HiveMind {
 		let moves = state.availableMoves
 		let selectedMove = Int.random(in: 0..<moves.count)
 		return moves[selectedMove]
+	}
+
+	func moves() -> [Movement] {
+		let moves = state.availableMoves
+		return moves
+	}
+
+	func apply(_ movement: Movement) {
+		state = state.apply(movement)
 	}
 }
 
@@ -45,6 +54,28 @@ extension HiveMind {
 		let encoder = JSONEncoder()
 		do {
 			let data = try encoder.encode(movement)
+			return String.init(data: data, encoding: .utf8)!
+		} catch {
+			return ""
+		}
+	}
+
+	func movesJSON() -> String {
+		let moves = self.moves()
+		let encoder = JSONEncoder()
+		do {
+			let data = try encoder.encode(moves)
+			return String.init(data: data, encoding: .utf8)!
+		} catch {
+			return ""
+		}
+	}
+
+	func stateJSON() -> String {
+		let state = self.state
+		let encoder = JSONEncoder()
+		do {
+			let data = try encoder.encode(state)
 			return String.init(data: data, encoding: .utf8)!
 		} catch {
 			return ""
