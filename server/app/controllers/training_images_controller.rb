@@ -1,9 +1,9 @@
 class TrainingImagesController < ApplicationController
 
-  # GET /training_images/:id
+  # GET /training_images/:id.json
   def show
     @training_image = TrainingImage.find(params[:id])
-    render json: @training_image, methods: :photo_url
+    render(json: @training_image, methods: :photo_url)
   end
 
   # POST /training_images.json
@@ -17,9 +17,9 @@ class TrainingImagesController < ApplicationController
         @training_image.photo.attach(photo)
       end
 
-      render json: @training_image, methods: :photo_url
+      render(json: @training_image, methods: :photo_url)
     else
-      render json: @training_image.errors, status: :unprocessable_entity
+      render(json: @training_image.errors, status: :unprocessable_entity)
     end
 
     TrainingImageProcessingJob.perform_now(@training_image)

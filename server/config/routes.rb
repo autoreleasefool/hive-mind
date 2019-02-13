@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
   resources :training_images
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  post 'hivemind/new', to: 'hive_mind#new'
+  post 'hivemind/play', to: 'hive_mind#play'
+  post 'hivemind/moves', to: 'hive_mind#available_moves'
+
 end
