@@ -13,6 +13,7 @@
 		CAC9F9552213D77F0066B976 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9F9532213D77F0066B976 /* LaunchScreen.storyboard */; };
 		CAC9F9602213D77F0066B976 /* HiveMindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9F95F2213D77F0066B976 /* HiveMindTests.swift */; };
 		CAC9F96B2213D7800066B976 /* HiveMindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9F96A2213D7800066B976 /* HiveMindUITests.swift */; };
+		CAD963B52213DBD400FFC27A /* FunctionalTableData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD963B42213DBD400FFC27A /* FunctionalTableData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		CAC9F9662213D7800066B976 /* HiveMindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HiveMindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC9F96A2213D7800066B976 /* HiveMindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiveMindUITests.swift; sourceTree = "<group>"; };
 		CAC9F96C2213D7800066B976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAD963B42213DBD400FFC27A /* FunctionalTableData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FunctionalTableData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD963B52213DBD400FFC27A /* FunctionalTableData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 				CAC9F95E2213D77F0066B976 /* HiveMindTests */,
 				CAC9F9692213D7800066B976 /* HiveMindUITests */,
 				CAC9F9482213D77E0066B976 /* Products */,
+				CAD963B32213DBD400FFC27A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +140,14 @@
 				CAC9F9532213D77F0066B976 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CAD963B32213DBD400FFC27A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAD963B42213DBD400FFC27A /* FunctionalTableData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
