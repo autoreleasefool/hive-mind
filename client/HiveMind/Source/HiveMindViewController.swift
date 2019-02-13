@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HiveMindViewController.swift
 //  HiveMind
 //
 //  Created by Joseph Roque on 2019-02-12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HiveMindViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

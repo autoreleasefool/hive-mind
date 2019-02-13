@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CAC9F94B2213D77E0066B976 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9F94A2213D77E0066B976 /* AppDelegate.swift */; };
-		CAC9F94D2213D77E0066B976 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9F94C2213D77E0066B976 /* ViewController.swift */; };
-		CAC9F9502213D77E0066B976 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9F94E2213D77E0066B976 /* Main.storyboard */; };
+		CAC9F94D2213D77E0066B976 /* HiveMindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9F94C2213D77E0066B976 /* HiveMindViewController.swift */; };
 		CAC9F9522213D77F0066B976 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC9F9512213D77F0066B976 /* Assets.xcassets */; };
 		CAC9F9552213D77F0066B976 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9F9532213D77F0066B976 /* LaunchScreen.storyboard */; };
 		CAC9F9602213D77F0066B976 /* HiveMindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9F95F2213D77F0066B976 /* HiveMindTests.swift */; };
@@ -36,8 +35,7 @@
 /* Begin PBXFileReference section */
 		CAC9F9472213D77E0066B976 /* HiveMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiveMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC9F94A2213D77E0066B976 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CAC9F94C2213D77E0066B976 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CAC9F94F2213D77E0066B976 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CAC9F94C2213D77E0066B976 /* HiveMindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiveMindViewController.swift; sourceTree = "<group>"; };
 		CAC9F9512213D77F0066B976 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC9F9542213D77F0066B976 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC9F9562213D77F0066B976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,12 +95,9 @@
 		CAC9F9492213D77E0066B976 /* HiveMind */ = {
 			isa = PBXGroup;
 			children = (
-				CAC9F94A2213D77E0066B976 /* AppDelegate.swift */,
-				CAC9F94C2213D77E0066B976 /* ViewController.swift */,
-				CAC9F94E2213D77E0066B976 /* Main.storyboard */,
-				CAC9F9512213D77F0066B976 /* Assets.xcassets */,
-				CAC9F9532213D77F0066B976 /* LaunchScreen.storyboard */,
 				CAC9F9562213D77F0066B976 /* Info.plist */,
+				CACACCC82213D8B8001B061A /* Resources */,
+				CACACCC72213D898001B061A /* Source */,
 			);
 			path = HiveMind;
 			sourceTree = "<group>";
@@ -123,6 +118,24 @@
 				CAC9F96C2213D7800066B976 /* Info.plist */,
 			);
 			path = HiveMindUITests;
+			sourceTree = "<group>";
+		};
+		CACACCC72213D898001B061A /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CAC9F94A2213D77E0066B976 /* AppDelegate.swift */,
+				CAC9F94C2213D77E0066B976 /* HiveMindViewController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		CACACCC82213D8B8001B061A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CAC9F9512213D77F0066B976 /* Assets.xcassets */,
+				CAC9F9532213D77F0066B976 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +244,6 @@
 			files = (
 				CAC9F9552213D77F0066B976 /* LaunchScreen.storyboard in Resources */,
 				CAC9F9522213D77F0066B976 /* Assets.xcassets in Resources */,
-				CAC9F9502213D77E0066B976 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAC9F94D2213D77E0066B976 /* ViewController.swift in Sources */,
+				CAC9F94D2213D77E0066B976 /* HiveMindViewController.swift in Sources */,
 				CAC9F94B2213D77E0066B976 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,14 +305,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CAC9F94E2213D77E0066B976 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAC9F94F2213D77E0066B976 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CAC9F9532213D77F0066B976 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
