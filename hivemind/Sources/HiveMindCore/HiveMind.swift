@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HiveMindEngine
+import HiveEngine
 
 class HiveMind {
 

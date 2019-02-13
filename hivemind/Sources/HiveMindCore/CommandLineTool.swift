@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HiveMindEngine
+import HiveEngine
 
 public final class CommandLineTool {
 	private let arguments: [String]
