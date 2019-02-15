@@ -1,7 +1,15 @@
 {
   "object": {
     "pins": [
-
+      {
+        "package": "HiveEngine",
+        "repositoryURL": "git@github.com:josephroqueca/hive-engine.git",
+        "state": {
+          "branch": "master",
+          "revision": "a05e9a0acd8b381a0cb7aeca6e73fedcc0b3e0f0",
+          "version": null
+        }
+      }
     ]
   },
   "version": 1
