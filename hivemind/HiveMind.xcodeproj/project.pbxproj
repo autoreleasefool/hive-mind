@@ -307,7 +307,7 @@
             "OBJ_27"
          );
          name = "HiveEngine";
-         path = ".build/checkouts/hive-engine.git-8871159853459060531/Sources/HiveEngine";
+         path = ".build/checkouts/hive-engine.git--1220442645728689634/Sources/HiveEngine";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_2" = {
@@ -470,16 +470,16 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/josephroque/Documents/Workspace/hivemind/hivemind/.build/checkouts/hive-engine.git-8871159853459060531/Package.swift";
+         path = "/Users/josephroque/Documents/Workspace/hivemind/hivemind/.build/checkouts/hive-engine.git--1220442645728689634/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_38" = {
          isa = "PBXGroup";
          children = (
-            "HiveMind::HiveMindCoreTests::Product",
             "HiveMind::HiveMind::Product",
-            "HiveEngine::HiveEngine::Product",
-            "HiveMind::HiveMindCore::Product"
+            "HiveMind::HiveMindCoreTests::Product",
+            "HiveMind::HiveMindCore::Product",
+            "HiveEngine::HiveEngine::Product"
          );
          name = "Products";
          path = "";
