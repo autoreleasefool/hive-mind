@@ -1,13 +1,7 @@
 class HiveMindController < ApplicationController
 
   def new
-    if params['playerIsFirst'] then
-      render(json: "{}", status: :ok)
-    else
-      state = `#{hiveMindExecutable} --new`
-      move = `#{hiveMindExecutable} --play '#{state}'`
-      render(json: move, status: :ok)
-    end
+    render(json: "{}", status: :ok)
   end
 
   def play
