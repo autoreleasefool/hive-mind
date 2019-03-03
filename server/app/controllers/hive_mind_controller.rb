@@ -1,18 +1,18 @@
 class HiveMindController < ApplicationController
 
   def new
-    state = `#{hiveMindExecutable} --new`
-    render(json: state, status: :ok)
+    if params['playerIsFirst'] then
+      render(json: "{}", status: :ok)
+    else
+      state = `#{hiveMindExecutable} --new`
+      move = `#{hiveMindExecutable} --play '#{state}'`
+      render(json: move, status: :ok)
+    end
   end
 
   def play
-    move = `#{hiveMindExecutable} --play '#{request.body.json()}'`
+    move = `#{hiveMindExecutable} --play '#{request.body.read()}'`
     render(json: move, status: :ok)
-  end
-
-  def available_moves
-    moves = `#{hiveMindExecutable} --moves '#{request.body.json()}'`
-    render(json: moves, status: :ok)
   end
 
   private
