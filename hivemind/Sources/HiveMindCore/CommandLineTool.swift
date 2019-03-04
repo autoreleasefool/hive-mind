@@ -49,7 +49,7 @@ public final class CommandLineTool {
 			""")
 		case "--new":
 			let hivemind = HiveMind()
-			print(hivemind.stateJSON())
+			print(hivemind.state.json())
 		default:
 			print("Invalid arguments.")
 		}
@@ -59,11 +59,11 @@ public final class CommandLineTool {
 		switch argument {
 		case "--play":
 			if let hivemind = try? HiveMind(fromJSON: value) {
-				print(hivemind.playJSON())
+				print(hivemind.play().json())
 			}
 		case "--moves":
 			if let hivemind = try? HiveMind(fromJSON: value) {
-				print(hivemind.movesJSON())
+				print(hivemind.moves().json())
 			}
 		default:
 			print("Invalid arguments.")
@@ -77,7 +77,7 @@ public final class CommandLineTool {
 				let moveData = values[1].data(using: .utf8),
 				let move = try? JSONDecoder().decode(Movement.self, from: moveData) {
 				hivemind.apply(move)
-				print(hivemind.stateJSON())
+				print(hivemind.state.json())
 			}
 		default:
 			print("Invalid arguments.")

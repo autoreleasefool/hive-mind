@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HiveMind::HiveMindCore"
-               BuildableName = "HiveMindCore.framework"
-               BlueprintName = "HiveMindCore"
+               BlueprintIdentifier = "HiveMind::HiveMind"
+               BuildableName = "HiveMind"
+               BlueprintName = "HiveMind"
                ReferencedContainer = "container:HiveMind.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HiveMind::HiveMind"
-               BuildableName = "HiveMind"
-               BlueprintName = "HiveMind"
+               BlueprintIdentifier = "HiveMind::HiveMindCore"
+               BuildableName = "HiveMindCore.framework"
+               BlueprintName = "HiveMindCore"
                ReferencedContainer = "container:HiveMind.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -69,9 +69,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "HiveMind::HiveMindCore"
-            BuildableName = "HiveMindCore.framework"
-            BlueprintName = "HiveMindCore"
+            BlueprintIdentifier = "HiveMind::HiveMind"
+            BuildableName = "HiveMind"
+            BlueprintName = "HiveMind"
             ReferencedContainer = "container:HiveMind.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

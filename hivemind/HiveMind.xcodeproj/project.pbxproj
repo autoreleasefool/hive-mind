@@ -5,10 +5,10 @@
    objects = {
       "HiveEngine::HiveEngine" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_44";
+         buildConfigurationList = "OBJ_47";
          buildPhases = (
-            "OBJ_47",
-            "OBJ_62"
+            "OBJ_50",
+            "OBJ_65"
          );
          dependencies = (
          );
@@ -24,9 +24,9 @@
       };
       "HiveEngine::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_64";
+         buildConfigurationList = "OBJ_67";
          buildPhases = (
-            "OBJ_67"
+            "OBJ_70"
          );
          dependencies = (
          );
@@ -36,14 +36,14 @@
       };
       "HiveMind::HiveMind" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_70";
+         buildConfigurationList = "OBJ_73";
          buildPhases = (
-            "OBJ_73",
-            "OBJ_75"
+            "OBJ_76",
+            "OBJ_78"
          );
          dependencies = (
-            "OBJ_78",
-            "OBJ_80"
+            "OBJ_81",
+            "OBJ_83"
          );
          name = "HiveMind";
          productName = "HiveMind";
@@ -57,13 +57,13 @@
       };
       "HiveMind::HiveMindCore" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_81";
+         buildConfigurationList = "OBJ_84";
          buildPhases = (
-            "OBJ_84",
-            "OBJ_87"
+            "OBJ_87",
+            "OBJ_92"
          );
          dependencies = (
-            "OBJ_89"
+            "OBJ_94"
          );
          name = "HiveMindCore";
          productName = "HiveMindCore";
@@ -77,14 +77,14 @@
       };
       "HiveMind::HiveMindCoreTests" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_91";
+         buildConfigurationList = "OBJ_96";
          buildPhases = (
-            "OBJ_94",
-            "OBJ_97"
+            "OBJ_99",
+            "OBJ_102"
          );
          dependencies = (
-            "OBJ_100",
-            "OBJ_101"
+            "OBJ_105",
+            "OBJ_106"
          );
          name = "HiveMindCoreTests";
          productName = "HiveMindCoreTests";
@@ -98,20 +98,20 @@
       };
       "HiveMind::HiveMindPackageTests::ProductTarget" = {
          isa = "PBXAggregateTarget";
-         buildConfigurationList = "OBJ_109";
+         buildConfigurationList = "OBJ_114";
          buildPhases = (
          );
          dependencies = (
-            "OBJ_112"
+            "OBJ_117"
          );
          name = "HiveMindPackageTests";
          productName = "HiveMindPackageTests";
       };
       "HiveMind::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_103";
+         buildConfigurationList = "OBJ_108";
          buildPhases = (
-            "OBJ_106"
+            "OBJ_111"
          );
          dependencies = (
          );
@@ -132,7 +132,7 @@
             "en"
          );
          mainGroup = "OBJ_5";
-         productRefGroup = "OBJ_38";
+         productRefGroup = "OBJ_41";
          projectDirPath = ".";
          targets = (
             "HiveEngine::HiveEngine",
@@ -145,28 +145,56 @@
          );
       };
       "OBJ_10" = {
-         isa = "PBXFileReference";
-         path = "HiveMind.swift";
+         isa = "PBXGroup";
+         children = (
+            "OBJ_11",
+            "OBJ_12"
+         );
+         name = "Extensions";
+         path = "Extensions";
          sourceTree = "<group>";
       };
       "OBJ_100" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_18";
+      };
+      "OBJ_101" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_19";
+      };
+      "OBJ_102" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_103",
+            "OBJ_104"
+         );
+      };
+      "OBJ_103" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveMind::HiveMindCore::Product";
+      };
+      "OBJ_104" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveEngine::HiveEngine::Product";
+      };
+      "OBJ_105" = {
          isa = "PBXTargetDependency";
          target = "HiveMind::HiveMindCore";
       };
-      "OBJ_101" = {
+      "OBJ_106" = {
          isa = "PBXTargetDependency";
          target = "HiveEngine::HiveEngine";
       };
-      "OBJ_103" = {
+      "OBJ_108" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_104",
-            "OBJ_105"
+            "OBJ_109",
+            "OBJ_110"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_104" = {
+      "OBJ_109" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             LD = "/usr/bin/true";
@@ -184,131 +212,116 @@
          };
          name = "Debug";
       };
-      "OBJ_105" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
-      };
-      "OBJ_106" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_107"
-         );
-      };
-      "OBJ_107" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_6";
-      };
-      "OBJ_109" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_110",
-            "OBJ_111"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
       "OBJ_11" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_12"
-         );
-         name = "HiveMind";
-         path = "Sources/HiveMind";
-         sourceTree = "SOURCE_ROOT";
+         isa = "PBXFileReference";
+         path = "GameState+Extensions.swift";
+         sourceTree = "<group>";
       };
       "OBJ_110" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Release";
+      };
+      "OBJ_111" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_112"
+         );
+      };
+      "OBJ_112" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_114" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_115",
+            "OBJ_116"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_115" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
          };
          name = "Debug";
       };
-      "OBJ_111" = {
+      "OBJ_116" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
          };
          name = "Release";
       };
-      "OBJ_112" = {
+      "OBJ_117" = {
          isa = "PBXTargetDependency";
          target = "HiveMind::HiveMindCoreTests";
       };
       "OBJ_12" = {
          isa = "PBXFileReference";
-         path = "main.swift";
+         path = "Movement+Extensions.swift";
          sourceTree = "<group>";
       };
       "OBJ_13" = {
+         isa = "PBXFileReference";
+         path = "HiveMind.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_14" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_14"
+            "OBJ_15"
+         );
+         name = "HiveMind";
+         path = "Sources/HiveMind";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_15" = {
+         isa = "PBXFileReference";
+         path = "main.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_16" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_17"
          );
          name = "Tests";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_14" = {
+      "OBJ_17" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_15",
-            "OBJ_16"
+            "OBJ_18",
+            "OBJ_19"
          );
          name = "HiveMindCoreTests";
          path = "Tests/HiveMindCoreTests";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_15" = {
+      "OBJ_18" = {
          isa = "PBXFileReference";
          path = "HiveMindTests.swift";
          sourceTree = "<group>";
       };
-      "OBJ_16" = {
+      "OBJ_19" = {
          isa = "PBXFileReference";
          path = "XCTestManifests.swift";
          sourceTree = "<group>";
-      };
-      "OBJ_17" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_18"
-         );
-         name = "Dependencies";
-         path = "";
-         sourceTree = "<group>";
-      };
-      "OBJ_18" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_19",
-            "OBJ_37"
-         );
-         name = "HiveEngine";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_19" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_20",
-            "OBJ_22",
-            "OBJ_27"
-         );
-         name = "HiveEngine";
-         path = ".build/checkouts/hive-engine.git--1220442645728689634/Sources/HiveEngine";
-         sourceTree = "SOURCE_ROOT";
       };
       "OBJ_2" = {
          isa = "XCConfigurationList";
@@ -324,72 +337,75 @@
          children = (
             "OBJ_21"
          );
-         name = "Extensions";
-         path = "Extensions";
+         name = "Dependencies";
+         path = "";
          sourceTree = "<group>";
       };
       "OBJ_21" = {
-         isa = "PBXFileReference";
-         path = "Collection+Extensions.swift";
-         sourceTree = "<group>";
+         isa = "PBXGroup";
+         children = (
+            "OBJ_22",
+            "OBJ_40"
+         );
+         name = "HiveEngine";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
       };
       "OBJ_22" = {
          isa = "PBXGroup";
          children = (
             "OBJ_23",
-            "OBJ_24",
             "OBJ_25",
-            "OBJ_26"
+            "OBJ_30"
+         );
+         name = "HiveEngine";
+         path = ".build/checkouts/hive-engine.git--8957386801179617483/Sources/HiveEngine";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_23" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_24"
+         );
+         name = "Extensions";
+         path = "Extensions";
+         sourceTree = "<group>";
+      };
+      "OBJ_24" = {
+         isa = "PBXFileReference";
+         path = "Collection+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_25" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_26",
+            "OBJ_27",
+            "OBJ_28",
+            "OBJ_29"
          );
          name = "State";
          path = "State";
          sourceTree = "<group>";
       };
-      "OBJ_23" = {
+      "OBJ_26" = {
          isa = "PBXFileReference";
          path = "GameState.swift";
          sourceTree = "<group>";
       };
-      "OBJ_24" = {
+      "OBJ_27" = {
          isa = "PBXFileReference";
          path = "Movement.swift";
          sourceTree = "<group>";
       };
-      "OBJ_25" = {
+      "OBJ_28" = {
          isa = "PBXFileReference";
          path = "Player.swift";
          sourceTree = "<group>";
       };
-      "OBJ_26" = {
-         isa = "PBXFileReference";
-         path = "Position.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_27" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_28",
-            "OBJ_29",
-            "OBJ_30",
-            "OBJ_31",
-            "OBJ_32",
-            "OBJ_33",
-            "OBJ_34",
-            "OBJ_35",
-            "OBJ_36"
-         );
-         name = "Unit";
-         path = "Unit";
-         sourceTree = "<group>";
-      };
-      "OBJ_28" = {
-         isa = "PBXFileReference";
-         path = "Unit+Ant.swift";
-         sourceTree = "<group>";
-      };
       "OBJ_29" = {
          isa = "PBXFileReference";
-         path = "Unit+Beetle.swift";
+         path = "Position.swift";
          sourceTree = "<group>";
       };
       "OBJ_3" = {
@@ -432,58 +448,66 @@
          name = "Debug";
       };
       "OBJ_30" = {
-         isa = "PBXFileReference";
-         path = "Unit+Hopper.swift";
+         isa = "PBXGroup";
+         children = (
+            "OBJ_31",
+            "OBJ_32",
+            "OBJ_33",
+            "OBJ_34",
+            "OBJ_35",
+            "OBJ_36",
+            "OBJ_37",
+            "OBJ_38",
+            "OBJ_39"
+         );
+         name = "Unit";
+         path = "Unit";
          sourceTree = "<group>";
       };
       "OBJ_31" = {
          isa = "PBXFileReference";
-         path = "Unit+LadyBug.swift";
+         path = "Unit+Ant.swift";
          sourceTree = "<group>";
       };
       "OBJ_32" = {
          isa = "PBXFileReference";
-         path = "Unit+Mosquito.swift";
+         path = "Unit+Beetle.swift";
          sourceTree = "<group>";
       };
       "OBJ_33" = {
          isa = "PBXFileReference";
-         path = "Unit+PillBug.swift";
+         path = "Unit+Hopper.swift";
          sourceTree = "<group>";
       };
       "OBJ_34" = {
          isa = "PBXFileReference";
-         path = "Unit+Queen.swift";
+         path = "Unit+LadyBug.swift";
          sourceTree = "<group>";
       };
       "OBJ_35" = {
          isa = "PBXFileReference";
-         path = "Unit+Spider.swift";
+         path = "Unit+Mosquito.swift";
          sourceTree = "<group>";
       };
       "OBJ_36" = {
          isa = "PBXFileReference";
-         path = "Unit.swift";
+         path = "Unit+PillBug.swift";
          sourceTree = "<group>";
       };
       "OBJ_37" = {
          isa = "PBXFileReference";
-         explicitFileType = "sourcecode.swift";
-         name = "Package.swift";
-         path = "/Users/josephroque/Documents/Workspace/hivemind/hivemind/.build/checkouts/hive-engine.git--1220442645728689634/Package.swift";
+         path = "Unit+Queen.swift";
          sourceTree = "<group>";
       };
       "OBJ_38" = {
-         isa = "PBXGroup";
-         children = (
-            "HiveMind::HiveMind::Product",
-            "HiveMind::HiveMindCoreTests::Product",
-            "HiveMind::HiveMindCore::Product",
-            "HiveEngine::HiveEngine::Product"
-         );
-         name = "Products";
-         path = "";
-         sourceTree = "BUILT_PRODUCTS_DIR";
+         isa = "PBXFileReference";
+         path = "Unit+Spider.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_39" = {
+         isa = "PBXFileReference";
+         path = "Unit.swift";
+         sourceTree = "<group>";
       };
       "OBJ_4" = {
          isa = "XCBuildConfiguration";
@@ -517,16 +541,35 @@
          };
          name = "Release";
       };
-      "OBJ_44" = {
+      "OBJ_40" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/josephroque/Documents/Workspace/hivemind/hivemind/.build/checkouts/hive-engine.git--8957386801179617483/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_41" = {
+         isa = "PBXGroup";
+         children = (
+            "HiveEngine::HiveEngine::Product",
+            "HiveMind::HiveMindCore::Product",
+            "HiveMind::HiveMind::Product",
+            "HiveMind::HiveMindCoreTests::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_47" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_45",
-            "OBJ_46"
+            "OBJ_48",
+            "OBJ_49"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_45" = {
+      "OBJ_48" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -563,7 +606,7 @@
          };
          name = "Debug";
       };
-      "OBJ_46" = {
+      "OBJ_49" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -600,12 +643,21 @@
          };
          name = "Release";
       };
-      "OBJ_47" = {
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_16",
+            "OBJ_20",
+            "OBJ_41"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_50" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_48",
-            "OBJ_49",
-            "OBJ_50",
             "OBJ_51",
             "OBJ_52",
             "OBJ_53",
@@ -616,36 +668,15 @@
             "OBJ_58",
             "OBJ_59",
             "OBJ_60",
-            "OBJ_61"
+            "OBJ_61",
+            "OBJ_62",
+            "OBJ_63",
+            "OBJ_64"
          );
-      };
-      "OBJ_48" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_21";
-      };
-      "OBJ_49" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_23";
-      };
-      "OBJ_5" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_6",
-            "OBJ_7",
-            "OBJ_13",
-            "OBJ_17",
-            "OBJ_38"
-         );
-         path = "";
-         sourceTree = "<group>";
-      };
-      "OBJ_50" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_24";
       };
       "OBJ_51" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_25";
+         fileRef = "OBJ_24";
       };
       "OBJ_52" = {
          isa = "PBXBuildFile";
@@ -653,15 +684,15 @@
       };
       "OBJ_53" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_28";
+         fileRef = "OBJ_27";
       };
       "OBJ_54" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_29";
+         fileRef = "OBJ_28";
       };
       "OBJ_55" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_30";
+         fileRef = "OBJ_29";
       };
       "OBJ_56" = {
          isa = "PBXBuildFile";
@@ -694,20 +725,32 @@
          fileRef = "OBJ_36";
       };
       "OBJ_62" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_37";
+      };
+      "OBJ_63" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_38";
+      };
+      "OBJ_64" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_39";
+      };
+      "OBJ_65" = {
          isa = "PBXFrameworksBuildPhase";
          files = (
          );
       };
-      "OBJ_64" = {
+      "OBJ_67" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_65",
-            "OBJ_66"
+            "OBJ_68",
+            "OBJ_69"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_65" = {
+      "OBJ_68" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             LD = "/usr/bin/true";
@@ -725,7 +768,7 @@
          };
          name = "Debug";
       };
-      "OBJ_66" = {
+      "OBJ_69" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             LD = "/usr/bin/true";
@@ -743,36 +786,36 @@
          };
          name = "Release";
       };
-      "OBJ_67" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_68"
-         );
-      };
-      "OBJ_68" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_37";
-      };
       "OBJ_7" = {
          isa = "PBXGroup";
          children = (
             "OBJ_8",
-            "OBJ_11"
+            "OBJ_14"
          );
          name = "Sources";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_70" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_71"
+         );
+      };
+      "OBJ_71" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_40";
+      };
+      "OBJ_73" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_71",
-            "OBJ_72"
+            "OBJ_74",
+            "OBJ_75"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_71" = {
+      "OBJ_74" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             FRAMEWORK_SEARCH_PATHS = (
@@ -807,7 +850,7 @@
          };
          name = "Debug";
       };
-      "OBJ_72" = {
+      "OBJ_75" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             FRAMEWORK_SEARCH_PATHS = (
@@ -842,59 +885,60 @@
          };
          name = "Release";
       };
-      "OBJ_73" = {
+      "OBJ_76" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_74"
-         );
-      };
-      "OBJ_74" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_12";
-      };
-      "OBJ_75" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_76",
             "OBJ_77"
          );
       };
-      "OBJ_76" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveMind::HiveMindCore::Product";
-      };
       "OBJ_77" = {
          isa = "PBXBuildFile";
-         fileRef = "HiveEngine::HiveEngine::Product";
+         fileRef = "OBJ_15";
       };
       "OBJ_78" = {
-         isa = "PBXTargetDependency";
-         target = "HiveMind::HiveMindCore";
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_79",
+            "OBJ_80"
+         );
+      };
+      "OBJ_79" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveMind::HiveMindCore::Product";
       };
       "OBJ_8" = {
          isa = "PBXGroup";
          children = (
             "OBJ_9",
-            "OBJ_10"
+            "OBJ_10",
+            "OBJ_13"
          );
          name = "HiveMindCore";
          path = "Sources/HiveMindCore";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_80" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveEngine::HiveEngine::Product";
+      };
+      "OBJ_81" = {
+         isa = "PBXTargetDependency";
+         target = "HiveMind::HiveMindCore";
+      };
+      "OBJ_83" = {
          isa = "PBXTargetDependency";
          target = "HiveEngine::HiveEngine";
       };
-      "OBJ_81" = {
+      "OBJ_84" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_82",
-            "OBJ_83"
+            "OBJ_85",
+            "OBJ_86"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_82" = {
+      "OBJ_85" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -931,7 +975,7 @@
          };
          name = "Debug";
       };
-      "OBJ_83" = {
+      "OBJ_86" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             ENABLE_TESTABILITY = "YES";
@@ -968,50 +1012,60 @@
          };
          name = "Release";
       };
-      "OBJ_84" = {
+      "OBJ_87" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_85",
-            "OBJ_86"
-         );
-      };
-      "OBJ_85" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_9";
-      };
-      "OBJ_86" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_10";
-      };
-      "OBJ_87" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_88"
+            "OBJ_88",
+            "OBJ_89",
+            "OBJ_90",
+            "OBJ_91"
          );
       };
       "OBJ_88" = {
          isa = "PBXBuildFile";
-         fileRef = "HiveEngine::HiveEngine::Product";
+         fileRef = "OBJ_9";
       };
       "OBJ_89" = {
-         isa = "PBXTargetDependency";
-         target = "HiveEngine::HiveEngine";
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_11";
       };
       "OBJ_9" = {
          isa = "PBXFileReference";
          path = "CommandLineTool.swift";
          sourceTree = "<group>";
       };
+      "OBJ_90" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_12";
+      };
       "OBJ_91" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_13";
+      };
+      "OBJ_92" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_93"
+         );
+      };
+      "OBJ_93" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveEngine::HiveEngine::Product";
+      };
+      "OBJ_94" = {
+         isa = "PBXTargetDependency";
+         target = "HiveEngine::HiveEngine";
+      };
+      "OBJ_96" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_92",
-            "OBJ_93"
+            "OBJ_97",
+            "OBJ_98"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_92" = {
+      "OBJ_97" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             CLANG_ENABLE_MODULES = "YES";
@@ -1046,7 +1100,7 @@
          };
          name = "Debug";
       };
-      "OBJ_93" = {
+      "OBJ_98" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             CLANG_ENABLE_MODULES = "YES";
@@ -1081,35 +1135,12 @@
          };
          name = "Release";
       };
-      "OBJ_94" = {
+      "OBJ_99" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_95",
-            "OBJ_96"
+            "OBJ_100",
+            "OBJ_101"
          );
-      };
-      "OBJ_95" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_15";
-      };
-      "OBJ_96" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_16";
-      };
-      "OBJ_97" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_98",
-            "OBJ_99"
-         );
-      };
-      "OBJ_98" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveMind::HiveMindCore::Product";
-      };
-      "OBJ_99" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveEngine::HiveEngine::Product";
       };
    };
    rootObject = "OBJ_1";
