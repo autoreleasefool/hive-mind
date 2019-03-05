@@ -7,7 +7,7 @@ An AI developed to play the Hive board game.
 There are 4 main components which make up the HiveMind AI. This repository contains the server and the main AI unit.
 
 * Client (**Swift**)
-    * [hivemind-client](https://github.com/josephroqueca/hivemind-client)
+    * [hivemind-client](https://github.com/josephroqueca/hiveai-client)
     * iOS app to process state and display moves
     * Lightweight -- primarily encodes basic state and movements
     * GUI to display movements
