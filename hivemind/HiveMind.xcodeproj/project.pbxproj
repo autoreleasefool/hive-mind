@@ -5,10 +5,10 @@
    objects = {
       "HiveEngine::HiveEngine" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_47";
+         buildConfigurationList = "OBJ_48";
          buildPhases = (
-            "OBJ_50",
-            "OBJ_65"
+            "OBJ_51",
+            "OBJ_66"
          );
          dependencies = (
          );
@@ -24,9 +24,9 @@
       };
       "HiveEngine::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_67";
+         buildConfigurationList = "OBJ_68";
          buildPhases = (
-            "OBJ_70"
+            "OBJ_71"
          );
          dependencies = (
          );
@@ -36,14 +36,14 @@
       };
       "HiveMind::HiveMind" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_73";
+         buildConfigurationList = "OBJ_74";
          buildPhases = (
-            "OBJ_76",
-            "OBJ_78"
+            "OBJ_77",
+            "OBJ_79"
          );
          dependencies = (
-            "OBJ_81",
-            "OBJ_83"
+            "OBJ_82",
+            "OBJ_84"
          );
          name = "HiveMind";
          productName = "HiveMind";
@@ -57,13 +57,13 @@
       };
       "HiveMind::HiveMindCore" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_84";
+         buildConfigurationList = "OBJ_85";
          buildPhases = (
-            "OBJ_87",
-            "OBJ_92"
+            "OBJ_88",
+            "OBJ_94"
          );
          dependencies = (
-            "OBJ_94"
+            "OBJ_96"
          );
          name = "HiveMindCore";
          productName = "HiveMindCore";
@@ -77,14 +77,14 @@
       };
       "HiveMind::HiveMindCoreTests" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_96";
+         buildConfigurationList = "OBJ_98";
          buildPhases = (
-            "OBJ_99",
-            "OBJ_102"
+            "OBJ_101",
+            "OBJ_104"
          );
          dependencies = (
-            "OBJ_105",
-            "OBJ_106"
+            "OBJ_107",
+            "OBJ_108"
          );
          name = "HiveMindCoreTests";
          productName = "HiveMindCoreTests";
@@ -98,20 +98,20 @@
       };
       "HiveMind::HiveMindPackageTests::ProductTarget" = {
          isa = "PBXAggregateTarget";
-         buildConfigurationList = "OBJ_114";
+         buildConfigurationList = "OBJ_116";
          buildPhases = (
          );
          dependencies = (
-            "OBJ_117"
+            "OBJ_119"
          );
          name = "HiveMindPackageTests";
          productName = "HiveMindPackageTests";
       };
       "HiveMind::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_108";
+         buildConfigurationList = "OBJ_110";
          buildPhases = (
-            "OBJ_111"
+            "OBJ_113"
          );
          dependencies = (
          );
@@ -132,7 +132,7 @@
             "en"
          );
          mainGroup = "OBJ_5";
-         productRefGroup = "OBJ_41";
+         productRefGroup = "OBJ_42";
          projectDirPath = ".";
          targets = (
             "HiveEngine::HiveEngine",
@@ -148,179 +148,224 @@
          isa = "PBXGroup";
          children = (
             "OBJ_11",
-            "OBJ_12"
+            "OBJ_12",
+            "OBJ_16"
+         );
+         name = "HiveMindCore";
+         path = "Sources/HiveMindCore";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_100" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveMindCoreTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "HiveMindCoreTests";
+         };
+         name = "Release";
+      };
+      "OBJ_101" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_102",
+            "OBJ_103"
+         );
+      };
+      "OBJ_102" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_19";
+      };
+      "OBJ_103" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_20";
+      };
+      "OBJ_104" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_105",
+            "OBJ_106"
+         );
+      };
+      "OBJ_105" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveMind::HiveMindCore::Product";
+      };
+      "OBJ_106" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveEngine::HiveEngine::Product";
+      };
+      "OBJ_107" = {
+         isa = "PBXTargetDependency";
+         target = "HiveMind::HiveMindCore";
+      };
+      "OBJ_108" = {
+         isa = "PBXTargetDependency";
+         target = "HiveEngine::HiveEngine";
+      };
+      "OBJ_11" = {
+         isa = "PBXFileReference";
+         path = "CommandLineTool.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_110" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_111",
+            "OBJ_112"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_111" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Debug";
+      };
+      "OBJ_112" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Release";
+      };
+      "OBJ_113" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_114"
+         );
+      };
+      "OBJ_114" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_116" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_117",
+            "OBJ_118"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_117" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_118" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_119" = {
+         isa = "PBXTargetDependency";
+         target = "HiveMind::HiveMindCoreTests";
+      };
+      "OBJ_12" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_13",
+            "OBJ_14",
+            "OBJ_15"
          );
          name = "Extensions";
          path = "Extensions";
          sourceTree = "<group>";
       };
-      "OBJ_100" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_18";
-      };
-      "OBJ_101" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_19";
-      };
-      "OBJ_102" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_103",
-            "OBJ_104"
-         );
-      };
-      "OBJ_103" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveMind::HiveMindCore::Product";
-      };
-      "OBJ_104" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveEngine::HiveEngine::Product";
-      };
-      "OBJ_105" = {
-         isa = "PBXTargetDependency";
-         target = "HiveMind::HiveMindCore";
-      };
-      "OBJ_106" = {
-         isa = "PBXTargetDependency";
-         target = "HiveEngine::HiveEngine";
-      };
-      "OBJ_108" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_109",
-            "OBJ_110"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_109" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
-      };
-      "OBJ_11" = {
+      "OBJ_13" = {
          isa = "PBXFileReference";
          path = "GameState+Extensions.swift";
          sourceTree = "<group>";
       };
-      "OBJ_110" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
-      };
-      "OBJ_111" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_112"
-         );
-      };
-      "OBJ_112" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_6";
-      };
-      "OBJ_114" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_115",
-            "OBJ_116"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_115" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-         };
-         name = "Debug";
-      };
-      "OBJ_116" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-         };
-         name = "Release";
-      };
-      "OBJ_117" = {
-         isa = "PBXTargetDependency";
-         target = "HiveMind::HiveMindCoreTests";
-      };
-      "OBJ_12" = {
+      "OBJ_14" = {
          isa = "PBXFileReference";
          path = "Movement+Extensions.swift";
          sourceTree = "<group>";
       };
-      "OBJ_13" = {
+      "OBJ_15" = {
+         isa = "PBXFileReference";
+         path = "Unit+Extensions.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_16" = {
          isa = "PBXFileReference";
          path = "HiveMind.swift";
          sourceTree = "<group>";
       };
-      "OBJ_14" = {
+      "OBJ_17" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_15"
-         );
-         name = "HiveMind";
-         path = "Sources/HiveMind";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_15" = {
-         isa = "PBXFileReference";
-         path = "main.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_16" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_17"
+            "OBJ_18"
          );
          name = "Tests";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_17" = {
+      "OBJ_18" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_18",
-            "OBJ_19"
+            "OBJ_19",
+            "OBJ_20"
          );
          name = "HiveMindCoreTests";
          path = "Tests/HiveMindCoreTests";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_18" = {
-         isa = "PBXFileReference";
-         path = "HiveMindTests.swift";
-         sourceTree = "<group>";
-      };
       "OBJ_19" = {
          isa = "PBXFileReference";
-         path = "XCTestManifests.swift";
+         path = "HiveMindTests.swift";
          sourceTree = "<group>";
       };
       "OBJ_2" = {
@@ -333,79 +378,79 @@
          defaultConfigurationName = "Release";
       };
       "OBJ_20" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_21"
-         );
-         name = "Dependencies";
-         path = "";
+         isa = "PBXFileReference";
+         path = "XCTestManifests.swift";
          sourceTree = "<group>";
       };
       "OBJ_21" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_22",
-            "OBJ_40"
+            "OBJ_22"
          );
-         name = "HiveEngine";
+         name = "Dependencies";
          path = "";
-         sourceTree = "SOURCE_ROOT";
+         sourceTree = "<group>";
       };
       "OBJ_22" = {
          isa = "PBXGroup";
          children = (
             "OBJ_23",
-            "OBJ_25",
-            "OBJ_30"
+            "OBJ_41"
          );
          name = "HiveEngine";
-         path = ".build/checkouts/hive-engine.git--8957386801179617483/Sources/HiveEngine";
+         path = "";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_23" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_24"
+            "OBJ_24",
+            "OBJ_26",
+            "OBJ_31"
+         );
+         name = "HiveEngine";
+         path = ".build/checkouts/hive-engine.git--5162620447224055874/Sources/HiveEngine";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_24" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_25"
          );
          name = "Extensions";
          path = "Extensions";
          sourceTree = "<group>";
       };
-      "OBJ_24" = {
+      "OBJ_25" = {
          isa = "PBXFileReference";
          path = "Collection+Extensions.swift";
          sourceTree = "<group>";
       };
-      "OBJ_25" = {
+      "OBJ_26" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_26",
             "OBJ_27",
             "OBJ_28",
-            "OBJ_29"
+            "OBJ_29",
+            "OBJ_30"
          );
          name = "State";
          path = "State";
          sourceTree = "<group>";
       };
-      "OBJ_26" = {
+      "OBJ_27" = {
          isa = "PBXFileReference";
          path = "GameState.swift";
          sourceTree = "<group>";
       };
-      "OBJ_27" = {
+      "OBJ_28" = {
          isa = "PBXFileReference";
          path = "Movement.swift";
          sourceTree = "<group>";
       };
-      "OBJ_28" = {
-         isa = "PBXFileReference";
-         path = "Player.swift";
-         sourceTree = "<group>";
-      };
       "OBJ_29" = {
          isa = "PBXFileReference";
-         path = "Position.swift";
+         path = "Player.swift";
          sourceTree = "<group>";
       };
       "OBJ_3" = {
@@ -448,9 +493,13 @@
          name = "Debug";
       };
       "OBJ_30" = {
+         isa = "PBXFileReference";
+         path = "Position.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_31" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_31",
             "OBJ_32",
             "OBJ_33",
             "OBJ_34",
@@ -458,55 +507,51 @@
             "OBJ_36",
             "OBJ_37",
             "OBJ_38",
-            "OBJ_39"
+            "OBJ_39",
+            "OBJ_40"
          );
          name = "Unit";
          path = "Unit";
          sourceTree = "<group>";
       };
-      "OBJ_31" = {
+      "OBJ_32" = {
          isa = "PBXFileReference";
          path = "Unit+Ant.swift";
          sourceTree = "<group>";
       };
-      "OBJ_32" = {
+      "OBJ_33" = {
          isa = "PBXFileReference";
          path = "Unit+Beetle.swift";
          sourceTree = "<group>";
       };
-      "OBJ_33" = {
+      "OBJ_34" = {
          isa = "PBXFileReference";
          path = "Unit+Hopper.swift";
          sourceTree = "<group>";
       };
-      "OBJ_34" = {
+      "OBJ_35" = {
          isa = "PBXFileReference";
          path = "Unit+LadyBug.swift";
          sourceTree = "<group>";
       };
-      "OBJ_35" = {
+      "OBJ_36" = {
          isa = "PBXFileReference";
          path = "Unit+Mosquito.swift";
          sourceTree = "<group>";
       };
-      "OBJ_36" = {
+      "OBJ_37" = {
          isa = "PBXFileReference";
          path = "Unit+PillBug.swift";
          sourceTree = "<group>";
       };
-      "OBJ_37" = {
+      "OBJ_38" = {
          isa = "PBXFileReference";
          path = "Unit+Queen.swift";
          sourceTree = "<group>";
       };
-      "OBJ_38" = {
-         isa = "PBXFileReference";
-         path = "Unit+Spider.swift";
-         sourceTree = "<group>";
-      };
       "OBJ_39" = {
          isa = "PBXFileReference";
-         path = "Unit.swift";
+         path = "Unit+Spider.swift";
          sourceTree = "<group>";
       };
       "OBJ_4" = {
@@ -543,68 +588,36 @@
       };
       "OBJ_40" = {
          isa = "PBXFileReference";
-         explicitFileType = "sourcecode.swift";
-         name = "Package.swift";
-         path = "/Users/josephroque/Documents/Workspace/hivemind/hivemind/.build/checkouts/hive-engine.git--8957386801179617483/Package.swift";
+         path = "Unit.swift";
          sourceTree = "<group>";
       };
       "OBJ_41" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/josephroque/Documents/Workspace/hivemind/hivemind/.build/checkouts/hive-engine.git--5162620447224055874/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_42" = {
          isa = "PBXGroup";
          children = (
-            "HiveEngine::HiveEngine::Product",
             "HiveMind::HiveMindCore::Product",
-            "HiveMind::HiveMind::Product",
-            "HiveMind::HiveMindCoreTests::Product"
+            "HiveMind::HiveMindCoreTests::Product",
+            "HiveEngine::HiveEngine::Product",
+            "HiveMind::HiveMind::Product"
          );
          name = "Products";
          path = "";
          sourceTree = "BUILT_PRODUCTS_DIR";
       };
-      "OBJ_47" = {
+      "OBJ_48" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_48",
-            "OBJ_49"
+            "OBJ_49",
+            "OBJ_50"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
-      };
-      "OBJ_48" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveEngine_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "HiveEngine";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "HiveEngine";
-         };
-         name = "Debug";
       };
       "OBJ_49" = {
          isa = "XCBuildConfiguration";
@@ -641,24 +654,60 @@
             SWIFT_VERSION = "4.2";
             TARGET_NAME = "HiveEngine";
          };
-         name = "Release";
+         name = "Debug";
       };
       "OBJ_5" = {
          isa = "PBXGroup";
          children = (
             "OBJ_6",
             "OBJ_7",
-            "OBJ_16",
-            "OBJ_20",
-            "OBJ_41"
+            "OBJ_17",
+            "OBJ_21",
+            "OBJ_42"
          );
          path = "";
          sourceTree = "<group>";
       };
       "OBJ_50" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveEngine_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "HiveEngine";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "HiveEngine";
+         };
+         name = "Release";
+      };
+      "OBJ_51" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_51",
             "OBJ_52",
             "OBJ_53",
             "OBJ_54",
@@ -671,16 +720,13 @@
             "OBJ_61",
             "OBJ_62",
             "OBJ_63",
-            "OBJ_64"
+            "OBJ_64",
+            "OBJ_65"
          );
-      };
-      "OBJ_51" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_24";
       };
       "OBJ_52" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_26";
+         fileRef = "OBJ_25";
       };
       "OBJ_53" = {
          isa = "PBXBuildFile";
@@ -696,7 +742,7 @@
       };
       "OBJ_56" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_31";
+         fileRef = "OBJ_30";
       };
       "OBJ_57" = {
          isa = "PBXBuildFile";
@@ -737,36 +783,22 @@
          fileRef = "OBJ_39";
       };
       "OBJ_65" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_40";
+      };
+      "OBJ_66" = {
          isa = "PBXFrameworksBuildPhase";
          files = (
          );
       };
-      "OBJ_67" = {
+      "OBJ_68" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_68",
-            "OBJ_69"
+            "OBJ_69",
+            "OBJ_70"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
-      };
-      "OBJ_68" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
       };
       "OBJ_69" = {
          isa = "XCBuildConfiguration";
@@ -784,71 +816,54 @@
             );
             SWIFT_VERSION = "4.2";
          };
-         name = "Release";
+         name = "Debug";
       };
       "OBJ_7" = {
          isa = "PBXGroup";
          children = (
             "OBJ_8",
-            "OBJ_14"
+            "OBJ_10"
          );
          name = "Sources";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_70" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_71"
-         );
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.2";
+         };
+         name = "Release";
       };
       "OBJ_71" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_40";
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_72"
+         );
       };
-      "OBJ_73" = {
+      "OBJ_72" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_41";
+      };
+      "OBJ_74" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_74",
-            "OBJ_75"
+            "OBJ_75",
+            "OBJ_76"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
-      };
-      "OBJ_74" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveMind_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-               "@executable_path"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
-            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "HiveMind";
-         };
-         name = "Debug";
       };
       "OBJ_75" = {
          isa = "XCBuildConfiguration";
@@ -883,65 +898,11 @@
             SWIFT_VERSION = "4.2";
             TARGET_NAME = "HiveMind";
          };
-         name = "Release";
+         name = "Debug";
       };
       "OBJ_76" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_77"
-         );
-      };
-      "OBJ_77" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_15";
-      };
-      "OBJ_78" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_79",
-            "OBJ_80"
-         );
-      };
-      "OBJ_79" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveMind::HiveMindCore::Product";
-      };
-      "OBJ_8" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_9",
-            "OBJ_10",
-            "OBJ_13"
-         );
-         name = "HiveMindCore";
-         path = "Sources/HiveMindCore";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_80" = {
-         isa = "PBXBuildFile";
-         fileRef = "HiveEngine::HiveEngine::Product";
-      };
-      "OBJ_81" = {
-         isa = "PBXTargetDependency";
-         target = "HiveMind::HiveMindCore";
-      };
-      "OBJ_83" = {
-         isa = "PBXTargetDependency";
-         target = "HiveEngine::HiveEngine";
-      };
-      "OBJ_84" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_85",
-            "OBJ_86"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_85" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
-            ENABLE_TESTABILITY = "YES";
             FRAMEWORK_SEARCH_PATHS = (
                "$(inherited)",
                "$(PLATFORM_DIR)/Developer/Library/Frameworks"
@@ -949,10 +910,11 @@
             HEADER_SEARCH_PATHS = (
                "$(inherited)"
             );
-            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveMindCore_Info.plist";
+            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveMind_Info.plist";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+               "@executable_path"
             );
             OTHER_CFLAGS = (
                "$(inherited)"
@@ -963,17 +925,66 @@
             OTHER_SWIFT_FLAGS = (
                "$(inherited)"
             );
-            PRODUCT_BUNDLE_IDENTIFIER = "HiveMindCore";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
             SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
                "$(inherited)"
             );
+            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
+            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
             SWIFT_VERSION = "4.2";
-            TARGET_NAME = "HiveMindCore";
+            TARGET_NAME = "HiveMind";
          };
-         name = "Debug";
+         name = "Release";
+      };
+      "OBJ_77" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_78"
+         );
+      };
+      "OBJ_78" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_9";
+      };
+      "OBJ_79" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_80",
+            "OBJ_81"
+         );
+      };
+      "OBJ_8" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_9"
+         );
+         name = "HiveMind";
+         path = "Sources/HiveMind";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_80" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveMind::HiveMindCore::Product";
+      };
+      "OBJ_81" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveEngine::HiveEngine::Product";
+      };
+      "OBJ_82" = {
+         isa = "PBXTargetDependency";
+         target = "HiveMind::HiveMindCore";
+      };
+      "OBJ_84" = {
+         isa = "PBXTargetDependency";
+         target = "HiveEngine::HiveEngine";
+      };
+      "OBJ_85" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_86",
+            "OBJ_87"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
       };
       "OBJ_86" = {
          isa = "XCBuildConfiguration";
@@ -1010,20 +1021,54 @@
             SWIFT_VERSION = "4.2";
             TARGET_NAME = "HiveMindCore";
          };
-         name = "Release";
+         name = "Debug";
       };
       "OBJ_87" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_88",
-            "OBJ_89",
-            "OBJ_90",
-            "OBJ_91"
-         );
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveMindCore_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "HiveMindCore";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "HiveMindCore";
+         };
+         name = "Release";
       };
       "OBJ_88" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_9";
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_89",
+            "OBJ_90",
+            "OBJ_91",
+            "OBJ_92",
+            "OBJ_93"
+         );
       };
       "OBJ_89" = {
          isa = "PBXBuildFile";
@@ -1031,41 +1076,49 @@
       };
       "OBJ_9" = {
          isa = "PBXFileReference";
-         path = "CommandLineTool.swift";
+         path = "main.swift";
          sourceTree = "<group>";
       };
       "OBJ_90" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_12";
+         fileRef = "OBJ_13";
       };
       "OBJ_91" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_13";
+         fileRef = "OBJ_14";
       };
       "OBJ_92" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_93"
-         );
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_15";
       };
       "OBJ_93" = {
          isa = "PBXBuildFile";
-         fileRef = "HiveEngine::HiveEngine::Product";
+         fileRef = "OBJ_16";
       };
       "OBJ_94" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_95"
+         );
+      };
+      "OBJ_95" = {
+         isa = "PBXBuildFile";
+         fileRef = "HiveEngine::HiveEngine::Product";
+      };
+      "OBJ_96" = {
          isa = "PBXTargetDependency";
          target = "HiveEngine::HiveEngine";
       };
-      "OBJ_96" = {
+      "OBJ_98" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_97",
-            "OBJ_98"
+            "OBJ_99",
+            "OBJ_100"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_97" = {
+      "OBJ_99" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             CLANG_ENABLE_MODULES = "YES";
@@ -1099,48 +1152,6 @@
             TARGET_NAME = "HiveMindCoreTests";
          };
          name = "Debug";
-      };
-      "OBJ_98" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "HiveMind.xcodeproj/HiveMindCoreTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "HiveMindCoreTests";
-         };
-         name = "Release";
-      };
-      "OBJ_99" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_100",
-            "OBJ_101"
-         );
       };
    };
    rootObject = "OBJ_1";
