@@ -1,3 +1,5 @@
+![Logo](media/HiveMind.png)
+
 # HiveMind
 
 An AI developed to play the Hive board game.
