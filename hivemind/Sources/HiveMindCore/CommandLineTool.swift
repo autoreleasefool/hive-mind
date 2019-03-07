@@ -26,8 +26,6 @@ public final class CommandLineTool {
 			parseArgument(arguments[0])
 		} else if arguments.count == 2 {
 			parseArgument(arguments[0], withValue: arguments[1])
-		} else if arguments.count == 3 {
-			parseArgument(arguments[0], withValues: [arguments[1], arguments[2]])
 		} else {
 			print("Invalid arguments.")
 		}
@@ -42,10 +40,6 @@ public final class CommandLineTool {
 					Print a new state.
 				--play <state>
 					Print a valid play for the given state.
-				--apply <move> <state>
-					Apply a given move to a given state and print the resulting state.
-				--moves <state>
-					Print all valid moves for the given state.
 			""")
 		case "--new":
 			let hivemind = HiveMind()
@@ -60,24 +54,6 @@ public final class CommandLineTool {
 		case "--play":
 			if let hivemind = try? HiveMind(fromJSON: value) {
 				print(hivemind.play().json())
-			}
-		case "--moves":
-			if let hivemind = try? HiveMind(fromJSON: value) {
-				print(hivemind.moves().json())
-			}
-		default:
-			print("Invalid arguments.")
-		}
-	}
-
-	private func parseArgument(_ argument: String, withValues values: [String]) {
-		switch argument {
-		case "--apply":
-			if let hivemind = try? HiveMind(fromJSON: values[0]),
-				let moveData = values[1].data(using: .utf8),
-				let move = try? JSONDecoder().decode(Movement.self, from: moveData) {
-				hivemind.apply(move)
-				print(hivemind.state.json())
 			}
 		default:
 			print("Invalid arguments.")
