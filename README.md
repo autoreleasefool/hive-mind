@@ -9,19 +9,19 @@ An AI developed to play the Hive board game.
 There are 4 main components which make up the HiveMind AI. This repository contains the main AI logic.
 
 * Client (**Swift**)
-    * [hive-client](https://github.com/josephroqueca/hive-client)
+    * [hive-client](https://github.com/josephroquedev/hive-client)
     * iOS app to process state and display moves
     * Lightweight -- primarily encodes basic state and movements
     * GUI to display movements
 
 * Server (**Ruby on Rails**)
-    * [hive-server](https://github.com/josephroqueca/hive-server)
+    * [hive-server](https://github.com/josephroquedev/hive-server)
     * Lightweight
     * Receives the game state from the client and forwards it to the engine
     * Passes the suggested move from the engine back to the client
 
 * Engine (**Swift**)
-    * [hive-engine](https://github.com/josephroqueca/hive-engine)
+    * [hive-engine](https://github.com/josephroquedev/hive-engine)
     * Maintains the state of a game
     * Encodable & decodable to pass from client to server and back
     * Provides rules of the games to the AI to allow it to determine valid, playable moves
@@ -35,9 +35,9 @@ There are 4 main components which make up the HiveMind AI. This repository conta
 ## Getting Started
 
 1. First, you'll need to grab a couple other repos to build the entire system and play a game of Hive against the HiveMind.
-    * [Hive Client](https://github.com/josephroqueca/hive-client)
-    * [Hive Server](https://github.com/josephroqueca/hive-server)
-    * [HiveMind](https://github.com/josephroqueca/hivemind)
+    * [Hive Client](https://github.com/josephroquedev/hive-client)
+    * [Hive Server](https://github.com/josephroquedev/hive-server)
+    * [HiveMind](https://github.com/josephroquedev/hivemind)
 2. Run `swift build` to build a debug version of the app you can use
 3. See the available commands with `.build/debug/HiveMind`
 
