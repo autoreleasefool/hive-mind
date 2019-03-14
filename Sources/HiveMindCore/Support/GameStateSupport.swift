@@ -9,14 +9,15 @@ import HiveEngine
 
 struct GameStateSupport {
 
+	let hiveMindPlayer: Player
 	let whiteQueen: HiveEngine.Unit
 	let blackQueen: HiveEngine.Unit
 
 	init(state: GameState) {
+		hiveMindPlayer = state.currentPlayer
 		whiteQueen = state.unitsInPlay[Player.white]?.first { $0.key.class == .queen }?.key ??
 			state.unitsInHand[Player.white]!.first { $0.class == .queen }!
 		blackQueen = state.unitsInPlay[Player.black]?.first { $0.key.class == .queen }?.key ??
 			state.unitsInHand[Player.black]!.first { $0.class == .queen}!
 	}
-
 }

@@ -7,29 +7,6 @@
 
 import HiveEngine
 
-extension Position {
-	var cacheableDescription: String {
-		return "\(x),\(y),\(z)"
-	}
-}
-
-extension Unit {
-	var cacheableDescription: String {
-		var description = self.owner == .white ? "W" : "B"
-		switch self.class {
-		case .ant: description.append("A")
-		case .beetle: description.append("B")
-		case .hopper: description.append("H")
-		case .ladyBug: description.append("L")
-		case .mosquito: description.append("M")
-		case .pillBug: description.append("P")
-		case .queen: description.append("Q")
-		case .spider: description.append("S")
-		}
-		return description
-	}
-}
-
 struct CacheableGameState {
 	let rawValue: String
 
@@ -51,5 +28,28 @@ struct CacheableGameState {
 extension GameState {
 	var cacheable: CacheableGameState {
 		return CacheableGameState(from: self)
+	}
+}
+
+extension Position {
+	var cacheableDescription: String {
+		return "\(x),\(y),\(z)"
+	}
+}
+
+extension Unit {
+	var cacheableDescription: String {
+		var description = self.owner == .white ? "W" : "B"
+		switch self.class {
+		case .ant: description.append("A")
+		case .beetle: description.append("B")
+		case .hopper: description.append("H")
+		case .ladyBug: description.append("L")
+		case .mosquito: description.append("M")
+		case .pillBug: description.append("P")
+		case .queen: description.append("Q")
+		case .spider: description.append("S")
+		}
+		return description
 	}
 }

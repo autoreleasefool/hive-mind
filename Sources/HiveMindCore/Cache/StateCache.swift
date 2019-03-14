@@ -28,7 +28,12 @@ class StateCache {
 		return cacheURL.appendingPathComponent("\(StateCache.version).txt")
 	}
 
+	/// Map of cached states to evaluated value
 	private var cache: [String: Int] = [:]
+
+	// Statistic tracking
+	private var hits = 0
+	private var misses = 0
 
 	init() throws {
 		try FileManager.default.createDirectory(at: cacheURL, withIntermediateDirectories: true)
@@ -46,26 +51,29 @@ class StateCache {
 		}
 	}
 
-	var hits = 0
-	var misses = 0
+	/// Given a `GameState`, determines if the value has been cached and returns the cached value if so.
+	subscript(index: GameState) -> Int? {
+		get {
+			let cacheable = index.cacheable
+			if let value = cache[cacheable.rawValue] {
+				hits += 1
+				return value
+			}
 
-	func evaluate(state: GameState, with support: GameStateSupport) -> Int {
-		let cacheable = state.cacheable
-		if let value = cache[cacheable.rawValue] {
-			hits += 1
-			return value
-		} else {
 			misses += 1
-//			print(cacheable.rawValue)
-			let value = state.evaluate(with: support)
-			cache[cacheable.rawValue] = value
-			return value
+			return nil
+		}
+		set(newValue) {
+			let cacheable = index.cacheable
+			cache[cacheable.rawValue] = newValue
 		}
 	}
 
 	func flush() {
-		print("Hits: \(hits)")
-		print("Misses: \(misses)")
+		let totalQueries = hits + misses
+		let successfulPercent = Double(hits) / Double(totalQueries) * 100
+		print("Total cache hits: \(hits)\\\(totalQueries) (\(successfulPercent)%)")
+
 		var rawCache = ""
 		for entry in cache {
 			rawCache.append(entry.key)
