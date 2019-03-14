@@ -9,10 +9,7 @@ import HiveEngine
 
 extension Position {
 	var cacheableDescription: String {
-		switch self {
-		case .inHand: return ""
-		case .inPlay(let x, let y, let z): return "\(x),\(y),\(z)"
-		}
+		return "\(x),\(y),\(z)"
 	}
 }
 
@@ -38,7 +35,7 @@ struct CacheableGameState {
 
 	init(from state: GameState) {
 		var value = ""
-		for stack in state.stacks.sorted(by: { (s1, s2) in Position.naturalSort(p1: s1.key, p2: s2.key) }) {
+		for stack in state.stacks.sorted(by: { s1, s2 in s1.key < s2.key }) {
 			value.append(contentsOf: stack.key.cacheableDescription)
 			value.append(":")
 			for unit in stack.value {

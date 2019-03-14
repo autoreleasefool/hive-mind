@@ -49,7 +49,7 @@ class StateCache {
 	var hits = 0
 	var misses = 0
 
-	func evaluate(state: GameState) -> Int {
+	func evaluate(state: GameState, with support: GameStateSupport) -> Int {
 		let cacheable = state.cacheable
 		if let value = cache[cacheable.rawValue] {
 			hits += 1
@@ -57,7 +57,7 @@ class StateCache {
 		} else {
 			misses += 1
 //			print(cacheable.rawValue)
-			let value = state.evaluate()
+			let value = state.evaluate(with: support)
 			cache[cacheable.rawValue] = value
 			return value
 		}

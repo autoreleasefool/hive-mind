@@ -13,6 +13,7 @@ class HiveMind {
 
 	private let hiveMindPlayer: Player
 	private(set) var state: GameState
+	private let support: GameStateSupport
 	private lazy var stateCache: StateCache = {
 		return try! StateCache()
 	}()
@@ -21,9 +22,10 @@ class HiveMind {
 
 	init(state: GameState) {
 		self.state = state
+		self.support = GameStateSupport(state: state)
 		self.hiveMindPlayer = state.currentPlayer
 
-		state.disableMoveValidation = true
+		state.requireMovementValidation = false
 	}
 
 	convenience init() {
@@ -73,7 +75,7 @@ class HiveMind {
 				print(positionsEvaluated)
 			}
 
-			return stateCache.evaluate(state: state)
+			return stateCache.evaluate(state: state, with: support)
 		}
 
 		var updatedAlpha = alpha

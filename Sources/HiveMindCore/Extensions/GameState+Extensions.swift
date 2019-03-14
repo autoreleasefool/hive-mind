@@ -9,40 +9,27 @@ import Foundation
 import HiveEngine
 
 extension GameState {
-	func json() -> String {
-		let encoder = JSONEncoder()
-		let data = try! encoder.encode(self)
-		return String(data: data, encoding: .utf8)!
-	}
-
-	func sortedMoves() -> [Movement] {
-		return availableMoves.sorted(by: {
-			switch ($0, $1) {
-			case (.move(let unit1, _), .move(let unit2, _)):
-				return unit1.basicValue < unit2.basicValue
-			case (.place(let unit1, _), .place(let unit2, _)):
-				return unit1.basicValue < unit2.basicValue
-			case (.yoink(_, let unit1, _), .yoink(_, let unit2, _)):
-				return unit1.basicValue < unit2.basicValue
-			case (.move, _): return true
-			case (.yoink, _): return true
-			case (.place, _): return true
-			}
-		})
-	}
-
-	func evaluate() -> Int {
+	func evaluate(with support: GameStateSupport) -> Int {
 		let opponent = currentPlayer.next
 
+		let hiveMindQueen: HiveEngine.Unit
+		let opponentQueen: HiveEngine.Unit
+		switch currentPlayer {
+		case .white:
+			hiveMindQueen = support.whiteQueen
+			opponentQueen = support.blackQueen
+		case .black:
+			hiveMindQueen = support.blackQueen
+			opponentQueen = support.whiteQueen
+		}
+
 		// Look for lose condition and set to min priority
-		let hiveMindQueen = units.filter { $0.key.owner == currentPlayer && $0.key.class == .queen }.first!.key
 		let hiveMindQueenSidesRemaining = exposedSides(of: hiveMindQueen)
 		if hiveMindQueenSidesRemaining == 0 {
 			return Int.min
 		}
 
 		// Look for win condition and set to max priority
-		let opponentQueen = units.filter { $0.key.owner == opponent && $0.key.class == .queen }.first!.key
 		let opponentQueenSidesRemaining = exposedSides(of: opponentQueen)
 		if opponentQueenSidesRemaining == 0 {
 			return Int.max
@@ -54,14 +41,14 @@ extension GameState {
 		}
 
 		var value = 0
-		let hiveMindUnitsInPlay = unitsInPlay(for: currentPlayer) // 0 to 14
+		let hiveMindUnitsInPlay = unitsInPlay[currentPlayer]! // 0 to 14
 		hiveMindUnitsInPlay.forEach {
-			value += $0.value(in: self)
+			value += $0.key.value(in: self)
 		}
 
-		let opponentUnitsInPlay = unitsInPlay.subtracting(hiveMindUnitsInPlay) // 0 to 14
+		let opponentUnitsInPlay = unitsInPlay[opponent]! // 0 to 14
 		opponentUnitsInPlay.forEach {
-			value += $0.value(in: self)
+			value += $0.key.value(in: self)
 		}
 
 		return value * (6 - opponentQueenSidesRemaining)
@@ -82,15 +69,36 @@ extension GameState {
 //		return 0
 	}
 
-	private func unitsInPlay(for player: Player) -> Set<HiveEngine.Unit> {
-		return unitsInPlay.filter { $0.owner == player }
-	}
-
 	private func moveableUnits(for player: Player) -> Set<HiveEngine.Unit> {
-		return unitsInPlay(for: player).filter { $0.availableMoves(in: self).count > 0 }
+		guard let units = unitsInPlay[player] else { return [] }
+		return Set(units.keys.filter { $0.availableMoves(in: self).count > 0 })
 	}
 
 	private func exposedSides(of unit: HiveEngine.Unit) -> Int {
 		return 6 - units(adjacentTo: unit).count
+	}
+
+	// API
+
+	func sortedMoves() -> [Movement] {
+		return availableMoves.sorted(by: {
+			switch ($0, $1) {
+			case (.move(let unit1, _), .move(let unit2, _)):
+				return unit1.basicValue < unit2.basicValue
+			case (.place(let unit1, _), .place(let unit2, _)):
+				return unit1.basicValue < unit2.basicValue
+			case (.yoink(_, let unit1, _), .yoink(_, let unit2, _)):
+				return unit1.basicValue < unit2.basicValue
+			case (.move, _): return true
+			case (.yoink, _): return true
+			case (.place, _): return true
+			}
+		})
+	}
+
+	func json() -> String {
+		let encoder = JSONEncoder()
+		let data = try! encoder.encode(self)
+		return String(data: data, encoding: .utf8)!
 	}
 }
