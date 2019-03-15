@@ -10,7 +10,9 @@ import HiveEngine
 typealias ExplorationResult = (movement: Movement, statesExplored: Int)
 
 protocol ExplorationStrategy {
-
 	func play(_ state: GameState) -> ExplorationResult
+}
 
+enum ExplorationStrategyType {
+	case alphaBeta(depth: Int)
 }

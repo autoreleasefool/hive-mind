@@ -16,21 +16,21 @@ class HiveMind {
 	private let strategy: ExplorationStrategy
 	private let cache: StateCache
 
-	init(state: GameState, strategy: ExplorationStrategy? = nil) {
+	init(state: GameState = GameState(), strategy: ExplorationStrategyType? = nil, cacheDisabled: Bool = false) {
 		let support = GameStateSupport(state: state)
-		let cache = try! StateCache()
+		let cache = try! StateCache(disabled: cacheDisabled)
 
 		self.state = state
 		self.support = support
 		self.cache = cache
-		self.strategy = strategy ?? AlphaBeta(depth: 2, support: support, cache: cache)
+
+		let chosenStrategy = strategy ?? .alphaBeta(depth: 2)
+		switch chosenStrategy {
+		case .alphaBeta(let depth):
+			self.strategy = AlphaBeta(depth: depth, support: support, cache: cache)
+		}
 
 		state.requireMovementValidation = false
-	}
-
-	convenience init(strategy: ExplorationStrategy? = nil) {
-		let state = GameState()
-		self.init(state: state, strategy: strategy)
 	}
 
 	convenience init(fromJSON jsonString: String) throws {

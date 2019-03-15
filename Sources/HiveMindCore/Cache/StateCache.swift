@@ -31,11 +31,15 @@ class StateCache {
 	/// Map of cached states to evaluated value
 	private var cache: [String: Int] = [:]
 
+	/// Disables the cache
+	private let disabled: Bool
+
 	// Statistic tracking
 	private var hits = 0
 	private var misses = 0
 
-	init() throws {
+	init(disabled: Bool = false) throws {
+		self.disabled = disabled
 		try FileManager.default.createDirectory(at: cacheURL, withIntermediateDirectories: true)
 
 		let file = cacheFile
@@ -54,6 +58,7 @@ class StateCache {
 	/// Given a `GameState`, determines if the value has been cached and returns the cached value if so.
 	subscript(index: GameState) -> Int? {
 		get {
+			guard disabled == false else { return nil }
 			let cacheable = index.cacheable
 			if let value = cache[cacheable.rawValue] {
 				hits += 1
