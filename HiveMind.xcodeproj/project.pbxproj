@@ -28,7 +28,7 @@
 		CAAE1C24223A871A00E191FA /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C23223A871A00E191FA /* AlphaBeta.swift */; };
 		CAAE1C26223A875800E191FA /* ExplorationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C25223A875800E191FA /* ExplorationStrategy.swift */; };
 		CAAE1C29223B2E4700E191FA /* GameStateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C28223B2E4700E191FA /* GameStateProvider.swift */; };
-		OBJ_102 /* HiveMindCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* HiveMindCoreTests.swift */; };
+		CAAE1C2D223BD5F300E191FA /* CorePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C2B223BD4D500E191FA /* CorePerformanceTests.swift */; };
 		OBJ_103 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* XCTestManifests.swift */; };
 		OBJ_105 /* HiveMindCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */; };
 		OBJ_106 /* HiveEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HiveEngine::HiveEngine::Product" /* HiveEngine.framework */; };
@@ -112,6 +112,7 @@
 		CAAE1C23223A871A00E191FA /* AlphaBeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaBeta.swift; sourceTree = "<group>"; };
 		CAAE1C25223A875800E191FA /* ExplorationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorationStrategy.swift; sourceTree = "<group>"; };
 		CAAE1C28223B2E4700E191FA /* GameStateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateProvider.swift; sourceTree = "<group>"; };
+		CAAE1C2B223BD4D500E191FA /* CorePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorePerformanceTests.swift; sourceTree = "<group>"; };
 		"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMind::Product" /* HiveMind */ = {isa = PBXFileReference; lastKnownFileType = text; path = HiveMind; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveMindCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,7 +122,6 @@
 		OBJ_14 /* Movement+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movement+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_15 /* Unit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_16 /* HiveMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiveMind.swift; sourceTree = "<group>"; };
-		OBJ_19 /* HiveMindCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiveMindCoreTests.swift; sourceTree = "<group>"; };
 		OBJ_20 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_25 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_27 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -213,6 +213,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		CAAE1C2A223BD4C800E191FA /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE1C2B223BD4D500E191FA /* CorePerformanceTests.swift */,
+			);
+			path = Performance;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* HiveMindCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,8 +257,8 @@
 		OBJ_18 /* HiveMindCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE1C2A223BD4C800E191FA /* Performance */,
 				CAAE1C27223B2E2000E191FA /* Util */,
-				OBJ_19 /* HiveMindCoreTests.swift */,
 				OBJ_20 /* XCTestManifests.swift */,
 			);
 			name = HiveMindCoreTests;
@@ -496,8 +504,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_102 /* HiveMindCoreTests.swift in Sources */,
 				OBJ_103 /* XCTestManifests.swift in Sources */,
+				CAAE1C2D223BD5F300E191FA /* CorePerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
