@@ -98,7 +98,7 @@ extension GameState {
 
 	func json() -> String {
 		let encoder = JSONEncoder()
-		let data = try! encoder.encode(self)
+		guard let data = try? encoder.encode(self) else { return "" }
 		return String(data: data, encoding: .utf8)!
 	}
 }

@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		CA01C6AE22300C690041C88E /* CacheableGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA01C6A9223005970041C88E /* CacheableGameState.swift */; };
 		CA01C6AF22300C6D0041C88E /* StateCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA01C6AB223005A00041C88E /* StateCache.swift */; };
 		CA01C6B22230123B0041C88E /* Position+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA01C6B0223011B30041C88E /* Position+Extensions.swift */; };
 		CAAE1C1B2239ECEB00E191FA /* GameStateSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C1A2239ECEB00E191FA /* GameStateSupport.swift */; };
@@ -105,7 +104,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CA01C6A9223005970041C88E /* CacheableGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheableGameState.swift; sourceTree = "<group>"; };
 		CA01C6AB223005A00041C88E /* StateCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCache.swift; sourceTree = "<group>"; };
 		CA01C6B0223011B30041C88E /* Position+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Position+Extensions.swift"; sourceTree = "<group>"; };
 		CAAE1C1A2239ECEB00E191FA /* GameStateSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateSupport.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				CA01C6AB223005A00041C88E /* StateCache.swift */,
-				CA01C6A9223005970041C88E /* CacheableGameState.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -558,7 +555,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				CA01C6AE22300C690041C88E /* CacheableGameState.swift in Sources */,
 				OBJ_89 /* CommandLineTool.swift in Sources */,
 				OBJ_90 /* GameState+Extensions.swift in Sources */,
 				CA01C6AF22300C6D0041C88E /* StateCache.swift in Sources */,

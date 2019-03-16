@@ -16,9 +16,9 @@ class HiveMind {
 	private let strategy: ExplorationStrategy
 	private let cache: StateCache
 
-	init(state: GameState = GameState(), strategy: ExplorationStrategyType? = nil, cacheDisabled: Bool = false) {
+	init(state: GameState = GameState(), strategy: ExplorationStrategyType? = nil, cacheDisabled: Bool = false) throws {
 		let support = GameStateSupport(state: state)
-		let cache = try! StateCache(disabled: cacheDisabled)
+		let cache = try StateCache(disabled: cacheDisabled)
 
 		self.state = state
 		self.support = support
@@ -37,7 +37,7 @@ class HiveMind {
 		let jsonData = jsonString.data(using: .utf8)!
 		let decoder = JSONDecoder()
 		let state = try decoder.decode(GameState.self, from: jsonData)
-		self.init(state: state)
+		try self.init(state: state)
 	}
 
 	// MARK: - Play
@@ -45,6 +45,7 @@ class HiveMind {
 	func play() -> Movement {
 		let explorationResult = strategy.play(state)
 		print("Total positions evaluated: \(explorationResult.statesExplored)")
+		cache.flush()
 
 		return explorationResult.movement
 	}
