@@ -9,10 +9,14 @@ import HiveEngine
 
 class AlphaBeta: ExplorationStrategy {
 
+	/// Total number of states evaluated
 	private var statesEvaluated: Int = 0
 
+	/// Maximum depth to explore moves to
 	private let explorationDepth: Int
+	/// Cached state properties
 	private let support: GameStateSupport
+	/// Game state evaluation cache
 	private let cache: StateCache
 
 	init(depth: Int, support: GameStateSupport, cache: StateCache) {
@@ -21,11 +25,13 @@ class AlphaBeta: ExplorationStrategy {
 		self.cache = cache
 	}
 
+	/// Begin exploring a state. Update the best move when one is found
 	func play(_ state: GameState) -> ExplorationResult {
 		let movement = alphaBetaRoot(depth: explorationDepth, state: state)
 		return (movement, statesEvaluated)
 	}
 
+	/// Root of the exploration
 	private func alphaBetaRoot(depth: Int, state: GameState) -> Movement {
 		let moves = state.availableMoves
 		var bestMove: Movement = state.availableMoves.first!
@@ -44,6 +50,7 @@ class AlphaBeta: ExplorationStrategy {
 		return bestMove
 	}
 
+	/// Exploration helper method
 	private func alphaBetaEvaluate(depth: Int, state: GameState, alpha: Int, beta: Int) -> Int {
 		if depth == 0 {
 			statesEvaluated += 1

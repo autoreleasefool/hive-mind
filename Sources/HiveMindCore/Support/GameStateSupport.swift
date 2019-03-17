@@ -9,8 +9,12 @@ import HiveEngine
 
 struct GameStateSupport {
 
+	/// Player that the HiveMind is playing as
 	let hiveMindPlayer: Player
+
+	/// White player's queen
 	let whiteQueen: HiveEngine.Unit
+	/// Black player's queen
 	let blackQueen: HiveEngine.Unit
 
 	init(state: GameState) {

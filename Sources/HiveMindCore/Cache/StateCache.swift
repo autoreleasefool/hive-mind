@@ -39,13 +39,26 @@ class StateCache {
 	/// Disables the cache
 	private let disabled: Bool
 
+	/// Use historic cache data when initializing a new cache, or start from scratch
+	private let useHistory: Bool
+
 	/// Number of times that the cache contains a value for a state
 	private var hits = 0
 	/// Number of times that the cache does not contain a value for a state
 	private var misses = 0
 
-	init(disabled: Bool = false) throws {
+	init(useHistory: Bool = true, disabled: Bool = false) throws {
+		self.useHistory = useHistory
 		self.disabled = disabled
+
+		HiveEngine.Unit.Class.allCases.forEach {
+			if unitBits[$0] == nil {
+				unitBits[$0] = Int.random(in: Int.min...Int.max)
+			}
+		}
+
+		guard useHistory else { return }
+
 		try FileManager.default.createDirectory(at: cacheDirectory!, withIntermediateDirectories: true)
 
 		do {
@@ -57,13 +70,13 @@ class StateCache {
 			logger.error(error: error)
 		}
 
-		HiveEngine.Unit.Class.allCases.forEach {
-			if unitBits[$0] == nil {
-				unitBits[$0] = Int.random(in: Int.min...Int.max)
-			}
-		}
+
 	}
 
+	/// Load previously evaluated states
+	///
+	/// - Parameters:
+	///   - file: file on disk to load cache from
 	private func loadCache(file: URL) throws {
 		let rawCache = try String(contentsOf: file, encoding: .utf8)
 		rawCache.split(separator: "\n").forEach {
@@ -73,6 +86,10 @@ class StateCache {
 		}
 	}
 
+	/// Load previous bitstrings used to hash states.
+	///
+	/// - Parameters:
+	///   - file: file on disk to load values from
 	private func loadBitCache(file: URL) throws {
 		let rawBitCache = try String(contentsOf: file, encoding: .utf8)
 		let bitCacheEntries = rawBitCache.split(separator: "\n")
@@ -110,8 +127,9 @@ class StateCache {
 		}
 	}
 
+	/// Save the cache to disk for later loads.
 	func flush() {
-		guard disabled == false else { return }
+		guard disabled == false, useHistory == false else { return }
 		let totalQueries = hits + misses
 		let successfulPercent = Double(hits) / Double(totalQueries) * 100
 		logger.debug("Total cache hits: \(hits)\\\(totalQueries) (\(successfulPercent)%)")

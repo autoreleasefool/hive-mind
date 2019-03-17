@@ -9,6 +9,8 @@ import Foundation
 import HiveEngine
 
 extension GameState {
+	/// Evaluate a GameState and return a higher value if it is a better position for the HiveMind,
+	/// and a lower value if it is a better position for the opponent.
 	func evaluate(with support: GameStateSupport) -> Int {
 		let opponent = currentPlayer.next
 
@@ -52,34 +54,28 @@ extension GameState {
 		}
 
 		return value * (6 - opponentQueenSidesRemaining)
-
-//		let opponentAvailableMoves = opponentMoves
-//
-//
-//		let hiveMindPlayableSpaces = playableSpaces(for: currentPlayer)
-//		let opponentPlayableSpaces = playableSpaces(for: opponent)
-//
-//
-//		let hiveMindUnitsInPlay = unitsInPlay(for: currentPlayer) // 0 to 14
-//		let opponentUnitsInPlay = unitsInPlay.subtracting(hiveMindUnitsInPlay) // 0 to 14
-//
-//		let hiveMindMoveableUnits = moveableUnits(for: currentPlayer)
-//		let opponentMoveableUnits = moveableUnits(for: opponent)
-
-//		return 0
 	}
 
-	private func moveableUnits(for player: Player) -> Set<HiveEngine.Unit> {
+	/// Get all units with available movements
+	///
+	/// - Parameters:
+	///   - player: player to get moveable units for
+	private func moveableUnits(for player: Player) -> [HiveEngine.Unit] {
 		guard let units = unitsInPlay[player] else { return [] }
-		return Set(units.keys.filter { $0.availableMoves(in: self).count > 0 })
+		return units.keys.filter { $0.availableMoves(in: self).count > 0 }
 	}
 
+	/// Count the number of sides of a unit that are empty
+	///
+	/// - Parameters:
+	///   - unit: the unitt to count sides of
 	private func exposedSides(of unit: HiveEngine.Unit) -> Int {
 		return 6 - units(adjacentTo: unit).count
 	}
 
 	// API
 
+	/// Get all available moves, sorted by perceived value
 	func sortedMoves() -> [Movement] {
 		return availableMoves.sorted(by: {
 			switch ($0, $1) {
@@ -96,6 +92,7 @@ extension GameState {
 		})
 	}
 
+	/// Convert the state to a JSON string
 	func json() -> String {
 		let encoder = JSONEncoder()
 		guard let data = try? encoder.encode(self) else { return "" }

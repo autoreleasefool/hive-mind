@@ -9,14 +9,7 @@ import Foundation
 import HiveEngine
 
 extension Movement {
-	func json() -> String {
-		let encoder = JSONEncoder()
-		guard let data = try? encoder.encode(self) else { return "" }
-		return String(data: data, encoding: .utf8)!
-	}
-}
-
-extension Array where Array.Element == Movement {
+	/// Convert to a JSON string
 	func json() -> String {
 		let encoder = JSONEncoder()
 		guard let data = try? encoder.encode(self) else { return "" }

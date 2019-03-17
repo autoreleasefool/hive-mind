@@ -10,6 +10,7 @@ import HiveEngine
 typealias ExplorationResult = (movement: Movement, statesExplored: Int)
 
 protocol ExplorationStrategy {
+	/// Begin exploring the given state. Update the best move when a new one is found
 	func play(_ state: GameState) -> ExplorationResult
 }
 
