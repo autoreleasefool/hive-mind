@@ -54,7 +54,7 @@ class StateCache {
 				try loadBitCache(file: bitCacheFile)
 			}
 		} catch {
-			print(error)
+			logger.error(error: error)
 		}
 
 		HiveEngine.Unit.Class.allCases.forEach {
@@ -114,7 +114,7 @@ class StateCache {
 		guard disabled == false else { return }
 		let totalQueries = hits + misses
 		let successfulPercent = Double(hits) / Double(totalQueries) * 100
-		print("Total cache hits: \(hits)\\\(totalQueries) (\(successfulPercent)%)")
+		logger.debug("Total cache hits: \(hits)\\\(totalQueries) (\(successfulPercent)%)")
 
 		var rawCache = ""
 		cache.forEach { rawCache.append("\($0.key)=\($0.value)\n") }
@@ -134,7 +134,7 @@ class StateCache {
 				try rawBitCache.write(to: bitCacheFile, atomically: false, encoding: .utf8)
 			}
 		} catch {
-			print(error)
+			logger.error(error: error)
 		}
 	}
 

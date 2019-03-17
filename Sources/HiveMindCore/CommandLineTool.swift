@@ -18,7 +18,7 @@ public final class CommandLineTool {
 
 	public func run() throws {
 		guard arguments.count > 0 else {
-			print("No arguments provided.")
+			logger.log("No arguments provided.")
 			return
 		}
 
@@ -27,14 +27,14 @@ public final class CommandLineTool {
 		} else if arguments.count == 2 {
 			parseArgument(arguments[0], withValue: arguments[1])
 		} else {
-			print("Invalid arguments.")
+			logger.log("Invalid arguments.")
 		}
 	}
 
 	private func parseArgument(_ argument: String) {
 		switch argument {
 		case "-h", "--help":
-			print("""
+			logger.log("""
 			Welcome to the HiveMind. Usage:
 				--new
 					Print a new state.
@@ -43,9 +43,9 @@ public final class CommandLineTool {
 			""")
 		case "--new":
 			guard let hivemind = try? HiveMind() else { return }
-			print(hivemind.state.json())
+			logger.log(hivemind.state.json())
 		default:
-			print("Invalid arguments.")
+			logger.log("Invalid arguments.")
 		}
 	}
 
@@ -53,10 +53,10 @@ public final class CommandLineTool {
 		switch argument {
 		case "--play":
 			if let hivemind = try? HiveMind(fromJSON: value) {
-				print(hivemind.play().json())
+				logger.log(hivemind.play().json())
 			}
 		default:
-			print("Invalid arguments.")
+			logger.log("Invalid arguments.")
 		}
 	}
 }

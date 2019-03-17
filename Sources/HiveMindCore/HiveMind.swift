@@ -44,7 +44,7 @@ class HiveMind {
 
 	func play() -> Movement {
 		let explorationResult = strategy.play(state)
-		print("Total positions evaluated: \(explorationResult.statesExplored)")
+		logger.debug("Total positions evaluated: \(explorationResult.statesExplored)")
 		cache.flush()
 
 		return explorationResult.movement

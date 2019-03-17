@@ -48,7 +48,7 @@ class AlphaBeta: ExplorationStrategy {
 		if depth == 0 {
 			statesEvaluated += 1
 			if statesEvaluated % 1000 == 0 {
-				print(statesEvaluated)
+				logger.debug("States evaluated: \(statesEvaluated)")
 			}
 
 			if let value = cache[state] {
