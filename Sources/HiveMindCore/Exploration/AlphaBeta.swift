@@ -9,15 +9,8 @@ import HiveEngine
 
 class AlphaBeta: ExplorationStrategy {
 
-	/// Total number of states evaluated
-	private var statesEvaluated: Int = 0
-
 	/// Maximum depth to explore moves to
 	private let explorationDepth: Int
-	/// Cached state properties
-	private let support: GameStateSupport
-	/// Game state evaluation cache
-	private let cache: StateCache
 
 	init(depth: Int, support: GameStateSupport, cache: StateCache) {
 		self.explorationDepth = depth
@@ -25,16 +18,21 @@ class AlphaBeta: ExplorationStrategy {
 		self.cache = cache
 	}
 
-	/// Begin exploring a state. Update the best move when one is found
-	func play(_ state: GameState) -> ExplorationResult {
-		let movement = alphaBetaRoot(depth: explorationDepth, state: state)
-		return (movement, statesEvaluated)
+	// MARK: ExplorationStrategy
+
+	var statesEvaluated: Int = 0
+	var support: GameStateSupport
+	var cache: StateCache
+
+	func play(_ state: GameState, bestMove: inout Movement) {
+		alphaBetaRoot(depth: explorationDepth, state: state, bestMove: &bestMove)
 	}
 
+	// MARK: Alpha Beta exploration
+
 	/// Root of the exploration
-	private func alphaBetaRoot(depth: Int, state: GameState) -> Movement {
+	private func alphaBetaRoot(depth: Int, state: GameState, bestMove: inout Movement) {
 		let moves = state.availableMoves
-		var bestMove: Movement = state.availableMoves.first!
 		var bestValue = Int.min
 
 		moves.forEach {
@@ -46,25 +44,12 @@ class AlphaBeta: ExplorationStrategy {
 				bestMove = $0
 			}
 		}
-
-		return bestMove
 	}
 
 	/// Exploration helper method
 	private func alphaBetaEvaluate(depth: Int, state: GameState, alpha: Int, beta: Int) -> Int {
 		if depth == 0 {
-			statesEvaluated += 1
-			if statesEvaluated % 1000 == 0 {
-				logger.debug("States evaluated: \(statesEvaluated)")
-			}
-
-			if let value = cache[state] {
-				return value
-			} else {
-				let stateValue = state.evaluate(with: support)
-				cache[state] = stateValue
-				return stateValue
-			}
+			return evaluate(state: state)
 		}
 
 		var updatedAlpha = alpha

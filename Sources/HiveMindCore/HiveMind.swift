@@ -17,8 +17,6 @@ class HiveMind {
 		let cacheDisabled: Bool = false
 	}
 
-	/// The current state being explored
-	private(set) var state: GameState
 	/// Cached properties from the `GameState`
 	private let support: GameStateSupport
 	/// Strategy which the HiveMind will employ for exploration
@@ -26,8 +24,18 @@ class HiveMind {
 	/// State evaluation cache
 	private let cache: StateCache
 
+	/// The current state being explored
+	var state: GameState {
+		didSet {
+			currentBestMove = state.availableMoves.first!
+			beginExploration()
+		}
+	}
+
 	/// The best move that the HiveMind has come up with so far
-	private(set) var currentBestMove: Movement?
+	private(set) var currentBestMove: Movement
+	/// Thread exploring the current state
+	private(set) var explorationThread: Thread?
 
 	/// Minimum time to let a strategy explore a state before returning the best move
 	private let minExplorationTime: TimeInterval
@@ -37,6 +45,7 @@ class HiveMind {
 		let cache = try StateCache(disabled: options.cacheDisabled)
 
 		self.state = state
+		self.currentBestMove = state.availableMoves.first!
 		self.support = support
 		self.cache = cache
 		self.minExplorationTime = options.minExplorationTime
@@ -56,14 +65,32 @@ class HiveMind {
 		try self.init(state: state, options: Options())
 	}
 
+	deinit {
+		explorationThread?.cancel()
+	}
+
 	// MARK: - Play
 
-	/// Return the best move from the current state.
-	func play() -> Movement {
-		let explorationResult = strategy.play(state)
-		logger.debug("Total positions evaluated: \(explorationResult.statesExplored)")
-		cache.flush()
+	private func beginExploration() {
+		explorationThread?.cancel()
+		explorationThread = Thread { [weak self] in
+			guard let self = self else { return }
+			self.strategy.play(self.state, bestMove: &self.currentBestMove)
+			self.explorationThread = nil
+		}
+	}
 
-		return explorationResult.movement
+	/// Return the best move from the current state.
+	func play(completion: @escaping (Movement) -> Void) {
+		// Wait `minExplorationTime` seconds then return the best move found
+		if explorationThread?.isFinished ?? true {
+			completion(self.currentBestMove)
+		} else {
+			DispatchQueue.main.asyncAfter(deadline: .now() + minExplorationTime) {
+				self.explorationThread?.cancel()
+				self.explorationThread = nil
+				completion(self.currentBestMove)
+			}
+		}
 	}
 }
