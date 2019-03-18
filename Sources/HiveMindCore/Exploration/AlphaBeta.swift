@@ -59,7 +59,7 @@ class AlphaBeta: ExplorationStrategy {
 			var updatedBeta = beta
 			for move in state.sortedMoves() {
 				state.apply(move)
-				updatedBeta = min(updatedBeta, alphaBetaEvaluate(depth: depth - 1, state: state, alpha: alpha, beta: updatedBeta))
+				updatedBeta = min(updatedBeta, -alphaBetaEvaluate(depth: depth - 1, state: state, alpha: alpha, beta: updatedBeta))
 				state.undoMove()
 				if updatedBeta < alpha {
 					return updatedBeta
