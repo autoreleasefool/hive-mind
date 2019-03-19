@@ -41,4 +41,5 @@ extension ExplorationStrategy {
 
 enum ExplorationStrategyType {
 	case alphaBeta(depth: Int)
+	case alphaBetaIterativeDeepening(maxDepth: Int)
 }

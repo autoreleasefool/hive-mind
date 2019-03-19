@@ -16,7 +16,7 @@ class HiveMind {
 		let strategyType: ExplorationStrategyType
 		let cacheDisabled: Bool
 
-		init(minExplorationTime: TimeInterval = 10, strategyType: ExplorationStrategyType = .alphaBeta(depth: 2), cacheDisabled: Bool = false) {
+		init(minExplorationTime: TimeInterval = 10, strategyType: ExplorationStrategyType = .alphaBetaIterativeDeepening(maxDepth: 6), cacheDisabled: Bool = false) {
 			self.minExplorationTime = minExplorationTime
 			self.strategyType = strategyType
 			self.cacheDisabled = cacheDisabled
@@ -76,6 +76,8 @@ class HiveMind {
 		switch strategyType {
 		case .alphaBeta(let depth):
 			self.strategy = AlphaBeta(depth: depth, support: support, cache: cache)
+		case .alphaBetaIterativeDeepening(let maxDepth):
+			self.strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, support: support, cache: cache)
 		}
 
 		// Clear the old exploration strategy and start again
