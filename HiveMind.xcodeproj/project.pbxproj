@@ -29,6 +29,7 @@
 		CAAE1C29223B2E4700E191FA /* GameStateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C28223B2E4700E191FA /* GameStateProvider.swift */; };
 		CAAE1C2D223BD5F300E191FA /* CorePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1C2B223BD4D500E191FA /* CorePerformanceTests.swift */; };
 		CAE78AF2223EFAAD0091420D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE78AEF223EF6CB0091420D /* Logger.swift */; };
+		CAE78AFD22409D550091420D /* Player+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE78AFC22409D550091420D /* Player+Extensions.swift */; };
 		OBJ_103 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* XCTestManifests.swift */; };
 		OBJ_105 /* HiveMindCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */; };
 		OBJ_106 /* HiveEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HiveEngine::HiveEngine::Product" /* HiveEngine.framework */; };
@@ -113,6 +114,7 @@
 		CAAE1C28223B2E4700E191FA /* GameStateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateProvider.swift; sourceTree = "<group>"; };
 		CAAE1C2B223BD4D500E191FA /* CorePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorePerformanceTests.swift; sourceTree = "<group>"; };
 		CAE78AEF223EF6CB0091420D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		CAE78AFC22409D550091420D /* Player+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+Extensions.swift"; sourceTree = "<group>"; };
 		"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMind::Product" /* HiveMind */ = {isa = PBXFileReference; lastKnownFileType = text; path = HiveMind; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveMindCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +242,7 @@
 			children = (
 				OBJ_13 /* GameState+Extensions.swift */,
 				OBJ_14 /* Movement+Extensions.swift */,
+				CAE78AFC22409D550091420D /* Player+Extensions.swift */,
 				CA01C6B0223011B30041C88E /* Position+Extensions.swift */,
 				OBJ_15 /* Unit+Extensions.swift */,
 			);
@@ -561,6 +564,7 @@
 				OBJ_89 /* CommandLineTool.swift in Sources */,
 				OBJ_90 /* GameState+Extensions.swift in Sources */,
 				CA01C6AF22300C6D0041C88E /* StateCache.swift in Sources */,
+				CAE78AFD22409D550091420D /* Player+Extensions.swift in Sources */,
 				CAAE1C1B2239ECEB00E191FA /* GameStateSupport.swift in Sources */,
 				CA01C6B22230123B0041C88E /* Position+Extensions.swift in Sources */,
 				CAAE1C24223A871A00E191FA /* AlphaBeta.swift in Sources */,
