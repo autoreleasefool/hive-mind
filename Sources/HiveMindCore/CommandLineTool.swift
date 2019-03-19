@@ -30,6 +30,7 @@ public final class CommandLineTool {
 			"Options:",
 			"\t--new, -n <bool>: start a new game. Boolean determines if the HiveMind is first (true) or second (false)",
 			"\t--move, -m <Movement>: parse the movement and provides a Movement response in return",
+			"\t--play: return the best move, applies it to the current state and continues exploration",
 			"\t--exit: exit the tool",
 			separator: "\n"
 		)
@@ -59,7 +60,11 @@ public final class CommandLineTool {
 		case "--new", "-n":
 			initHiveMind()
 		case "--move", "-m":
-			parseAndApplyMovement(rawMovement: String(input.suffix(from: input.firstIndex(of: " ") ?? input.endIndex)))
+			if let movement = parseMovement(String(input.suffix(from: input.firstIndex(of: " ") ?? input.endIndex))) {
+				respondTo(move: movement)
+			}
+		case "--play":
+			play()
 		case "--exit":
 			self.isRunning = false
 		default:
@@ -79,21 +84,31 @@ public final class CommandLineTool {
 		}
 	}
 
-	/// Parse a `Movement` from a `String`, pass it to the HiveMind and relay the HiveMind's response.
-	private func parseAndApplyMovement(rawMovement: String) {
-		let json = rawMovement.trimmingCharacters(in: .whitespaces)
+	/// Parse a `Movement` from a `String`
+	private func parseMovement(_ raw: String) -> Movement? {
+		let json = raw.trimmingCharacters(in: .whitespaces)
 		guard json.isEmpty == false else {
 			logger.error("<Movement> was empty.")
-			return
+			return nil
 		}
 
 		let decoder = JSONDecoder()
 		guard let data = json.data(using: .utf8), let movement = try? decoder.decode(Movement.self, from: data) else {
 			logger.error("<Movement> was not valid.")
-			return
+			return nil
 		}
 
-		hiveMind.apply(movement: movement)
+		return movement
+	}
+
+	/// Pass a `Movement` to the HiveMind and print a `Movement` in response
+	private func respondTo(move: Movement) {
+		hiveMind.apply(movement: move)
+		play()
+	}
+
+	/// Print the current best move from the HiveMind
+	private func play() {
 		hiveMind.play { logger.log($0.json()) }
 	}
 }
