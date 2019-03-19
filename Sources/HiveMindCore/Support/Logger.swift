@@ -26,25 +26,25 @@ class Logger {
 	}
 
 	/// Print a message, only if debug logging is enabled
-	func debug(_ msg: String...) {
+	func debug(_ msg: String..., separator: String = " ") {
 		guard resolve(.debug) else { return }
-		print(msg.joined(separator: " "))
+		print(msg.joined(separator: separator))
 	}
 
 	/// Print an error and a message, only if error logging is enabled
-	func error(error: Error? = nil, _ msg: String...) {
+	func error(error: Error? = nil, _ msg: String..., separator: String = " ") {
 		guard resolve(.error) else { return }
 		if let error = error {
-			print(error, msg.joined(separator: " "))
+			print(error, msg.joined(separator: separator))
 		} else {
-			print(msg.joined(separator: " "))
+			print(msg.joined(separator: separator))
 		}
 	}
 
 	/// Print a message, always
-	func log(_ msg: String...) {
+	func log(_ msg: String..., separator: String = " ") {
 		guard resolve(.release) else { return }
-		print(msg.joined(separator: " "))
+		print(msg.joined(separator: separator))
 	}
 
 	private func resolve(_ messageLevel: LogLevel) -> Bool {

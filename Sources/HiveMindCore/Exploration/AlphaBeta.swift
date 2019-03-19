@@ -42,6 +42,8 @@ class AlphaBeta: ExplorationStrategy {
 			if value > bestValue {
 				bestValue = value
 				bestMove = $0
+
+				logger.debug("Found new best move: \(bestMove)")
 			}
 		}
 	}

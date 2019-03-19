@@ -19,13 +19,16 @@ final class CorePerformanceTests: XCTestCase {
 	}
 
 	func testAlphaBetaStrategyOpeningMovePerformance() {
-		guard let hiveMind = try? HiveMind(strategy: .alphaBeta(depth: 2), cacheDisabled: true) else {
+		let options = HiveMind.Options(strategy: .alphaBeta(depth: 2), cacheDisabled: true)
+		guard let hiveMind = try? HiveMind(options: options) else {
 			XCTFail("Failed to initialize HiveMind")
 			return
 		}
 
 		measure {
-			_ = hiveMind.play()
+			let expectation = XCTestExpectation(description: "HiveMind found the best move.")
+			_ = hiveMind.play() { _ in expectation.fulfill() }
+			wait(for: [expectation], timeout: 30)
 		}
 	}
 
