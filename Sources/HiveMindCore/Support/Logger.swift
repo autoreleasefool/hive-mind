@@ -61,5 +61,5 @@ class Logger {
 #if DEBUG
 let logger = Logger()
 #else
-let logger = Logger(level = .release)
+let logger = Logger(level: .release)
 #endif

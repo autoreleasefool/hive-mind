@@ -141,7 +141,7 @@
 		OBJ_38 /* Unit+Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Queen.swift"; sourceTree = "<group>"; };
 		OBJ_39 /* Unit+Spider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Spider.swift"; sourceTree = "<group>"; };
 		OBJ_40 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
-		OBJ_41 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = ".build/checkouts/hive-engine.git--6220450788299710467/Package.swift"; sourceTree = "<group>"; };
+		OBJ_41 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = ".build/checkouts/hive-engine.git--4000097478336576529/Package.swift"; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -296,7 +296,7 @@
 				OBJ_31 /* Unit */,
 			);
 			name = HiveEngine;
-			path = ".build/checkouts/hive-engine.git--6220450788299710467/Sources/HiveEngine";
+			path = ".build/checkouts/hive-engine.git--4000097478336576529/Sources/HiveEngine";
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_24 /* Extensions */ = {

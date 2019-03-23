@@ -53,9 +53,9 @@ class HiveMind {
 		return explorationThread?.isExecuting ?? false
 	}
 
-	init(options: Options = Options()) throws {
+	init(isFirst: Bool, options: Options = Options()) throws {
 		self.state = GameState()
-		self.support = GameStateSupport(state: state)
+		self.support = GameStateSupport(isFirst: isFirst, state: state)
 		self.currentBestMove = state.availableMoves.first!
 		self.cache = try StateCache(disabled: options.cacheDisabled)
 		self.minExplorationTime = options.minExplorationTime

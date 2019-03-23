@@ -58,9 +58,13 @@ public final class CommandLineTool {
 
 		switch command {
 		case "--new", "-n":
-			initHiveMind()
+			if let isFirst = Bool(extractValue(from: input)) {
+				initHiveMind(isFirst: isFirst)
+			} else {
+				logger.error("Failed to create HiveMind")
+			}
 		case "--move", "-m":
-			if let movement = parseMovement(String(input.suffix(from: input.firstIndex(of: " ") ?? input.endIndex))) {
+			if let movement = parseMovement(extractValue(from: input)) {
 				respondTo(move: movement)
 			}
 		case "--play":
@@ -73,12 +77,17 @@ public final class CommandLineTool {
 		}
 	}
 
+	private func extractValue(from input: String) -> String {
+		let preIndex = input.firstIndex(of: " ") ?? input.index(before: input.endIndex)
+		return String(input.suffix(from: input.index(after: preIndex)))
+	}
+
 	// MARK: Commands
 
 	/// Create a new HiveMind
-	private func initHiveMind() {
+	private func initHiveMind(isFirst: Bool) {
 		do {
-			hiveMind = try HiveMind()
+			hiveMind = try HiveMind(isFirst: isFirst)
 		} catch {
 			logger.error(error: error, "Failed to create HiveMind")
 		}

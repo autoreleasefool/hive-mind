@@ -19,7 +19,7 @@ final class CorePerformanceTests: XCTestCase {
 	}
 
 	func testAlphaBetaStrategyOpeningMovePerformance() {
-		let options = HiveMind.Options(strategy: .alphaBeta(depth: 2), cacheDisabled: true)
+		let options = HiveMind.Options(minExplorationTime: 30, strategyType: .alphaBeta(depth: 2), cacheDisabled: true)
 		guard let hiveMind = try? HiveMind(options: options) else {
 			XCTFail("Failed to initialize HiveMind")
 			return
@@ -38,7 +38,7 @@ final class CorePerformanceTests: XCTestCase {
 
 		let support = GameStateSupport(state: state)
 		measure {
-			for _ in 0..<1000 {
+			for _ in 0..<100 {
 				_ = state.evaluate(with: support)
 			}
 		}
