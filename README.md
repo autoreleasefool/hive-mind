@@ -38,12 +38,15 @@ There are 4 main components which make up the HiveMind AI. This repository conta
     * [Hive Client](https://github.com/josephroquedev/hive-client)
     * [Hive Server](https://github.com/josephroquedev/hive-server)
     * [HiveMind](https://github.com/josephroquedev/hivemind)
-2. Run `swift build` to build a debug version of the app you can use
-3. See the available commands with `.build/debug/HiveMind`
+2. Run the following command to build a debug or release version, respectively:
+    * `swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.13"`
+    * `swift build -c release -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.13"`
+3. Begin an instance with `.build/debug/HiveMind` or `build/release/HiveMind`
 
 ### Requirements
 
 * Swift 4.2+
+* macOS 10.13+
 
 ## Contributing
 
