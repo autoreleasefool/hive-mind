@@ -39,7 +39,18 @@ public final class CommandLineTool {
 	/// Starts a background thread to wait for command line input.
 	private func waitForInput() {
 		logger.log("Waiting for input...")
-		parse(readLine())
+
+		let data = FileHandle.standardInput.availableData
+		guard let input = String(data: data, encoding: .utf8) else {
+			logger.debug("Failed to retrieve input.")
+
+			if isRunning {
+				waitForInput()
+			}
+			return
+		}
+
+		parse(input)
 		if isRunning {
 			waitForInput()
 		} else {
@@ -57,19 +68,19 @@ public final class CommandLineTool {
 		let command = input.prefix(upTo: input.firstIndex(of: " ") ?? input.endIndex)
 
 		switch command {
-		case "--new", "-n":
+		case "new", "n":
 			if let isFirst = Bool(extractValue(from: input)) {
 				initHiveMind(isFirst: isFirst)
 			} else {
 				logger.error("Failed to create HiveMind")
 			}
-		case "--move", "-m":
+		case "move", "m":
 			if let movement = parseMovement(extractValue(from: input)) {
 				respondTo(move: movement)
 			}
-		case "--play":
+		case "play":
 			play()
-		case "--exit":
+		case "exit":
 			self.isRunning = false
 		default:
 			logger.log("\(command) is not a valid command.")
