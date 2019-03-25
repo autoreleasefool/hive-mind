@@ -11,7 +11,7 @@ import HiveEngine
 class StateCache {
 
 	/// Version of the cache, to be updated when the evaluation algorithm changes
-	static let version: Int = 3
+	static let version: Int = 4
 
 	/// Location of test directory
 	private var baseURL: URL? {
@@ -69,8 +69,6 @@ class StateCache {
 		} catch {
 			logger.error(error: error)
 		}
-
-
 	}
 
 	/// Load previously evaluated states
@@ -102,7 +100,7 @@ class StateCache {
 			case "x": xBits[Int(keyValue[1])!] = Int(keyValue[2])
 			case "y": yBits[Int(keyValue[1])!] = Int(keyValue[2])
 			case "z": zBits[Int(keyValue[1])!] = Int(keyValue[2])
-			case "u": unitBits[HiveEngine.Unit.Class(rawValue: String(keyValue[1]))!] = Int(keyValue[2])
+			case "u": unitBits[HiveEngine.Unit.Class(rawValue: Int(keyValue[1])!)!] = Int(keyValue[2])
 			default: break
 			}
 		}

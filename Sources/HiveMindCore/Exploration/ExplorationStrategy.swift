@@ -9,7 +9,7 @@ import HiveEngine
 
 protocol ExplorationStrategy: class {
 	/// Total number of states evaluated
-	var statesEvaluated: Int { set get }
+	var statesEvaluated: Int { get set }
 	/// Cached state properties
 	var support: GameStateSupport { get }
 	/// Game state evaluation cache

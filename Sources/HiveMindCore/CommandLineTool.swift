@@ -19,26 +19,26 @@ public final class CommandLineTool {
 	/// Start the process
 	public func run() {
 		self.isRunning = true
-		logger.log("HiveMind has initialized.")
+		logger.debug("HiveMind has initialized.")
 		printOptions()
 		waitForInput()
 	}
 
 	/// Print the available commands
 	private func printOptions() {
-		logger.log(
+		logger.debug(
 			"Options:",
-			"\t--new, -n <bool>: start a new game. Boolean determines if the HiveMind is first (true) or second (false)",
-			"\t--move, -m <Movement>: parse the movement and provides a Movement response in return",
-			"\t--play: return the best move, applies it to the current state and continues exploration",
-			"\t--exit: exit the tool",
+			"\tnew, n <bool>: start a new game. Boolean determines if the HiveMind is first (true) or second (false)",
+			"\tmove, m <Movement>: parse the movement and provides a Movement response in return",
+			"\tplay: return the best move, applies it to the current state and continues exploration",
+			"\texit: exit the tool",
 			separator: "\n"
 		)
 	}
 
 	/// Starts a background thread to wait for command line input.
 	private func waitForInput() {
-		logger.log("Waiting for input...")
+		logger.debug("Waiting for input...")
 
 		let data = FileHandle.standardInput.availableData
 		guard let input = String(data: data, encoding: .utf8) else {
@@ -54,16 +54,18 @@ public final class CommandLineTool {
 		if isRunning {
 			waitForInput()
 		} else {
-			logger.log("Goodbye!")
+			logger.debug("Goodbye!")
 		}
 	}
 
 	/// Parse the given data as a string and respond to the command.
 	private func parse(_ input: String?) {
-		guard let input = input else {
+		guard let input = input?.trimmingCharacters(in: .whitespacesAndNewlines) else {
 			logger.error("No input provided.")
 			return
 		}
+
+		logger.debug("Parsing input: `\(input)`")
 
 		let command = input.prefix(upTo: input.firstIndex(of: " ") ?? input.endIndex)
 
@@ -83,7 +85,7 @@ public final class CommandLineTool {
 		case "exit":
 			self.isRunning = false
 		default:
-			logger.log("\(command) is not a valid command.")
+			logger.debug("\(command) is not a valid command.")
 			printOptions()
 		}
 	}
@@ -106,7 +108,7 @@ public final class CommandLineTool {
 
 	/// Parse a `Movement` from a `String`
 	private func parseMovement(_ raw: String) -> Movement? {
-		let json = raw.trimmingCharacters(in: .whitespaces)
+		let json = raw.trimmingCharacters(in: .whitespacesAndNewlines)
 		guard json.isEmpty == false else {
 			logger.error("<Movement> was empty.")
 			return nil
