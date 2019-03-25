@@ -11,17 +11,16 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 
 	private let maxDepth: Int
 
-	init(maxDepth: Int, support: GameStateSupport, cache: StateCache) {
+	init(maxDepth: Int, support: GameStateSupport) {
 		self.maxDepth = maxDepth
 		self.support = support
-		self.cache = cache
+
 	}
 
 	// MARK: ExplorationStrategy
 
 	var statesEvaluated: Int = 0
 	var support: GameStateSupport
-	var cache: StateCache
 
 	func play(_ state: GameState, bestMove: inout Movement) {
 		var currentDepth = 1

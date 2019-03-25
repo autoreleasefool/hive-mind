@@ -12,17 +12,15 @@ class AlphaBeta: ExplorationStrategy {
 	/// Maximum depth to explore moves to
 	private let explorationDepth: Int
 
-	init(depth: Int, support: GameStateSupport, cache: StateCache) {
+	init(depth: Int, support: GameStateSupport) {
 		self.explorationDepth = depth
 		self.support = support
-		self.cache = cache
 	}
 
 	// MARK: ExplorationStrategy
 
 	var statesEvaluated: Int = 0
 	var support: GameStateSupport
-	var cache: StateCache
 
 	func play(_ state: GameState, bestMove: inout Movement) {
 		alphaBetaRoot(depth: explorationDepth, state: state, bestMove: &bestMove)

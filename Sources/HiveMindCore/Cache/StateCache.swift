@@ -162,7 +162,7 @@ class StateCache {
 	private var zBits: [Int: Int] = [:]
 	private var unitBits: [HiveEngine.Unit.Class: Int] = [:]
 
-	private func hash(_ state: GameState) -> Int {
+	fileprivate func hash(_ state: GameState) -> Int {
 		var cv = 0
 		state.stacks.forEach {
 			cv ^= hash($0.key)
@@ -193,5 +193,11 @@ class StateCache {
 		} while (!hashed)
 
 		return cv
+	}
+}
+
+extension GameState {
+	func fastHash(with support: GameStateSupport) -> Int {
+		return support.cache.hash(self)
 	}
 }

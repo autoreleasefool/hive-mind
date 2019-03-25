@@ -37,8 +37,6 @@ class HiveMind {
 	private var support: GameStateSupport
 	/// Strategy which the HiveMind will employ for exploration
 	private var strategy: ExplorationStrategy!
-	/// State evaluation cache
-	private let cache: StateCache
 
 	/// The best move that the HiveMind has come up with so far
 	private(set) var currentBestMove: Movement
@@ -55,16 +53,15 @@ class HiveMind {
 
 	init(isFirst: Bool, options: Options = Options()) throws {
 		self.state = GameState()
-		self.support = GameStateSupport(isFirst: isFirst, state: state)
-		self.currentBestMove = state.availableMoves.first!
-		self.cache = try StateCache(disabled: options.cacheDisabled)
+		let cache = try StateCache(disabled: options.cacheDisabled)
+		self.support = GameStateSupport(isFirst: isFirst, state: state, cache: cache)
 		self.minExplorationTime = options.minExplorationTime
 		self.strategyType = options.strategyType
 
 		self.state.requireMovementValidation = false
 		self.currentBestMove = state.availableMoves.first!
 
-		beginExploration()
+		updateExplorationStrategy()
 	}
 
 	deinit {
@@ -75,9 +72,9 @@ class HiveMind {
 	private func updateExplorationStrategy() {
 		switch strategyType {
 		case .alphaBeta(let depth):
-			self.strategy = AlphaBeta(depth: depth, support: support, cache: cache)
+			self.strategy = AlphaBeta(depth: depth, support: support)
 		case .alphaBetaIterativeDeepening(let maxDepth):
-			self.strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, support: support, cache: cache)
+			self.strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, support: support)
 		}
 
 		// Clear the old exploration strategy and start again
@@ -96,6 +93,8 @@ class HiveMind {
 			self.strategy.play(self.state, bestMove: &self.currentBestMove)
 			self.explorationThread = nil
 		}
+
+		explorationThread?.start()
 	}
 
 	/// Update the state with a move and restart exploration.

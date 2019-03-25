@@ -185,11 +185,11 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_11 /* Cache */,
-				OBJ_13 /* CommandLineTool.swift */,
 				OBJ_14 /* Exploration */,
 				OBJ_18 /* Extensions */,
-				OBJ_24 /* HiveMind.swift */,
 				OBJ_25 /* Support */,
+				OBJ_13 /* CommandLineTool.swift */,
+				OBJ_24 /* HiveMind.swift */,
 			);
 			name = HiveMindCore;
 			path = Sources/HiveMindCore;
@@ -330,7 +330,7 @@
 			path = Unit;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -341,7 +341,6 @@
 				OBJ_37 /* Dependencies */,
 				OBJ_58 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_58 /* Products */ = {
@@ -488,7 +487,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_58 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

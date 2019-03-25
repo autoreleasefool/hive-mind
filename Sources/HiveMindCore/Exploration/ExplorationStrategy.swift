@@ -12,8 +12,6 @@ protocol ExplorationStrategy: class {
 	var statesEvaluated: Int { get set }
 	/// Cached state properties
 	var support: GameStateSupport { get }
-	/// Game state evaluation cache
-	var cache: StateCache { get }
 
 	/// Begin exploring the given state. Update the best move when a new one is found
 	func play(_ state: GameState, bestMove: inout Movement)
@@ -29,11 +27,11 @@ extension ExplorationStrategy {
 			logger.debug("States evaluazted: \(statesEvaluated)")
 		}
 
-		if let value = cache[state] {
+		if let value = support.cache[state] {
 			return value
 		} else {
 			let stateValue = state.evaluate(with: support)
-			cache[state] = stateValue
+			support.cache[state] = stateValue
 			return stateValue
 		}
 	}

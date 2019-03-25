@@ -9,6 +9,9 @@ import HiveEngine
 
 struct GameStateSupport {
 
+	/// State evaluation cache
+	let cache: StateCache
+
 	/// Player that the HiveMind is playing as
 	let hiveMindPlayer: Player
 
@@ -17,7 +20,8 @@ struct GameStateSupport {
 	/// Black player's queen
 	let blackQueen: HiveEngine.Unit
 
-	init(isFirst: Bool, state: GameState) {
+	init(isFirst: Bool, state: GameState, cache: StateCache) {
+		self.cache = cache
 		hiveMindPlayer = isFirst ? .white : .black
 		whiteQueen = state.unitsInPlay[Player.white]?.first { $0.key.class == .queen }?.key ??
 			state.unitsInHand[Player.white]!.first { $0.class == .queen }!
