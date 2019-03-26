@@ -22,10 +22,10 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	var statesEvaluated: Int = 0
 	var support: GameStateSupport
 
-	func play(_ state: GameState, bestMove: inout Movement) {
+	func play(_ state: GameState, step: Step) {
 		var currentDepth = 1
 		while currentDepth <= maxDepth {
-			alphaBetaRoot(depth: currentDepth, state: state, bestMove: &bestMove)
+			alphaBetaRoot(depth: currentDepth, state: state, step: step)
 			currentDepth += 1
 		}
 	}
@@ -33,9 +33,10 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	// MARK: Alpha Beta exploration
 
 	/// Root of the exploration
-	private func alphaBetaRoot(depth: Int, state: GameState, bestMove: inout Movement) {
+	private func alphaBetaRoot(depth: Int, state: GameState, step: Step) {
 		let moves = state.availableMoves
 		var bestValue = Int.min
+		var bestMove = moves.first!
 
 		moves.forEach {
 			state.apply($0)
@@ -44,6 +45,7 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 			if value > bestValue {
 				bestValue = value
 				bestMove = $0
+				step(bestMove)
 
 				logger.debug("Found new best move: \(bestMove)")
 			}

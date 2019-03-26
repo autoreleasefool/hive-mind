@@ -126,7 +126,6 @@ public final class CommandLineTool {
 	/// Pass a `Movement` to the HiveMind and print a `Movement` in response
 	private func respondTo(move: Movement) {
 		hiveMind.apply(movement: move)
-		play()
 	}
 
 	/// Print the current best move from the HiveMind

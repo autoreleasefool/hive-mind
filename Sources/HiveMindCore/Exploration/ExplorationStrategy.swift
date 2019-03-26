@@ -8,13 +8,15 @@
 import HiveEngine
 
 protocol ExplorationStrategy: class {
+	typealias Step = (Movement) -> Void
+
 	/// Total number of states evaluated
 	var statesEvaluated: Int { get set }
 	/// Cached state properties
 	var support: GameStateSupport { get }
 
-	/// Begin exploring the given state. Update the best move when a new one is found
-	func play(_ state: GameState, bestMove: inout Movement)
+	/// Begin exploring the given state. Calls `step` with each new best move as one is found.
+	func play(_ state: GameState, step: Step)
 
 	/// Evaluate a game state
 	func evaluate(state: GameState) -> Int
@@ -24,7 +26,7 @@ extension ExplorationStrategy {
 	func evaluate(state: GameState) -> Int {
 		statesEvaluated += 1
 		if statesEvaluated % 1000 == 0 {
-			logger.debug("States evaluazted: \(statesEvaluated)")
+			logger.debug("States evaluated: \(statesEvaluated)")
 		}
 
 		if let value = support.cache[state] {
