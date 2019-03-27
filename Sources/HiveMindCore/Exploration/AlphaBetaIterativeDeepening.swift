@@ -14,7 +14,6 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	init(maxDepth: Int, support: GameStateSupport) {
 		self.maxDepth = maxDepth
 		self.support = support
-
 	}
 
 	// MARK: ExplorationStrategy

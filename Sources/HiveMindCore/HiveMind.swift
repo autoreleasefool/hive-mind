@@ -153,6 +153,9 @@ class HiveMind {
 			beginExploration()
 		}
 
+		logger.debug("-----\nApplying move \(movement)...")
+		logger.debug("Current state - Move: \(state.move), Player: \(state.currentPlayer)")
+
 		responsiveMoveLock.lock()
 
 		// If the state has already been partially explored, update the current best move
@@ -165,12 +168,16 @@ class HiveMind {
 			return
 		}
 
+		logger.debug("Updated state - Move: \(state.move), Player: \(state.currentPlayer)")
+
 		if let currentBestMove = responsiveBestMove[state.fastHash(with: support)] {
 			self.currentBestMove = currentBestMove
 		} else {
 			// FIXME: consider when hivemind has no moves
 			self.currentBestMove = state.availableMoves.first!
 		}
+
+		logger.debug("Done move\n-----")
 	}
 
 	/// Return the best move from the current state.

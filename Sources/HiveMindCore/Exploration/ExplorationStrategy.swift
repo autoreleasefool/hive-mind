@@ -25,7 +25,7 @@ protocol ExplorationStrategy: class {
 extension ExplorationStrategy {
 	func evaluate(state: GameState) -> Int {
 		statesEvaluated += 1
-		if statesEvaluated % 1000 == 0 {
+		if statesEvaluated % 10000 == 0 {
 			logger.debug("States evaluated: \(statesEvaluated)")
 		}
 
