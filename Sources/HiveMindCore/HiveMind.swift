@@ -120,7 +120,9 @@ class HiveMind {
 	/// - Parameters:
 	///   - state: the state to explore
 	private func explore(_ state: GameState) {
-		self.strategy.play(self.state) { [weak self] movement in
+		let exploreState = GameState(from: self.state)
+
+		self.strategy.play(exploreState) { [weak self] movement in
 			self?.currentBestMove = movement
 		}
 	}
