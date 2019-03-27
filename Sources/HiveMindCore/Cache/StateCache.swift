@@ -36,6 +36,9 @@ class StateCache {
 	/// Map of cached states to evaluated value
 	private var cache: [Int: Int] = [:]
 
+	/// Thread safe access to the cache
+	private let cacheLock = NSLock()
+
 	/// Disables the cache
 	private let disabled: Bool
 
@@ -120,6 +123,9 @@ class StateCache {
 			return nil
 		}
 		set(newValue) {
+			defer { cacheLock.unlock() }
+			cacheLock.lock()
+
 			let cacheIndex = hash(index)
 			cache[cacheIndex] = newValue
 		}
@@ -183,6 +189,9 @@ class StateCache {
 				cv ^= z
 				hashed = true
 			} else {
+				defer { cacheLock.unlock() }
+				cacheLock.lock()
+
 				bitLimit *= 2
 				for i in -bitLimit..<bitLimit {
 					if xBits[i] == nil { xBits[i] = Int.random(in: Int.min...Int.max) }
