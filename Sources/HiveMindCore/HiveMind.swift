@@ -14,11 +14,17 @@ class HiveMind {
 	struct Options {
 		let minExplorationTime: TimeInterval
 		let strategyType: ExplorationStrategyType
+		let evaluator: Evaluator
 		let cacheDisabled: Bool
 
-		init(minExplorationTime: TimeInterval = 10, strategyType: ExplorationStrategyType = .alphaBetaIterativeDeepening(maxDepth: 6), cacheDisabled: Bool = false) {
+		init(
+			minExplorationTime: TimeInterval = 10,
+			strategyType: ExplorationStrategyType = .alphaBetaIterativeDeepening(maxDepth: 6),
+			evaluator: @escaping Evaluator = BasicEvaluation.eval,
+			cacheDisabled: Bool = false) {
 			self.minExplorationTime = minExplorationTime
 			self.strategyType = strategyType
+			self.evaluator = evaluator
 			self.cacheDisabled = cacheDisabled
 		}
 	}
@@ -37,6 +43,8 @@ class HiveMind {
 	private var support: GameStateSupport
 	/// Strategy which the HiveMind will employ for exploration
 	private var strategy: ExplorationStrategy!
+	/// Evaluation function
+	private var evaluator: Evaluator
 
 	/// The best move that the HiveMind has come up with so far
 	private(set) var currentBestMove: Movement
@@ -62,6 +70,7 @@ class HiveMind {
 		self.support = GameStateSupport(isFirst: isFirst, state: state, cache: cache)
 		self.minExplorationTime = options.minExplorationTime
 		self.strategyType = options.strategyType
+		self.evaluator = options.evaluator
 
 		self.state.requireMovementValidation = false
 		self.currentBestMove = state.availableMoves.first!
@@ -78,9 +87,9 @@ class HiveMind {
 	private func updateExplorationStrategy() {
 		switch strategyType {
 		case .alphaBeta(let depth):
-			self.strategy = AlphaBeta(depth: depth, support: support)
+			self.strategy = AlphaBeta(depth: depth, evaluator: evaluator, support: support)
 		case .alphaBetaIterativeDeepening(let maxDepth):
-			self.strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, support: support)
+			self.strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, evaluator: evaluator, support: support)
 		}
 
 		// Clear the old exploration strategy and start again

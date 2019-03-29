@@ -11,15 +11,17 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 
 	private let maxDepth: Int
 
-	init(maxDepth: Int, support: GameStateSupport) {
+	init(maxDepth: Int, evaluator: @escaping Evaluator, support: GameStateSupport) {
 		self.maxDepth = maxDepth
+		self.evaluator = evaluator
 		self.support = support
 	}
 
 	// MARK: ExplorationStrategy
 
 	var statesEvaluated: Int = 0
-	var support: GameStateSupport
+	let support: GameStateSupport
+	let evaluator: Evaluator
 
 	func play(_ state: GameState, step: Step) {
 		var currentDepth = 1

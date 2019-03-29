@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		CA535FC0224BB06E00EAFCB8 /* BasicEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA535FBE224BB03C00EAFCB8 /* BasicEvaluation.swift */; };
+		CA535FC3224DAA4E00EAFCB8 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA535FC1224DAA2700EAFCB8 /* Evaluation.swift */; };
 		OBJ_105 /* StateCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StateCache.swift */; };
 		OBJ_106 /* CommandLineTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CommandLineTool.swift */; };
 		OBJ_107 /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* AlphaBeta.swift */; };
@@ -28,7 +30,6 @@
 		OBJ_109 /* ExplorationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* ExplorationStrategy.swift */; };
 		OBJ_110 /* GameState+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* GameState+Extensions.swift */; };
 		OBJ_111 /* Movement+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Movement+Extensions.swift */; };
-		OBJ_114 /* Unit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Unit+Extensions.swift */; };
 		OBJ_115 /* HiveMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* HiveMind.swift */; };
 		OBJ_116 /* GameStateSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* GameStateSupport.swift */; };
 		OBJ_117 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Logger.swift */; };
@@ -105,6 +106,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA535FBE224BB03C00EAFCB8 /* BasicEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEvaluation.swift; sourceTree = "<group>"; };
+		CA535FC1224DAA2700EAFCB8 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
 		"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMind::Product" /* HiveMind */ = {isa = PBXFileReference; lastKnownFileType = text; path = HiveMind; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveMindCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +119,6 @@
 		OBJ_17 /* ExplorationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorationStrategy.swift; sourceTree = "<group>"; };
 		OBJ_19 /* GameState+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameState+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_20 /* Movement+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movement+Extensions.swift"; sourceTree = "<group>"; };
-		OBJ_23 /* Unit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_24 /* HiveMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiveMind.swift; sourceTree = "<group>"; };
 		OBJ_26 /* GameStateSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateSupport.swift; sourceTree = "<group>"; };
 		OBJ_27 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -181,10 +183,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA535FBD224BB02500EAFCB8 /* Evaluation */ = {
+			isa = PBXGroup;
+			children = (
+				CA535FBE224BB03C00EAFCB8 /* BasicEvaluation.swift */,
+				CA535FC1224DAA2700EAFCB8 /* Evaluation.swift */,
+			);
+			path = Evaluation;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* HiveMindCore */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_11 /* Cache */,
+				CA535FBD224BB02500EAFCB8 /* Evaluation */,
 				OBJ_14 /* Exploration */,
 				OBJ_18 /* Extensions */,
 				OBJ_25 /* Support */,
@@ -218,7 +230,6 @@
 			children = (
 				OBJ_19 /* GameState+Extensions.swift */,
 				OBJ_20 /* Movement+Extensions.swift */,
-				OBJ_23 /* Unit+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -511,13 +522,14 @@
 				OBJ_105 /* StateCache.swift in Sources */,
 				OBJ_106 /* CommandLineTool.swift in Sources */,
 				OBJ_107 /* AlphaBeta.swift in Sources */,
+				CA535FC3224DAA4E00EAFCB8 /* Evaluation.swift in Sources */,
 				OBJ_108 /* AlphaBetaIterativeDeepening.swift in Sources */,
 				OBJ_109 /* ExplorationStrategy.swift in Sources */,
 				OBJ_110 /* GameState+Extensions.swift in Sources */,
 				OBJ_111 /* Movement+Extensions.swift in Sources */,
-				OBJ_114 /* Unit+Extensions.swift in Sources */,
 				OBJ_115 /* HiveMind.swift in Sources */,
 				OBJ_116 /* GameStateSupport.swift in Sources */,
+				CA535FC0224BB06E00EAFCB8 /* BasicEvaluation.swift in Sources */,
 				OBJ_117 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

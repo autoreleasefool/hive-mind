@@ -12,15 +12,17 @@ class AlphaBeta: ExplorationStrategy {
 	/// Maximum depth to explore moves to
 	private let explorationDepth: Int
 
-	init(depth: Int, support: GameStateSupport) {
+	init(depth: Int, evaluator: @escaping Evaluator, support: GameStateSupport) {
 		self.explorationDepth = depth
+		self.evaluator = evaluator
 		self.support = support
 	}
 
 	// MARK: ExplorationStrategy
 
 	var statesEvaluated: Int = 0
-	var support: GameStateSupport
+	let support: GameStateSupport
+	let evaluator: Evaluator
 
 	func play(_ state: GameState, step: Step) {
 		alphaBetaRoot(depth: explorationDepth, state: state, step: step)

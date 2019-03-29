@@ -14,6 +14,8 @@ protocol ExplorationStrategy: class {
 	var statesEvaluated: Int { get set }
 	/// Cached state properties
 	var support: GameStateSupport { get }
+	/// Evaluation function
+	var evaluator: Evaluator { get }
 
 	/// Begin exploring the given state. Calls `step` with each new best move as one is found.
 	func play(_ state: GameState, step: Step)
@@ -32,7 +34,7 @@ extension ExplorationStrategy {
 		if let value = support.cache[state] {
 			return value
 		} else {
-			let stateValue = state.evaluate(with: support)
+			let stateValue = evaluator(state, support)
 			support.cache[state] = stateValue
 			return stateValue
 		}
