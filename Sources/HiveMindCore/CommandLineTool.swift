@@ -11,30 +11,25 @@ import HiveEngine
 
 public final class CommandLineTool {
 	private var isRunning: Bool = false
-	private let dispatchQueue: DispatchQueue
 
+	// AI actor
 	var actor: Actor!
 
-	public init(queue: DispatchQueue = DispatchQueue.main) {
-		self.dispatchQueue = queue
-	}
+	public init() { }
 
 	/// Start the process
 	public func run() {
 		self.isRunning = true
 		logger.debug("HiveMind has initialized.")
 		printOptions()
-
-		dispatchQueue.async {
-			self.waitForInput()
-		}
+		waitForInput()
 	}
 
 	/// Print the available commands
 	private func printOptions() {
 		logger.debug(
 			"Options:",
-			"\tnew, n <bool>: start a new game. Boolean determines if the HiveMind is first (true) or second (false)",
+			"\tnew, n <Bool> <Double>: start a new game. Boolean determines if the HiveMind is first (true) or second (false), Double determines min exploration time. Defaults to True and 10.0",
 			"\tmove, m <Movement>: parse the movement and provides a Movement response in return",
 			"\tplay: return the best move, applies it to the current state and continues exploration",
 			"\texit: exit the tool",
@@ -74,16 +69,13 @@ public final class CommandLineTool {
 		logger.debug("Parsing input: `\(input)`")
 
 		let command = input.prefix(upTo: input.firstIndex(of: " ") ?? input.endIndex)
+		let value = extractValue(from: input)
 
 		switch command {
 		case "new", "n":
-			if let isFirst = Bool(extractValue(from: input)) {
-				initHiveMind(isFirst: isFirst)
-			} else {
-				logger.error("Failed to create HiveMind")
-			}
+			initHiveMind(value: value)
 		case "move", "m":
-			if let movement = parseMovement(extractValue(from: input)) {
+			if let movement = parseMovement(value) {
 				respondTo(move: movement)
 			}
 		case "play":
@@ -104,9 +96,15 @@ public final class CommandLineTool {
 	// MARK: Commands
 
 	/// Create a new HiveMind
-	private func initHiveMind(isFirst: Bool) {
+	private func initHiveMind(value: String) {
+		let config = value.split(separator: " ")
+		let isFirst = Bool(String(config.first ?? "")) ?? true
+		let explorationTime: TimeInterval = Double(config.last ?? "") ?? 10
+
+		let options = HiveMind.Options(minExplorationTime: explorationTime)
 		do {
-			actor = try HiveMind(isFirst: isFirst)
+			actor = try HiveMind(isFirst: isFirst, options: options)
+			logger.debug("Initialized HiveMind with: \(isFirst), \(explorationTime)")
 		} catch {
 			logger.error(error: error, "Failed to create HiveMind")
 		}

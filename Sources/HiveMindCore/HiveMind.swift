@@ -52,7 +52,7 @@ class HiveMind: Actor {
 	private var evaluator: Evaluator
 
 	/// The best move that the HiveMind has come up with so far
-	private(set) var bestExploredMoved: Movement? = nil
+	private(set) var bestExploredMoved: Movement?
 	/// The best move the HiveMind has come up with so far for a given state.
 	private(set) var bestExploredResponses: [Int: Movement] = [:]
 
