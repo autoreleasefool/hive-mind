@@ -1,6 +1,6 @@
 //
 //  Movement+Extensions.swift
-//  HiveEngine
+//  HiveMindCore
 //
 //  Created by Joseph Roque on 2019-03-03.
 //
