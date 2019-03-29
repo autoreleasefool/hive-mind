@@ -32,21 +32,22 @@ final class CorePerformanceTests: XCTestCase {
 		}
 	}
 
-	func testEvaluationPerformance() throws {
+	func testBasicEvaluationPerformance() throws {
 		let state = stateProvider.initialGameState
 		let cache = try StateCache(useHistory: false, disabled: true)
 		stateProvider.apply(moves: 20, to: state)
 
 		let support = GameStateSupport(isFirst: true, state: state, cache: cache)
+		let evaluator = BasicEvaluation.eval
 		measure {
 			for _ in 0..<100 {
-				_ = state.evaluate(with: support)
+				_ = evaluator(state, support)
 			}
 		}
 	}
 
 	static var allTests = [
 		("testAlphaBetaStrategyOpeningMovePerformance", testAlphaBetaStrategyOpeningMovePerformance),
-		("testEvaluationPerformance", testEvaluationPerformance)
+		("testBasicEvaluationPerformance", testBasicEvaluationPerformance)
 	]
 }

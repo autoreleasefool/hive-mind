@@ -11,17 +11,23 @@ import HiveEngine
 
 public final class CommandLineTool {
 	private var isRunning: Bool = false
+	private let dispatchQueue: DispatchQueue
 
-	var hiveMind: HiveMind!
+	var actor: Actor!
 
-	public init() {}
+	public init(queue: DispatchQueue = DispatchQueue.main) {
+		self.dispatchQueue = queue
+	}
 
 	/// Start the process
 	public func run() {
 		self.isRunning = true
 		logger.debug("HiveMind has initialized.")
 		printOptions()
-		waitForInput()
+
+		dispatchQueue.async {
+			self.waitForInput()
+		}
 	}
 
 	/// Print the available commands
@@ -100,7 +106,7 @@ public final class CommandLineTool {
 	/// Create a new HiveMind
 	private func initHiveMind(isFirst: Bool) {
 		do {
-			hiveMind = try HiveMind(isFirst: isFirst)
+			actor = try HiveMind(isFirst: isFirst)
 		} catch {
 			logger.error(error: error, "Failed to create HiveMind")
 		}
@@ -125,11 +131,11 @@ public final class CommandLineTool {
 
 	/// Pass a `Movement` to the HiveMind and print a `Movement` in response
 	private func respondTo(move: Movement) {
-		hiveMind.apply(movement: move)
+		actor.apply(movement: move)
 	}
 
 	/// Print the current best move from the HiveMind
 	private func play() {
-		hiveMind.play { logger.log($0.json()) }
+		actor.play { logger.log($0.json()) }
 	}
 }

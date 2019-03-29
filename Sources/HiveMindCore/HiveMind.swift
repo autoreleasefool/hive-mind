@@ -9,7 +9,12 @@
 import Foundation
 import HiveEngine
 
-class HiveMind {
+protocol Actor {
+	func apply(movement: Movement)
+	func play(completion: @escaping (Movement) -> Void)
+}
+
+class HiveMind: Actor {
 
 	struct Options {
 		let minExplorationTime: TimeInterval
