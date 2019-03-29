@@ -47,9 +47,14 @@ class HiveMind {
 	private var evaluator: Evaluator
 
 	/// The best move that the HiveMind has come up with so far
-	private(set) var currentBestMove: Movement
+	private(set) var bestExploredMoved: Movement? = nil
 	/// The best move the HiveMind has come up with so far for a given state.
-	private(set) var responsiveBestMove: [Int: Movement] = [:]
+	private(set) var bestExploredResponses: [Int: Movement] = [:]
+
+	/// The best move the HiveMind has come up with so far, or the first move available if it hasn't come up with any moves
+	private var bestMove: Movement {
+		return bestExploredMoved ?? state.sortedMoves().first!
+	}
 
 	/// Enable thread safe access to `responsiveBestMove`
 	private let responsiveMoveLock = NSLock()
@@ -73,7 +78,6 @@ class HiveMind {
 		self.evaluator = options.evaluator
 
 		self.state.requireMovementValidation = false
-		self.currentBestMove = state.availableMoves.first!
 
 		updateExplorationStrategy()
 		beginExploration()
@@ -104,7 +108,7 @@ class HiveMind {
 	private func beginExploration() {
 		defer { responsiveMoveLock.unlock() }
 		responsiveMoveLock.lock()
-		responsiveBestMove.removeAll()
+		bestExploredResponses.removeAll()
 
 		explorationThread?.cancel()
 		explorationThread = Thread { [weak self] in
@@ -132,7 +136,7 @@ class HiveMind {
 		let exploreState = GameState(from: self.state)
 
 		self.strategy.play(exploreState) { [weak self] movement in
-			self?.currentBestMove = movement
+			self?.bestExploredMoved = movement
 		}
 	}
 
@@ -152,7 +156,7 @@ class HiveMind {
 				guard let self = self else { return }
 				defer { responsiveMoveLock.unlock() }
 				responsiveMoveLock.lock()
-				self.responsiveBestMove[subsequentState.fastHash(with: support)] = response
+				self.bestExploredResponses[subsequentState.fastHash(with: support)] = response
 			}
 		}
 	}
@@ -175,17 +179,18 @@ class HiveMind {
 
 		// Check to make sure the move was valid. If not, exit early
 		guard state.move > currentMove else {
-			logger.debug("The move `\(movement)` was not valid")
+			logger.error("The move `\(movement)` was not valid")
 			return
 		}
 
 		logger.debug("Updated state - Move: \(state.move), Player: \(state.currentPlayer)")
 
-		if let currentBestMove = responsiveBestMove[state.fastHash(with: support)] {
-			self.currentBestMove = currentBestMove
+		if state.currentPlayer == support.hiveMindPlayer {
+			if let currentBestMove = bestExploredResponses[state.fastHash(with: support)] {
+				self.bestExploredMoved = currentBestMove
+			}
 		} else {
-			// FIXME: consider when hivemind has no moves
-			self.currentBestMove = state.availableMoves.first!
+			self.bestExploredMoved = nil
 		}
 
 		logger.debug("Done move\n-----")
@@ -195,15 +200,15 @@ class HiveMind {
 	func play(completion: @escaping (Movement) -> Void) {
 		// Wait `minExplorationTime` seconds then return the best move found
 		if isExploring == false {
-			completion(self.currentBestMove)
+			completion(self.bestMove)
 		} else {
 			DispatchQueue.global().asyncAfter(deadline: .now() + minExplorationTime) {
 				self.explorationThread?.cancel()
 				self.explorationThread = nil
-				completion(self.currentBestMove)
 
-				// Update state with the returned move and begin exploring the new state
-				self.apply(movement: self.currentBestMove)
+				let selectedMove = self.bestMove
+				completion(selectedMove)
+				self.apply(movement: selectedMove)
 			}
 		}
 	}
