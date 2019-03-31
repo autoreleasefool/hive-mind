@@ -1,6 +1,6 @@
 //
 //  GameStateProvider.swift
-//  HiveMindTests
+//  HiveMindCoreTests
 //
 //  Created by Joseph Roque on 2019-03-14.
 //  Copyright © 2019 Joseph Roque. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  CorePerformanceTests.swift
-//  HiveMindCore
+//  HiveMindCoreTests
 //
 //  Created by Joseph Roque on 2019-03-15.
 //
@@ -18,20 +18,6 @@ final class CorePerformanceTests: XCTestCase {
 		stateProvider = GameStateProvider()
 	}
 
-	func testAlphaBetaStrategyOpeningMovePerformance() {
-		let options = HiveMind.Options(minExplorationTime: 30, strategyType: .alphaBeta(depth: 2), cacheDisabled: true)
-		guard let hiveMind = try? HiveMind(isFirst: true, options: options) else {
-			XCTFail("Failed to initialize HiveMind")
-			return
-		}
-
-		measure {
-			let expectation = XCTestExpectation(description: "HiveMind found the best move.")
-			_ = hiveMind.play { _ in expectation.fulfill() }
-			wait(for: [expectation], timeout: 30)
-		}
-	}
-
 	func testBasicEvaluationPerformance() throws {
 		let state = stateProvider.initialGameState
 		let cache = try StateCache(useHistory: false, disabled: true)
@@ -47,7 +33,6 @@ final class CorePerformanceTests: XCTestCase {
 	}
 
 	static var allTests = [
-		("testAlphaBetaStrategyOpeningMovePerformance", testAlphaBetaStrategyOpeningMovePerformance),
 		("testBasicEvaluationPerformance", testBasicEvaluationPerformance)
 	]
 }
