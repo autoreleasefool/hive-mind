@@ -139,7 +139,7 @@
 		OBJ_52 /* Unit+Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Queen.swift"; sourceTree = "<group>"; };
 		OBJ_53 /* Unit+Spider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Spider.swift"; sourceTree = "<group>"; };
 		OBJ_54 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
-		OBJ_55 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/josephroque/Documents/Workspace/hivemind/.build/checkouts/hive-engine.git--7621151480682898809/Package.swift"; sourceTree = "<group>"; };
+		OBJ_55 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = ".build/checkouts/hive-engine/Package.swift"; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_61 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = SOURCE_ROOT; };
 		OBJ_62 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = SOURCE_ROOT; };
@@ -305,7 +305,7 @@
 				OBJ_45 /* Unit */,
 			);
 			name = HiveEngine;
-			path = ".build/checkouts/hive-engine.git--7621151480682898809/Sources/HiveEngine";
+			path = ".build/checkouts/hive-engine/Sources/HiveEngine";
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_38 /* Extensions */ = {

@@ -53,8 +53,6 @@ class HiveMind: Actor {
 
 	/// The best move that the HiveMind has come up with so far
 	private(set) var bestExploredMoved: Movement?
-	/// The best move the HiveMind has come up with so far for a given state.
-	private(set) var bestExploredResponses: [Int: Movement] = [:]
 
 	/// The best move the HiveMind has come up with so far, or the first move available if it hasn't come up with any moves
 	private var bestMove: Movement {
@@ -111,22 +109,12 @@ class HiveMind: Actor {
 
 	/// Clear the current exploration and begin exploring a state in the background.
 	private func beginExploration() {
-		defer { responsiveMoveLock.unlock() }
-		responsiveMoveLock.lock()
-		bestExploredResponses.removeAll()
+		guard state.currentPlayer == support.hiveMindPlayer else { return }
 
 		explorationThread?.cancel()
 		explorationThread = Thread { [weak self] in
 			guard let self = self else { return }
-
-			if self.state.currentPlayer == self.support.hiveMindPlayer {
-				// If it's the HiveMind's move, simply find the best move for the given state
-				self.explore(self.state)
-			} else {
-				// If it's the opponent's move, find the best response to all of opponent's possible moves
-				self.exploreSubsequent(to: self.state)
-			}
-
+			self.explore(self.state)
 			self.explorationThread = nil
 		}
 
@@ -142,27 +130,6 @@ class HiveMind: Actor {
 
 		self.strategy.play(exploreState) { [weak self] movement in
 			self?.bestExploredMoved = movement
-		}
-	}
-
-	/// Explore a state's subsequent states (each state created after applying a single valid move)
-	/// and update the best move in response to each.
-	///
-	/// - Parameters:
-	///   - state: the state whose subsequent states will be explored.
-	private func exploreSubsequent(to state: GameState) {
-		let moves = state.sortedMoves()
-		DispatchQueue.concurrentPerform(iterations: moves.count) { [weak self] iteration in
-			guard let self = self else { return }
-			let subsequentState = GameState(from: self.state)
-			subsequentState.apply(moves[iteration])
-
-			self.strategy.play(subsequentState) { [weak self] response in
-				guard let self = self else { return }
-				defer { responsiveMoveLock.unlock() }
-				responsiveMoveLock.lock()
-				self.bestExploredResponses[subsequentState.fastHash(with: support)] = response
-			}
 		}
 	}
 
@@ -188,16 +155,9 @@ class HiveMind: Actor {
 			return
 		}
 
+		self.bestExploredMoved = nil
+
 		logger.debug("Updated state - Move: \(state.move), Player: \(state.currentPlayer)")
-
-		if state.currentPlayer == support.hiveMindPlayer {
-			if let currentBestMove = bestExploredResponses[state.fastHash(with: support)] {
-				self.bestExploredMoved = currentBestMove
-			}
-		} else {
-			self.bestExploredMoved = nil
-		}
-
 		logger.debug("Done move\n-----")
 	}
 
