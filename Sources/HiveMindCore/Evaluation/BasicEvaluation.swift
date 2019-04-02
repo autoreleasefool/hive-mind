@@ -50,7 +50,7 @@ struct BasicEvaluation {
 			value -= $0.key.absoluteBasicValue(in: state)
 		}
 
-		return value * (6 - opponentQueenSidesRemaining)
+		return value + 100 * (6 - opponentQueenSidesRemaining)
 	}
 }
 
