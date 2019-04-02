@@ -103,7 +103,7 @@ class StateCache {
 			case "x": xBits[Int(keyValue[1])!] = Int(keyValue[2])
 			case "y": yBits[Int(keyValue[1])!] = Int(keyValue[2])
 			case "z": zBits[Int(keyValue[1])!] = Int(keyValue[2])
-			case "u": unitBits[HiveEngine.Unit.Class(rawValue: Int(keyValue[1])!)!] = Int(keyValue[2])
+			case "u": unitBits[HiveEngine.Unit.Class(rawValue: String(keyValue[1]))!] = Int(keyValue[2])
 			default: break
 			}
 		}

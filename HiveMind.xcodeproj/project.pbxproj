@@ -61,42 +61,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CAA5718122513BB700FB6C2B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "HiveEngine::HiveEngine";
-			remoteInfo = HiveEngine;
-		};
-		CAA5718222513BB700FB6C2B /* PBXContainerItemProxy */ = {
+		CAC0AA522253A85500D88525 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "HiveMind::HiveMindCore";
 			remoteInfo = HiveMindCore;
 		};
-		CAA5718322513BB700FB6C2B /* PBXContainerItemProxy */ = {
+		CAC0AA532253A85500D88525 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "HiveEngine::HiveEngine";
 			remoteInfo = HiveEngine;
 		};
-		CAA5718422513BB700FB6C2B /* PBXContainerItemProxy */ = {
+		CAC0AA542253A85500D88525 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HiveEngine::HiveEngine";
+			remoteInfo = HiveEngine;
+		};
+		CAC0AA552253A85500D88525 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "HiveMind::HiveMindCore";
 			remoteInfo = HiveMindCore;
 		};
-		CAA5718522513BB700FB6C2B /* PBXContainerItemProxy */ = {
+		CAC0AA562253A85500D88525 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "HiveEngine::HiveEngine";
 			remoteInfo = HiveEngine;
 		};
-		CAA5718622513BB800FB6C2B /* PBXContainerItemProxy */ = {
+		CAC0AA572253A85900D88525 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -106,10 +106,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HiveEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMind::Product" /* HiveMind */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = HiveMind; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HiveMindCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"HiveMind::HiveMindCoreTests::Product" /* HiveMindCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = HiveMindCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HiveMind::HiveMindCoreTests::Product" /* HiveMindCoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = HiveMindCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_12 /* StateCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCache.swift; sourceTree = "<group>"; };
 		OBJ_13 /* CommandLineTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineTool.swift; sourceTree = "<group>"; };
 		OBJ_15 /* BasicEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEvaluation.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		OBJ_52 /* Unit+Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Queen.swift"; sourceTree = "<group>"; };
 		OBJ_53 /* Unit+Spider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Spider.swift"; sourceTree = "<group>"; };
 		OBJ_54 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
-		OBJ_55 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = ".build/checkouts/hive-engine/Package.swift"; sourceTree = "<group>"; };
+		OBJ_55 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/josephroque/Documents/Workspace/hivemind/.build/checkouts/hive-engine/Package.swift"; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_61 /* script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = script; sourceTree = SOURCE_ROOT; };
 		OBJ_62 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = SOURCE_ROOT; };
@@ -343,7 +343,7 @@
 			path = Unit;
 			sourceTree = "<group>";
 		};
-		OBJ_5 = {
+		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -356,15 +356,16 @@
 				OBJ_63 /* LICENSE */,
 				OBJ_64 /* README.md */,
 			);
+			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"HiveMind::HiveMindCoreTests::Product" /* HiveMindCoreTests.xctest */,
-				"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */,
-				"HiveMind::HiveMind::Product" /* HiveMind */,
 				"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */,
+				"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */,
+				"HiveMind::HiveMindCoreTests::Product" /* HiveMindCoreTests.xctest */,
+				"HiveMind::HiveMind::Product" /* HiveMind */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -504,7 +505,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5;
+			mainGroup = OBJ_5 /*  */;
 			productRefGroup = OBJ_56 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -601,32 +602,32 @@
 		OBJ_100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "HiveMind::HiveMindCore" /* HiveMindCore */;
-			targetProxy = CAA5718222513BB700FB6C2B /* PBXContainerItemProxy */;
+			targetProxy = CAC0AA522253A85500D88525 /* PBXContainerItemProxy */;
 		};
 		OBJ_102 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "HiveEngine::HiveEngine" /* HiveEngine */;
-			targetProxy = CAA5718322513BB700FB6C2B /* PBXContainerItemProxy */;
+			targetProxy = CAC0AA542253A85500D88525 /* PBXContainerItemProxy */;
 		};
 		OBJ_121 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "HiveEngine::HiveEngine" /* HiveEngine */;
-			targetProxy = CAA5718122513BB700FB6C2B /* PBXContainerItemProxy */;
+			targetProxy = CAC0AA532253A85500D88525 /* PBXContainerItemProxy */;
 		};
 		OBJ_133 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "HiveMind::HiveMindCore" /* HiveMindCore */;
-			targetProxy = CAA5718422513BB700FB6C2B /* PBXContainerItemProxy */;
+			targetProxy = CAC0AA552253A85500D88525 /* PBXContainerItemProxy */;
 		};
 		OBJ_134 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "HiveEngine::HiveEngine" /* HiveEngine */;
-			targetProxy = CAA5718522513BB700FB6C2B /* PBXContainerItemProxy */;
+			targetProxy = CAC0AA562253A85500D88525 /* PBXContainerItemProxy */;
 		};
 		OBJ_145 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "HiveMind::HiveMindCoreTests" /* HiveMindCoreTests */;
-			targetProxy = CAA5718622513BB800FB6C2B /* PBXContainerItemProxy */;
+			targetProxy = CAC0AA572253A85900D88525 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -700,7 +701,7 @@
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveMindCoreTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -725,7 +726,7 @@
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveMindCoreTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -828,7 +829,9 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveEngine_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -837,8 +840,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = HiveEngine;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -852,7 +857,9 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveEngine_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -861,8 +868,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = HiveEngine;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -870,8 +879,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.2;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -879,8 +888,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.2;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
