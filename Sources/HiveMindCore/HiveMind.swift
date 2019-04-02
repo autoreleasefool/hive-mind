@@ -24,7 +24,7 @@ class HiveMind: Actor {
 
 		init(
 			minExplorationTime: TimeInterval = 10,
-			strategyType: ExplorationStrategyType = .alphaBetaIterativeDeepening(maxDepth: 6),
+			strategyType: ExplorationStrategyType = .alphaBeta(depth: 2),
 			evaluator: @escaping Evaluator = BasicEvaluation.eval,
 			cacheDisabled: Bool = false) {
 			self.minExplorationTime = minExplorationTime
@@ -56,7 +56,7 @@ class HiveMind: Actor {
 
 	/// The best move the HiveMind has come up with so far, or the first move available if it hasn't come up with any moves
 	private var bestMove: Movement {
-		return bestExploredMoved ?? state.sortedMoves().first!
+		return bestExploredMoved ?? state.sortedMoves.first!
 	}
 
 	/// Enable thread safe access to `responsiveBestMove`
@@ -116,6 +116,7 @@ class HiveMind: Actor {
 			guard let self = self else { return }
 			self.explore(self.state)
 			self.explorationThread = nil
+			logger.debug("Finished exploration")
 		}
 
 		explorationThread?.start()

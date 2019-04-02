@@ -29,7 +29,7 @@ extension GameState {
 	// API
 
 	/// Get all available moves, sorted by perceived value
-	func sortedMoves() -> [Movement] {
+	var sortedMoves: [Movement] {
 		return availableMoves.sorted(by: {
 			switch ($0, $1) {
 			case (.move(let unit1, _), .move(let unit2, _)):
@@ -42,7 +42,7 @@ extension GameState {
 			case (.yoink, _): return true
 			case (.place, _): return true
 			}
-		})
+		}).reversed()
 	}
 
 	/// Convert the state to a JSON string

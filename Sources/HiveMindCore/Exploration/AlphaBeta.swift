@@ -32,7 +32,7 @@ class AlphaBeta: ExplorationStrategy {
 
 	/// Root of the exploration
 	private func alphaBetaRoot(depth: Int, state: GameState, step: Step) {
-		let moves = state.availableMoves
+		let moves = state.sortedMoves
 		var bestValue = Int.min
 		var bestMove: Movement = moves.first!
 
@@ -45,7 +45,7 @@ class AlphaBeta: ExplorationStrategy {
 				bestMove = $0
 				step(bestMove)
 
-				logger.debug("Found new best move: \(bestMove)")
+				logger.debug("Found new best move: \(bestMove), value: \(value)")
 			}
 		}
 	}
@@ -61,7 +61,7 @@ class AlphaBeta: ExplorationStrategy {
 		let isMinimizing = state.currentPlayer != support.hiveMindPlayer
 		if isMinimizing {
 			var updatedBeta = beta
-			for move in state.sortedMoves() {
+			for move in state.sortedMoves {
 				state.apply(move)
 				updatedBeta = min(updatedBeta, -alphaBetaEvaluate(depth: depth - 1, state: state, alpha: alpha, beta: updatedBeta))
 				state.undoMove()
@@ -71,7 +71,7 @@ class AlphaBeta: ExplorationStrategy {
 			}
 			return updatedBeta
 		} else {
-			for move in state.sortedMoves().reversed() {
+			for move in state.sortedMoves {
 				state.apply(move)
 				updatedAlpha = max(updatedAlpha, alphaBetaEvaluate(depth: depth - 1, state: state, alpha: updatedAlpha, beta: beta))
 				state.undoMove()
