@@ -158,6 +158,10 @@ class HiveMind: Actor {
 
 		self.bestExploredMoved = nil
 
+		if state.currentPlayer == support.hiveMindPlayer {
+			beginExploration()
+		}
+
 		logger.debug("Updated state - Move: \(state.move), Player: \(state.currentPlayer)")
 		logger.debug("Done move\n-----")
 	}

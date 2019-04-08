@@ -51,7 +51,10 @@ public final class CommandLineTool {
 			return
 		}
 
-		parse(input)
+		input.split(separator: "\n").forEach {
+			parse(String($0))
+		}
+
 		if isRunning {
 			waitForInput()
 		} else {
