@@ -37,6 +37,9 @@ class HiveMind: Actor {
 	/// The current state being explored
 	private let state: GameState
 
+	/// ID of the thread currently executing
+	private var currentExplorationId: Int = 0
+
 	/// Define the exploration strategy used
 	var strategyType: ExplorationStrategyType {
 		didSet {
@@ -110,11 +113,13 @@ class HiveMind: Actor {
 	/// Clear the current exploration and begin exploring a state in the background.
 	private func beginExploration() {
 		guard state.currentPlayer == support.hiveMindPlayer else { return }
+		let nextExplorationId = currentExplorationId + 1
+		currentExplorationId = nextExplorationId
 
 		explorationThread?.cancel()
 		explorationThread = Thread { [weak self] in
 			guard let self = self else { return }
-			self.explore(self.state)
+			self.explore(self.state, withId: nextExplorationId)
 			self.explorationThread = nil
 			logger.debug("Finished exploration")
 		}
@@ -126,11 +131,14 @@ class HiveMind: Actor {
 	///
 	/// - Parameters:
 	///   - state: the state to explore
-	private func explore(_ state: GameState) {
+	private func explore(_ state: GameState, withId id: Int) {
 		let exploreState = GameState(from: self.state)
 
 		self.strategy.play(exploreState) { [weak self] movement in
-			self?.bestExploredMoved = movement
+			/// Threads don't necessarily stop execution when you cancel them in Swift so we ensure only the most recent exploration can update the best move by capturing the ID of this exploration and comparing it against the most recent ID.
+			if id == currentExplorationId {
+				self?.bestExploredMoved = movement
+			}
 		}
 	}
 
@@ -172,7 +180,7 @@ class HiveMind: Actor {
 		if isExploring == false {
 			completion(self.bestMove)
 		} else {
-			DispatchQueue.global().asyncAfter(deadline: .now() + minExplorationTime) {
+			DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + minExplorationTime) {
 				self.explorationThread?.cancel()
 				self.explorationThread = nil
 
