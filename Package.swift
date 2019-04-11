@@ -10,11 +10,12 @@ let package = Package(
 		.library(name: "HiveMindCore", targets: ["HiveMindCore"])
 	],
 	dependencies: [
-		.package(url: "git@github.com:josephroquedev/hive-engine.git", .branch("master"))
+		.package(url: "git@github.com:josephroquedev/hive-engine.git", .branch("master")),
+		.package(url: "git@github.com:daltoniam/Starscream.git", from: "3.1.0")
 	],
 	targets: [
 		.target(name: "HiveMind", dependencies: ["HiveMindCore"]),
-		.target(name: "HiveMindCore", dependencies: ["HiveEngine"]),
+		.target(name: "HiveMindCore", dependencies: ["HiveEngine", "Starscream"]),
 		.testTarget(name: "HiveMindCoreTests", dependencies: ["HiveMindCore"])
 	]
 )

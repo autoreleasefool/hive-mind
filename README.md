@@ -32,6 +32,29 @@ There are 4 main components which make up the HiveMind AI. This repository conta
 
 ---
 
+## Usage
+
+The HiveMind uses a WebSocket for communication. By default, it listens on `ws://localhost:8080`, but you can change the port by providing an alternative through the command line arguments, described below.
+
+To interact with the HiveMind, you can provide various commands over the WebSocket, which it will reply to in turn. The available commands are:
+
+* `[new, n] <IsFirst> <ExplorationTime>`
+	* Start a new game
+	* `IsFirst` is a `Bool` which indicates if the HiveMind will play first.
+	* `ExplorationTime` is a `Double` which specifies the maximum amount of time the HiveMind can explore a state.
+* `[move, m] <Movement>`
+	* Parse a given `HiveEngine.Movement` (encoded as JSON) and update the HiveMind's internal state. This is how opponent's moves are received
+* `[play, p]`
+	* Instruct the HiveMind to explore the current state. It will respond with the best move it finds after `ExplorationTime`
+* `[exit]`
+	* Instruct the HiveMind to quit and end the process.
+
+### Command Line Arguments
+
+* `--port <Int>`, `-p <Int>`: Specify the port which the HiveMind should listen on
+
+---
+
 ## Getting Started
 
 1. First, you'll need to grab a couple other repos to build the entire system and play a game of Hive against the HiveMind.
@@ -45,7 +68,7 @@ There are 4 main components which make up the HiveMind AI. This repository conta
 
 ### Requirements
 
-* Swift 4.2+
+* Swift 5.0+
 * macOS 10.13+
 
 ## Contributing
