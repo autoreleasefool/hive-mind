@@ -45,6 +45,17 @@ public class CommandLineTool {
 		socket.delegate = self
 		socket.connect()
 		logger.debug("HiveMind has initialized, listening on port \(configuration.port)")
+		runLoop()
+	}
+
+	/// Loop infinitely and wait for Command Line input
+	private func runLoop() {
+		while isRunning {
+			let cmdInput = readLine()
+			if cmdInput == "exit" {
+				self.isRunning = false
+			}
+		}
 	}
 
 	/// Parse the given data as a string and respond to the command.
@@ -177,5 +188,7 @@ extension CommandLineTool: WebSocketDelegate {
 		} else {
 			logger.error("Connection to WebSocket closed.")
 		}
+
+		self.isRunning = false
 	}
 }
