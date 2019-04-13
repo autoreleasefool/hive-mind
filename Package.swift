@@ -11,11 +11,11 @@ let package = Package(
 	],
 	dependencies: [
 		.package(url: "https://github.com/josephroquedev/hive-engine.git", .branch("master")),
-		.package(url: "https://github.com/daltoniam/Starscream.git", from: "3.1.0")
+		.package(url: "https://github.com/vapor/websocket.git", from: "1.1.2")
 	],
 	targets: [
 		.target(name: "HiveMind", dependencies: ["HiveMindCore"]),
-		.target(name: "HiveMindCore", dependencies: ["HiveEngine", "Starscream"]),
+		.target(name: "HiveMindCore", dependencies: ["HiveEngine", "WebSocket"]),
 		.testTarget(name: "HiveMindCoreTests", dependencies: ["HiveMindCore"])
 	]
 )

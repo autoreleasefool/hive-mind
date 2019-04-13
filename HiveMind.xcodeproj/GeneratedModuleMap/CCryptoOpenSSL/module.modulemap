@@ -1,0 +1,4 @@
+module CCryptoOpenSSL {
+    umbrella "/Users/josephroque/Documents/Workspace/hivemind/.build/checkouts/crypto/Sources/CCryptoOpenSSL/include"
+    export *
+}
