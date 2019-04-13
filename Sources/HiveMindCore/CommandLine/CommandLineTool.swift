@@ -10,7 +10,7 @@ import Foundation
 import HiveEngine
 import Starscream
 
-enum SocketResponse: CustomStringConvertible {
+enum SocketMessage: CustomStringConvertible {
 	case success
 	case movement(Movement)
 	case failure
@@ -48,7 +48,7 @@ public class CommandLineTool {
 	}
 
 	/// Parse the given data as a string and respond to the command.
-	private func parse(_ input: String?, completion: @escaping (SocketResponse) -> Void) {
+	private func parse(_ input: String?, completion: @escaping (SocketMessage) -> Void) {
 		guard let input = input?.trimmingCharacters(in: .whitespacesAndNewlines) else {
 			logger.error("No input provided.")
 			completion(.invalidCommand)
@@ -57,7 +57,7 @@ public class CommandLineTool {
 
 		logger.debug("Parsing input: `\(input)`")
 
-		let response: SocketResponse
+		let response: SocketMessage
 		let command = input.prefix(upTo: input.firstIndex(of: " ") ?? input.endIndex)
 		let value = extractValue(from: input)
 
@@ -141,7 +141,8 @@ public class CommandLineTool {
 	}
 
 	/// Send some data to the Socket
-	private func writeToSocket(response: SocketResponse) {
+	private func writeToSocket(message: SocketMessage) {
+		socket.write(string: message.description)
 	}
 }
 
@@ -149,8 +150,8 @@ extension CommandLineTool: WebSocketDelegate {
 	public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
 		logger.debug("WebSocket received some Data: \(data.count) elements.")
 		if let input = String(data: data, encoding: .utf8) {
-			parse(input) { [weak self] response in
-				self?.writeToSocket(response: response)
+			parse(input) { [weak self] message in
+				self?.writeToSocket(message: message)
 			}
 		} else {
 			logger.error("Failed to decode Data as String.")
@@ -159,8 +160,8 @@ extension CommandLineTool: WebSocketDelegate {
 
 	public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
 		logger.debug("WebSocket recieved some Text: \(text.count) characters.")
-		parse(text) { [weak self] response in
-			self?.writeToSocket(response: response)
+		parse(text) { [weak self] message in
+			self?.writeToSocket(message: message)
 		}
 	}
 
