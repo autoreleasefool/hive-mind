@@ -3,16 +3,16 @@
     "pins": [
       {
         "package": "HiveEngine",
-        "repositoryURL": "git@github.com:josephroquedev/hive-engine.git",
+        "repositoryURL": "https://github.com/josephroquedev/hive-engine.git",
         "state": {
           "branch": "master",
-          "revision": "1740958879aeac8fbae6b399c16f85ddb8fbfb41",
+          "revision": "aa5a88428441bc1b1497832d2789f63044126c3d",
           "version": null
         }
       },
       {
         "package": "Starscream",
-        "repositoryURL": "git@github.com:daltoniam/Starscream.git",
+        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
         "state": {
           "branch": null,
           "revision": "9c03ef715d1bc9334b446c90df53586dd38cf849",
