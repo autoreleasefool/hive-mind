@@ -97,9 +97,9 @@ class HiveMind: Actor {
 	private func updateExplorationStrategy() {
 		switch strategyType {
 		case .alphaBeta(let depth):
-			self.strategy = AlphaBeta(depth: depth, evaluator: evaluator, support: support)
+			strategy = AlphaBeta(depth: depth, evaluator: evaluator, support: support)
 		case .alphaBetaIterativeDeepening(let maxDepth):
-			self.strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, evaluator: evaluator, support: support)
+			strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, evaluator: evaluator, support: support)
 		}
 
 		// Clear the old exploration strategy and start again
@@ -132,9 +132,9 @@ class HiveMind: Actor {
 	/// - Parameters:
 	///   - state: the state to explore
 	private func explore(_ state: GameState, withId id: Int) {
-		let exploreState = GameState(from: self.state)
+		let exploreState = GameState(from: state)
 
-		self.strategy.play(exploreState) { [weak self] movement in
+		strategy.play(exploreState) { [weak self] movement in
 			/// Threads don't necessarily stop execution when you cancel them in Swift so we ensure only the most recent exploration can update the best move by capturing the ID of this exploration and comparing it against the most recent ID.
 			if id == currentExplorationId {
 				self?.bestExploredMoved = movement
@@ -164,7 +164,7 @@ class HiveMind: Actor {
 			return
 		}
 
-		self.bestExploredMoved = nil
+		bestExploredMoved = nil
 
 		if state.currentPlayer == support.hiveMindPlayer {
 			beginExploration()
@@ -178,7 +178,7 @@ class HiveMind: Actor {
 	func play(completion: @escaping (Movement) -> Void) {
 		// Wait `minExplorationTime` seconds then return the best move found
 		if isExploring == false {
-			completion(self.bestMove)
+			completion(bestMove)
 		} else {
 			DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + minExplorationTime) {
 				self.explorationThread?.cancel()

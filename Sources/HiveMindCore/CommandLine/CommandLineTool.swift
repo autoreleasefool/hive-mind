@@ -53,7 +53,7 @@ public class CommandLineTool {
 		while isRunning {
 			let cmdInput = readLine()
 			if cmdInput == "exit" {
-				self.isRunning = false
+				isRunning = false
 			}
 		}
 	}
@@ -90,7 +90,7 @@ public class CommandLineTool {
 			}
 			return
 		case "exit":
-			self.isRunning = false
+			isRunning = false
 			response = .success
 		default:
 			logger.debug("\(command) is not a valid command.")
@@ -189,6 +189,6 @@ extension CommandLineTool: WebSocketDelegate {
 			logger.error("Connection to WebSocket closed.")
 		}
 
-		self.isRunning = false
+		isRunning = false
 	}
 }
