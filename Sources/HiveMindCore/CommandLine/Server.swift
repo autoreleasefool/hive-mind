@@ -66,6 +66,10 @@ class Server {
 		logger.debug("HiveMind has initialized, listening on port \(port)")
 	}
 
+	deinit {
+		exit()
+	}
+
 	/// Send a message across the socket.
 	func send(_ message: SocketMessage) {
 		socket.send(message.description)
@@ -79,6 +83,7 @@ class Server {
 	/// Close the WebSocket
 	func exit() {
 		socket.close()
+		group.shutdownGracefully { _ in }
 	}
 
 	/// Handle a response from the WebSocket connection and call appropriate delegate methods.
