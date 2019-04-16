@@ -15,18 +15,25 @@ protocol Actor {
 }
 
 class HiveMind: Actor {
-
 	struct Options {
+		/// Indicates if the HiveMind is the first player (white) or the second (black)
+		let isFirst: Bool
+		/// Minimum time that the HiveMind should explore a state before it plays
 		let minExplorationTime: TimeInterval
+		/// The strategy used to explore a state
 		let strategyType: ExplorationStrategyType
+		/// The strategy used to evaluate a state
 		let evaluator: Evaluator
+		/// When enabled, the cache will use previous runs and states to explore moves faster
 		let cacheDisabled: Bool
 
 		init(
+			isFirst: Bool = true,
 			minExplorationTime: TimeInterval = 10,
 			strategyType: ExplorationStrategyType = .alphaBeta(depth: 2),
 			evaluator: @escaping Evaluator = BasicEvaluation.eval,
 			cacheDisabled: Bool = false) {
+			self.isFirst = isFirst
 			self.minExplorationTime = minExplorationTime
 			self.strategyType = strategyType
 			self.evaluator = evaluator
@@ -75,10 +82,10 @@ class HiveMind: Actor {
 		return explorationThread?.isExecuting ?? false
 	}
 
-	init(isFirst: Bool, options: Options = Options()) throws {
+	init(options: Options = Options()) {
 		self.state = GameState()
-		let cache = try StateCache(disabled: options.cacheDisabled)
-		self.support = GameStateSupport(isFirst: isFirst, state: state, cache: cache)
+		let cache = StateCache(disabled: options.cacheDisabled)
+		self.support = GameStateSupport(isFirst: options.isFirst, state: state, cache: cache)
 		self.minExplorationTime = options.minExplorationTime
 		self.strategyType = options.strategyType
 		self.evaluator = options.evaluator

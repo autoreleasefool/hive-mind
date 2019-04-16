@@ -11,6 +11,9 @@ struct Configuration {
 
 	private static let DEFAULT_PORT = 8081
 
+	/// Host on which the HiveMind will listen
+	let hostname: String = "localhost"
+
 	/// The port on which the HiveMind will listen
 	let port: Int
 
@@ -27,10 +30,6 @@ struct Configuration {
 		}
 
 		self.port = port ?? Configuration.DEFAULT_PORT
-	}
-
-	var webSocketURL: URL {
-		return URL(string: "ws://localhost:\(port)")!
 	}
 
 	private static func parsePort(from args: [String], at index: Int) -> Int? {

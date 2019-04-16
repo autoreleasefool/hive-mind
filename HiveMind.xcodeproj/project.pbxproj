@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		CAC727BF2263CE160014ACF1 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC727BE2263CE160014ACF1 /* Server.swift */; };
 		OBJ_1028 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1038 /* AddressedEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_253 /* AddressedEnvelope.swift */; };
 		OBJ_1039 /* BaseSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_254 /* BaseSocket.swift */; };
@@ -2168,6 +2169,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CAC727BE2263CE160014ACF1 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		"Core::Async::Product" /* Async.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Async.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Core::Bits::Product" /* Bits.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Core::COperatingSystem::Product" /* COperatingSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = COperatingSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2181,8 +2183,8 @@
 		"HTTP::HTTP::Product" /* HTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveEngine::HiveEngine::Product" /* HiveEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"HiveMind::HiveMind::Product" /* HiveMind */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = HiveMind; sourceTree = BUILT_PRODUCTS_DIR; };
-		"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HiveMindCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"HiveMind::HiveMindCoreTests::Product" /* HiveMindCoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = HiveMindCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HiveMind::HiveMindCore::Product" /* HiveMindCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HiveMindCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HiveMind::HiveMindCoreTests::Product" /* HiveMindCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = HiveMindCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_100 /* SSLErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSLErrors.swift; sourceTree = "<group>"; };
 		OBJ_101 /* SSLInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSLInit.swift; sourceTree = "<group>"; };
 		OBJ_102 /* SSLPKCS12Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSLPKCS12Bundle.swift; sourceTree = "<group>"; };
@@ -3076,6 +3078,7 @@
 			children = (
 				OBJ_14 /* CommandLineTool.swift */,
 				OBJ_15 /* Configuration.swift */,
+				CAC727BE2263CE160014ACF1 /* Server.swift */,
 			);
 			path = CommandLine;
 			sourceTree = "<group>";
@@ -3844,7 +3847,7 @@
 			path = Body;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3857,7 +3860,6 @@
 				OBJ_403 /* LICENSE */,
 				OBJ_404 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_54 /* Codable */ = {
@@ -4916,10 +4918,9 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_369 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -5477,6 +5478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				CAC727BF2263CE160014ACF1 /* Server.swift in Sources */,
 				OBJ_886 /* StateCache.swift in Sources */,
 				OBJ_887 /* CommandLineTool.swift in Sources */,
 				OBJ_888 /* Configuration.swift in Sources */,
@@ -7580,7 +7582,7 @@
 				);
 				INFOPLIST_FILE = HiveMind.xcodeproj/Async_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -7615,7 +7617,7 @@
 				);
 				INFOPLIST_FILE = HiveMind.xcodeproj/Async_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -9000,7 +9002,7 @@
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveMindCore_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-I/usr/local/Cellar/libressl/2.8.3/include",
@@ -9055,7 +9057,7 @@
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveMindCore_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-I/usr/local/Cellar/libressl/2.8.3/include",
@@ -9111,7 +9113,7 @@
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveMindCoreTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-I/usr/local/Cellar/libressl/2.8.3/include",
@@ -9163,7 +9165,7 @@
 				INFOPLIST_FILE = HiveMind.xcodeproj/HiveMindCoreTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-I/usr/local/Cellar/libressl/2.8.3/include",

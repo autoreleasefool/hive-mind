@@ -50,7 +50,7 @@ class StateCache {
 	/// Number of times that the cache does not contain a value for a state
 	private var misses = 0
 
-	init(useHistory: Bool = true, disabled: Bool = false) throws {
+	init(useHistory: Bool = true, disabled: Bool = false) {
 		self.useHistory = useHistory
 		self.disabled = disabled
 
@@ -62,9 +62,9 @@ class StateCache {
 
 		guard useHistory else { return }
 
-		try FileManager.default.createDirectory(at: cacheDirectory!, withIntermediateDirectories: true)
-
 		do {
+			try FileManager.default.createDirectory(at: cacheDirectory!, withIntermediateDirectories: true)
+
 			if let cacheFile = self.cacheFile, let bitCacheFile = self.bitCacheFile {
 				try loadCache(file: cacheFile)
 				try loadBitCache(file: bitCacheFile)
