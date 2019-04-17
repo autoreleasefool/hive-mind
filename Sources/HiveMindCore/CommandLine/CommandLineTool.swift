@@ -49,6 +49,7 @@ public class CommandLineTool {
 	/// Pass a `Movement` to the HiveMind
 	private func apply(movement: Movement) {
 		actor.apply(movement: movement)
+		server.send(.success)
 	}
 
 	/// Print the current best move from the HiveMind

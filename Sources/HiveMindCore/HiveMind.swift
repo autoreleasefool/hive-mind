@@ -150,6 +150,9 @@ class HiveMind: Actor {
 	}
 
 	/// Update the state with a move and restart exploration.
+	///
+	/// - Parameters:
+	///   - movement: the movement to apply to the current state
 	func apply(movement: Movement) {
 		defer {
 			responsiveMoveLock.unlock()
@@ -182,6 +185,9 @@ class HiveMind: Actor {
 	}
 
 	/// Return the best move from the current state.
+	///
+	/// - Parameters:
+	///   - completion: called with the best movement after exploration completes
 	func play(completion: @escaping (Movement) -> Void) {
 		// Wait `minExplorationTime` seconds then return the best move found
 		if isExploring == false {
