@@ -3,6 +3,7 @@
 //  HiveMindCore
 //
 //  Created by Joseph Roque on 2019-04-11.
+//  Copyright © 2019 Joseph Roque. All rights reserved.
 //
 
 import Foundation
