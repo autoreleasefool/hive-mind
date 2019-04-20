@@ -12,7 +12,7 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 
 	private let maxDepth: Int
 
-	init(maxDepth: Int, evaluator: @escaping Evaluator, support: GameStateSupport) {
+	init(maxDepth: Int, evaluator: Evaluator, support: GameStateSupport) {
 		self.maxDepth = maxDepth
 		self.evaluator = evaluator
 		self.support = support
@@ -36,7 +36,7 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 
 	/// Root of the exploration
 	private func alphaBetaRoot(depth: Int, state: GameState, step: Step) {
-		let moves = state.sortedMoves
+		let moves = state.sortMoves(evaluator: evaluator, with: support)
 		var bestValue = Int.min
 		var bestMove = moves.first!
 
@@ -62,10 +62,11 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 
 		var updatedAlpha = alpha
 
+		let moves = state.sortMoves(evaluator: evaluator, with: support)
 		let isMinimizing = state.currentPlayer != support.hiveMindPlayer
 		if isMinimizing {
 			var updatedBeta = beta
-			for move in state.sortedMoves {
+			for move in moves {
 				state.apply(move)
 				updatedBeta = min(updatedBeta, -alphaBetaEvaluate(depth: depth - 1, state: state, alpha: alpha, beta: updatedBeta))
 				state.undoMove()
@@ -75,7 +76,7 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 			}
 			return updatedBeta
 		} else {
-			for move in state.sortedMoves {
+			for move in moves {
 				state.apply(move)
 				updatedAlpha = max(updatedAlpha, alphaBetaEvaluate(depth: depth - 1, state: state, alpha: updatedAlpha, beta: beta))
 				state.undoMove()

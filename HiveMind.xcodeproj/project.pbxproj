@@ -455,8 +455,8 @@
 		OBJ_886 /* StateCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StateCache.swift */; };
 		OBJ_887 /* CommandLineTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CommandLineTool.swift */; };
 		OBJ_888 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Configuration.swift */; };
-		OBJ_889 /* BasicEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* BasicEvaluation.swift */; };
-		OBJ_890 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Evaluation.swift */; };
+		OBJ_889 /* BasicEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* BasicEvaluator.swift */; };
+		OBJ_890 /* Evaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Evaluator.swift */; };
 		OBJ_891 /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* AlphaBeta.swift */; };
 		OBJ_892 /* AlphaBetaIterativeDeepening.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* AlphaBetaIterativeDeepening.swift */; };
 		OBJ_893 /* ExplorationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* ExplorationStrategy.swift */; };
@@ -2239,7 +2239,7 @@
 		OBJ_167 /* Future+Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Global.swift"; sourceTree = "<group>"; };
 		OBJ_168 /* Future+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Map.swift"; sourceTree = "<group>"; };
 		OBJ_169 /* Future+Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Transform.swift"; sourceTree = "<group>"; };
-		OBJ_17 /* BasicEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEvaluation.swift; sourceTree = "<group>"; };
+		OBJ_17 /* BasicEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEvaluator.swift; sourceTree = "<group>"; };
 		OBJ_170 /* Future+Variadic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Variadic.swift"; sourceTree = "<group>"; };
 		OBJ_171 /* Future+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Void.swift"; sourceTree = "<group>"; };
 		OBJ_172 /* FutureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureType.swift; sourceTree = "<group>"; };
@@ -2249,7 +2249,7 @@
 		OBJ_177 /* Byte+Alphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Byte+Alphabet.swift"; sourceTree = "<group>"; };
 		OBJ_178 /* Byte+Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Byte+Control.swift"; sourceTree = "<group>"; };
 		OBJ_179 /* Byte+Digit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Byte+Digit.swift"; sourceTree = "<group>"; };
-		OBJ_18 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
+		OBJ_18 /* Evaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluator.swift; sourceTree = "<group>"; };
 		OBJ_180 /* ByteBuffer+binaryFloatingPointOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+binaryFloatingPointOperations.swift"; sourceTree = "<group>"; };
 		OBJ_181 /* ByteBuffer+peek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+peek.swift"; sourceTree = "<group>"; };
 		OBJ_182 /* ByteBuffer+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer+require.swift"; sourceTree = "<group>"; };
@@ -3181,8 +3181,8 @@
 		OBJ_16 /* Evaluation */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_17 /* BasicEvaluation.swift */,
-				OBJ_18 /* Evaluation.swift */,
+				OBJ_17 /* BasicEvaluator.swift */,
+				OBJ_18 /* Evaluator.swift */,
 			);
 			path = Evaluation;
 			sourceTree = "<group>";
@@ -5482,8 +5482,8 @@
 				OBJ_886 /* StateCache.swift in Sources */,
 				OBJ_887 /* CommandLineTool.swift in Sources */,
 				OBJ_888 /* Configuration.swift in Sources */,
-				OBJ_889 /* BasicEvaluation.swift in Sources */,
-				OBJ_890 /* Evaluation.swift in Sources */,
+				OBJ_889 /* BasicEvaluator.swift in Sources */,
+				OBJ_890 /* Evaluator.swift in Sources */,
 				OBJ_891 /* AlphaBeta.swift in Sources */,
 				OBJ_892 /* AlphaBetaIterativeDeepening.swift in Sources */,
 				OBJ_893 /* ExplorationStrategy.swift in Sources */,

@@ -31,7 +31,7 @@ class HiveMind: Actor {
 			isFirst: Bool = true,
 			minExplorationTime: TimeInterval = 10,
 			strategyType: ExplorationStrategyType = .alphaBeta(depth: 2),
-			evaluator: @escaping Evaluator = BasicEvaluation.eval,
+			evaluator: Evaluator = BasicEvaluator(),
 			cacheDisabled: Bool = false) {
 			self.isFirst = isFirst
 			self.minExplorationTime = minExplorationTime
@@ -66,7 +66,7 @@ class HiveMind: Actor {
 
 	/// The best move the HiveMind has come up with so far, or the first move available if it hasn't come up with any moves
 	private var bestMove: Movement {
-		return bestExploredMoved ?? state.sortedMoves.first!
+		return bestExploredMoved ?? state.sortMoves(evaluator: evaluator, with: support).first!
 	}
 
 	/// Enable thread safe access to `responsiveBestMove`

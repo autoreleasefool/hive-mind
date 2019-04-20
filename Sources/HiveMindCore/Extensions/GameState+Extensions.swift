@@ -29,21 +29,14 @@ extension GameState {
 
 	// API
 
-	/// Get all available moves, sorted by perceived value
-	var sortedMoves: [Movement] {
+	/// Get all available moves, sorted based on their estimated value
+	///
+	/// - Parameters:
+	///   - evaluator: to evaluate elements of the movement
+	func sortMoves(evaluator: Evaluator, with support: GameStateSupport) -> [Movement] {
 		return availableMoves.sorted(by: {
-			switch ($0, $1) {
-			case (.move(let unit1, _), .move(let unit2, _)):
-				return unit1.basicValue < unit2.basicValue
-			case (.place(let unit1, _), .place(let unit2, _)):
-				return unit1.basicValue < unit2.basicValue
-			case (.yoink(_, let unit1, _), .yoink(_, let unit2, _)):
-				return unit1.basicValue < unit2.basicValue
-			case (.move, _): return true
-			case (.yoink, _): return true
-			case (.place, _): return true
-			}
-		}).reversed()
+			return evaluator.eval(movement: $0, in: self, with: support) < evaluator.eval(movement: $1, in: self, with: support)
+		})
 	}
 
 	/// Convert the state to a JSON string

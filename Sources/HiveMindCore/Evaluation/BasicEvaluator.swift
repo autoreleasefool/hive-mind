@@ -3,13 +3,13 @@
 //  HiveMindCore
 //
 //  Created by Joseph Roque on 2019-03-27.
+//  Copyright © 2019 Joseph Roque. All rights reserved.
 //
 
 import HiveEngine
 
-struct BasicEvaluation {
-	/// Basic material evaluation.
-	static func eval(state: GameState, with support: GameStateSupport) -> Int {
+struct BasicEvaluator: Evaluator {
+	func eval(state: GameState, with support: GameStateSupport) -> Int {
 		let opponent = state.currentPlayer.next
 
 		let playerQueen: HiveEngine.Unit
@@ -43,28 +43,37 @@ struct BasicEvaluation {
 		// Evaluate the board based on the number of pieces available and moveable
 		var value = 0
 		state.unitsInPlay[state.currentPlayer]!.forEach {
-			value += $0.key.absoluteBasicValue(in: state)
+			value += eval(unit: $0.key, in: state, with: support)
 		}
 
 		state.unitsInPlay[opponent]!.forEach {
-			value -= $0.key.absoluteBasicValue(in: state)
+			value -= eval(unit: $0.key, in: state, with: support)
 		}
 
 		return value + 100 * (6 - opponentQueenSidesRemaining)
 	}
-}
 
-extension Unit {
-	fileprivate func absoluteBasicValue(in state: GameState) -> Int {
-		// Prevent playing queen on the first move
-		if state.move <= 1 && self.class == .queen { return 0 }
-
-		let isMobile = self.availableMoves(in: state).count > 0
-		return isMobile ? basicValue : basicValue / 2
+	func eval(movement: Movement, in state: GameState, with support: GameStateSupport) -> Int {
+		switch movement {
+		case .move(let unit, _):
+			return 1_000_000 + eval(unit: unit, in: state, with: support)
+		case .place(let unit, _):
+			return 500_000 + eval(unit: unit, in: state, with: support)
+		case .yoink(_, let unit, _):
+			return eval(unit: unit, in: state, with: support)
+		}
 	}
 
-	var basicValue: Int {
-		switch self.class {
+	func eval(unit: Unit, in state: GameState, with support: GameStateSupport) -> Int {
+		// Prevent playing queen on the first move
+		if state.move <= 1 && unit.class == .queen { return 0 }
+
+		let isMobile = unit.availableMoves(in: state).count > 0
+		return isMobile ? basicValue(of: unit) : basicValue(of: unit) / 2
+	}
+
+	private func basicValue(of unit: Unit) -> Int {
+		switch unit.class {
 		case .ant: return 80
 		case .beetle: return 80
 		case .hopper: return 40

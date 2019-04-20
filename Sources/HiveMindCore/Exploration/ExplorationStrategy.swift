@@ -35,7 +35,7 @@ extension ExplorationStrategy {
 		if let value = support.cache[state] {
 			return value
 		} else {
-			let stateValue = evaluator(state, support)
+			let stateValue = evaluator.eval(state: state, with: support)
 			support.cache[state] = stateValue
 			return stateValue
 		}
