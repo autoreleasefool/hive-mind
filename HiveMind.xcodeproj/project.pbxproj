@@ -2937,6 +2937,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CAE89FBF226CACA700FEE335 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_15 /* Configuration.swift */,
+				CAC727BE2263CE160014ACF1 /* Server.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* HiveMindCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,6 +2954,7 @@
 				OBJ_16 /* Evaluation */,
 				OBJ_19 /* Exploration */,
 				OBJ_23 /* Extensions */,
+				CAE89FBF226CACA700FEE335 /* Server */,
 				OBJ_27 /* Support */,
 				OBJ_26 /* HiveMind.swift */,
 			);
@@ -3077,8 +3087,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_14 /* CommandLineTool.swift */,
-				OBJ_15 /* Configuration.swift */,
-				CAC727BE2263CE160014ACF1 /* Server.swift */,
 			);
 			path = CommandLine;
 			sourceTree = "<group>";
@@ -4918,6 +4926,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = OBJ_5;
