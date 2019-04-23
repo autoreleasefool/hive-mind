@@ -22,7 +22,12 @@
 
 /* Begin PBXBuildFile section */
 		CAC727BF2263CE160014ACF1 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC727BE2263CE160014ACF1 /* Server.swift */; };
-		CAE89FC3226CB77E00FEE335 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC2226CB77E00FEE335 /* ArgumentParser.swift */; };
+		CAE89FC5226DCDAD00FEE335 /* IOProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC4226DCDAD00FEE335 /* IOProcessor.swift */; };
+		CAE89FC7226DF37B00FEE335 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC6226DF37B00FEE335 /* Command.swift */; };
+		CAE89FCA226DF9E200FEE335 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC9226DF9E200FEE335 /* Engine.swift */; };
+		CAE89FCC226DFDD400FEE335 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FCB226DFDD400FEE335 /* Output.swift */; };
+		CAE89FCF226F45D600FEE335 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FCE226F45D600FEE335 /* Core.swift */; };
+		CAE89FD0226F45DD00FEE335 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC2226CB77E00FEE335 /* ArgumentParser.swift */; };
 		OBJ_1028 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1038 /* AddressedEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_253 /* AddressedEnvelope.swift */; };
 		OBJ_1039 /* BaseSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_254 /* BaseSocket.swift */; };
@@ -455,7 +460,6 @@
 		OBJ_849 /* HiveEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HiveEngine::HiveEngine::Product" /* HiveEngine.framework */; };
 		OBJ_886 /* StateCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StateCache.swift */; };
 		OBJ_887 /* CommandLineTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CommandLineTool.swift */; };
-		OBJ_888 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Configuration.swift */; };
 		OBJ_889 /* BasicEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* BasicEvaluator.swift */; };
 		OBJ_890 /* Evaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Evaluator.swift */; };
 		OBJ_891 /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* AlphaBeta.swift */; };
@@ -2172,6 +2176,11 @@
 /* Begin PBXFileReference section */
 		CAC727BE2263CE160014ACF1 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		CAE89FC2226CB77E00FEE335 /* ArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
+		CAE89FC4226DCDAD00FEE335 /* IOProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOProcessor.swift; sourceTree = "<group>"; };
+		CAE89FC6226DF37B00FEE335 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		CAE89FC9226DF9E200FEE335 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		CAE89FCB226DFDD400FEE335 /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
+		CAE89FCE226F45D600FEE335 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		"Core::Async::Product" /* Async.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Async.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Core::Bits::Product" /* Bits.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Core::COperatingSystem::Product" /* COperatingSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = COperatingSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2223,7 +2232,6 @@
 		OBJ_146 /* CryptoRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoRandom.swift; sourceTree = "<group>"; };
 		OBJ_148 /* Base32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base32.swift; sourceTree = "<group>"; };
 		OBJ_149 /* CryptoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoError.swift; sourceTree = "<group>"; };
-		OBJ_15 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		OBJ_150 /* Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecated.swift; sourceTree = "<group>"; };
 		OBJ_151 /* Exports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exports.swift; sourceTree = "<group>"; };
 		OBJ_153 /* Array+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Random.swift"; sourceTree = "<group>"; };
@@ -2939,26 +2947,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CAE89FBF226CACA700FEE335 /* Server */ = {
+		CAE89FC8226DF9D400FEE335 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_15 /* Configuration.swift */,
-				CAC727BE2263CE160014ACF1 /* Server.swift */,
+				CAE89FC9226DF9E200FEE335 /* Engine.swift */,
 			);
-			path = Server;
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		CAE89FCD226DFDDD00FEE335 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				CAE89FC6226DF37B00FEE335 /* Command.swift */,
+				CAE89FCB226DFDD400FEE335 /* Output.swift */,
+			);
+			path = Packet;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* HiveMindCore */ = {
 			isa = PBXGroup;
 			children = (
+				CAE89FC8226DF9D400FEE335 /* Engine */,
 				OBJ_11 /* Cache */,
-				OBJ_13 /* CommandLine */,
+				OBJ_13 /* IO */,
 				OBJ_16 /* Evaluation */,
 				OBJ_19 /* Exploration */,
 				OBJ_23 /* Extensions */,
-				CAE89FBF226CACA700FEE335 /* Server */,
 				OBJ_27 /* Support */,
 				OBJ_26 /* HiveMind.swift */,
+				CAE89FCE226F45D600FEE335 /* Core.swift */,
 			);
 			name = HiveMindCore;
 			path = Sources/HiveMindCore;
@@ -3085,12 +3102,15 @@
 			path = Cipher;
 			sourceTree = "<group>";
 		};
-		OBJ_13 /* CommandLine */ = {
+		OBJ_13 /* IO */ = {
 			isa = PBXGroup;
 			children = (
+				CAE89FCD226DFDDD00FEE335 /* Packet */,
+				CAE89FC4226DCDAD00FEE335 /* IOProcessor.swift */,
 				OBJ_14 /* CommandLineTool.swift */,
+				CAC727BE2263CE160014ACF1 /* Server.swift */,
 			);
-			path = CommandLine;
+			path = IO;
 			sourceTree = "<group>";
 		};
 		OBJ_135 /* Digest */ = {
@@ -3512,6 +3532,7 @@
 		OBJ_27 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				CAE89FC2226CB77E00FEE335 /* ArgumentParser.swift */,
 				OBJ_28 /* GameStateSupport.swift */,
 				OBJ_29 /* Logger.swift */,
 			);
@@ -3941,7 +3962,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* main.swift */,
-				CAE89FC2226CB77E00FEE335 /* ArgumentParser.swift */,
 			);
 			name = HiveMind;
 			path = Sources/HiveMind;
@@ -5483,7 +5503,6 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_819 /* main.swift in Sources */,
-				CAE89FC3226CB77E00FEE335 /* ArgumentParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5491,18 +5510,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				CAE89FCF226F45D600FEE335 /* Core.swift in Sources */,
+				CAE89FCC226DFDD400FEE335 /* Output.swift in Sources */,
 				CAC727BF2263CE160014ACF1 /* Server.swift in Sources */,
 				OBJ_886 /* StateCache.swift in Sources */,
 				OBJ_887 /* CommandLineTool.swift in Sources */,
-				OBJ_888 /* Configuration.swift in Sources */,
 				OBJ_889 /* BasicEvaluator.swift in Sources */,
 				OBJ_890 /* Evaluator.swift in Sources */,
 				OBJ_891 /* AlphaBeta.swift in Sources */,
 				OBJ_892 /* AlphaBetaIterativeDeepening.swift in Sources */,
 				OBJ_893 /* ExplorationStrategy.swift in Sources */,
+				CAE89FC7226DF37B00FEE335 /* Command.swift in Sources */,
 				OBJ_894 /* GameState+Extensions.swift in Sources */,
+				CAE89FD0226F45DD00FEE335 /* ArgumentParser.swift in Sources */,
+				CAE89FC5226DCDAD00FEE335 /* IOProcessor.swift in Sources */,
 				OBJ_895 /* Movement+Extensions.swift in Sources */,
 				OBJ_896 /* HiveMind.swift in Sources */,
+				CAE89FCA226DF9E200FEE335 /* Engine.swift in Sources */,
 				OBJ_897 /* GameStateSupport.swift in Sources */,
 				OBJ_898 /* Logger.swift in Sources */,
 			);

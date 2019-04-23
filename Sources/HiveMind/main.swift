@@ -8,7 +8,4 @@
 
 import HiveMindCore
 
-
-
-let tool = CommandLineTool()
-tool.run()
+try Core.run()
