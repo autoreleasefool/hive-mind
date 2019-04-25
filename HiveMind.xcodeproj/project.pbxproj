@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		CA1254D9226F55640032239B /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1254D8226F55640032239B /* StateMachine.swift */; };
+		CA1254DB226F55910032239B /* Engine+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1254DA226F55910032239B /* Engine+State.swift */; };
 		CAC727BF2263CE160014ACF1 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC727BE2263CE160014ACF1 /* Server.swift */; };
 		CAE89FC5226DCDAD00FEE335 /* IOProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC4226DCDAD00FEE335 /* IOProcessor.swift */; };
 		CAE89FC7226DF37B00FEE335 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE89FC6226DF37B00FEE335 /* Command.swift */; };
@@ -2174,6 +2176,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA1254D8226F55640032239B /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		CA1254DA226F55910032239B /* Engine+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine+State.swift"; sourceTree = "<group>"; };
 		CAC727BE2263CE160014ACF1 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		CAE89FC2226CB77E00FEE335 /* ArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
 		CAE89FC4226DCDAD00FEE335 /* IOProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOProcessor.swift; sourceTree = "<group>"; };
@@ -2951,6 +2955,8 @@
 			isa = PBXGroup;
 			children = (
 				CAE89FC9226DF9E200FEE335 /* Engine.swift */,
+				CA1254DA226F55910032239B /* Engine+State.swift */,
+				CA1254D8226F55640032239B /* StateMachine.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -5513,6 +5519,7 @@
 				CAE89FCF226F45D600FEE335 /* Core.swift in Sources */,
 				CAE89FCC226DFDD400FEE335 /* Output.swift in Sources */,
 				CAC727BF2263CE160014ACF1 /* Server.swift in Sources */,
+				CA1254D9226F55640032239B /* StateMachine.swift in Sources */,
 				OBJ_886 /* StateCache.swift in Sources */,
 				OBJ_887 /* CommandLineTool.swift in Sources */,
 				OBJ_889 /* BasicEvaluator.swift in Sources */,
@@ -5523,6 +5530,7 @@
 				CAE89FC7226DF37B00FEE335 /* Command.swift in Sources */,
 				OBJ_894 /* GameState+Extensions.swift in Sources */,
 				CAE89FD0226F45DD00FEE335 /* ArgumentParser.swift in Sources */,
+				CA1254DB226F55910032239B /* Engine+State.swift in Sources */,
 				CAE89FC5226DCDAD00FEE335 /* IOProcessor.swift in Sources */,
 				OBJ_895 /* Movement+Extensions.swift in Sources */,
 				OBJ_896 /* HiveMind.swift in Sources */,

@@ -36,7 +36,7 @@ class Server: IOProcessor {
 	private let configuration: Configuration
 
 	/// AI Actor
-	private let actor: Actor
+	private let actor: HiveMind
 
 	/// Handle inputs and outputs from the HiveMind
 	private var engine: Engine!
@@ -50,7 +50,7 @@ class Server: IOProcessor {
 	/// Worker that server events will be handled with.
 	private var group: EventLoopGroup!
 
-	init(configuration: Configuration, actor: Actor) throws {
+	init(configuration: Configuration, actor: HiveMind) throws {
 		self.configuration = configuration
 		self.actor = actor
 	}

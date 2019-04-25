@@ -14,12 +14,12 @@ class CommandLineTool: IOProcessor {
 	private var isRunning: Bool = false
 
 	/// AI actor
-	private let actor: Actor
+	private let actor: HiveMind
 
 	/// Handle inputs and outputs from the HiveMind
 	private var engine: Engine!
 
-	init(actor: Actor) {
+	init(actor: HiveMind) {
 		self.actor = actor
 	}
 
@@ -35,7 +35,7 @@ class CommandLineTool: IOProcessor {
 	}
 
 	func send(_ output: Output) {
-		logger.log(output.description)
+		logger.write(output.description)
 	}
 
 	// MARK: - Private

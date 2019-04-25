@@ -27,6 +27,7 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	func play(_ state: GameState, step: Step) {
 		var currentDepth = 1
 		while currentDepth <= maxDepth {
+			logger.debug("Starting exploring at depth \(currentDepth)")
 			alphaBetaRoot(depth: currentDepth, state: state, step: step)
 			currentDepth += 1
 		}

@@ -27,23 +27,23 @@ class Logger {
 	}
 
 	/// Print a message, only if debug logging is enabled
-	func debug(_ msg: String..., separator: String = " ") {
+	func debug(_ msg: String..., separator: String = " ", file: StaticString = #file) {
 		guard resolve(.debug) else { return }
-		print(msg.joined(separator: separator))
+		print("[\(file)]", msg.joined(separator: separator))
 	}
 
 	/// Print an error and a message, only if error logging is enabled
-	func error(error: Error? = nil, _ msg: String..., separator: String = " ") {
+	func error(error: Error? = nil, _ msg: String..., separator: String = " ", file: StaticString = #file) {
 		guard resolve(.error) else { return }
 		if let error = error {
-			print(error, msg.joined(separator: separator))
+			print("[\(file)]", error, msg.joined(separator: separator))
 		} else {
-			print(msg.joined(separator: separator))
+			print("[\(file)]", msg.joined(separator: separator))
 		}
 	}
 
 	/// Print a message, always
-	func log(_ msg: String..., separator: String = " ") {
+	func write(_ msg: String..., separator: String = " ") {
 		guard resolve(.release) else { return }
 		print(msg.joined(separator: separator))
 	}

@@ -9,12 +9,7 @@
 import Foundation
 import HiveEngine
 
-protocol Actor {
-	func apply(movement: Movement)
-	func play(completion: @escaping (Movement) -> Void)
-}
-
-class HiveMind: Actor {
+class HiveMind {
 	struct Options {
 		/// Indicates if the HiveMind is the first player (white) or the second (black)
 		let isFirst: Bool
@@ -24,101 +19,86 @@ class HiveMind: Actor {
 		let strategyType: ExplorationStrategyType
 		/// The strategy used to evaluate a state
 		let evaluator: Evaluator
-		/// When enabled, the cache will use previous runs and states to explore moves faster
-		let cacheDisabled: Bool
 
 		init(
 			isFirst: Bool = true,
 			minExplorationTime: TimeInterval = 10,
 			strategyType: ExplorationStrategyType = .alphaBeta(depth: 2),
-			evaluator: Evaluator = BasicEvaluator(),
-			cacheDisabled: Bool = false) {
+			evaluator: Evaluator = BasicEvaluator()) {
 			self.isFirst = isFirst
 			self.minExplorationTime = minExplorationTime
 			self.strategyType = strategyType
 			self.evaluator = evaluator
-			self.cacheDisabled = cacheDisabled
 		}
 	}
 
 	/// The current state being explored
 	private let state: GameState
 
-	/// ID of the thread currently executing
-	private var currentExplorationId: Int = 0
+	/// Cache calculated `GameState` values for faster processing
+	private let cache: StateCache
 
-	/// Define the exploration strategy used
-	var strategyType: ExplorationStrategyType {
+	/// Configuration of the HiveMind
+	var options: Options = Options() {
 		didSet {
+			support = GameStateSupport(isFirst: options.isFirst, state: state, cache: cache)
 			updateExplorationStrategy()
 		}
 	}
 
 	/// Cached properties from the `GameState`
-	private var support: GameStateSupport
+	private var support: GameStateSupport!
 	/// Strategy which the HiveMind will employ for exploration
 	private var strategy: ExplorationStrategy!
-	/// Evaluation function
-	private var evaluator: Evaluator
 
 	/// The best move that the HiveMind has come up with so far
 	private(set) var bestExploredMoved: Movement?
-
 	/// The best move the HiveMind has come up with so far, or the first move available if it hasn't come up with any moves
 	private var bestMove: Movement {
-		return bestExploredMoved ?? state.sortMoves(evaluator: evaluator, with: support).first!
+		return bestExploredMoved ?? state.sortMoves(evaluator: options.evaluator, with: support).first!
 	}
 
+	/// ID of the thread currently executing
+	private var currentExplorationId: Int = 0
 	/// Enable thread safe access to `responsiveBestMove`
 	private let responsiveMoveLock = NSLock()
 	/// Thread exploring the current state
 	private(set) var explorationThread: Thread?
-
-	/// Minimum time to let a strategy explore a state before returning the best move
-	private let minExplorationTime: TimeInterval
 
 	/// Returns true if HiveMind is currently exploring a GameState
 	var isExploring: Bool {
 		return explorationThread?.isExecuting ?? false
 	}
 
-	init(options: Options = Options()) {
+	/// True if the HiveMind is the current player in the state, false otherwise
+	var isHiveMindCurrentPlayer: Bool {
+		return state.currentPlayer == support.hiveMindPlayer
+	}
+
+	init() {
+		self.cache = StateCache()
 		self.state = GameState()
-		let cache = StateCache(disabled: options.cacheDisabled)
-		self.support = GameStateSupport(isFirst: options.isFirst, state: state, cache: cache)
-		self.minExplorationTime = options.minExplorationTime
-		self.strategyType = options.strategyType
-		self.evaluator = options.evaluator
-
 		self.state.requireMovementValidation = false
-
-		updateExplorationStrategy()
-		beginExploration()
 	}
 
 	deinit {
-		explorationThread?.cancel()
+		exit()
 	}
 
 	/// Update the exploration strategy and restart exploration of the current state.
 	private func updateExplorationStrategy() {
-		switch strategyType {
+		switch options.strategyType {
 		case .alphaBeta(let depth):
-			strategy = AlphaBeta(depth: depth, evaluator: evaluator, support: support)
+			strategy = AlphaBeta(depth: depth, evaluator: options.evaluator, support: support)
 		case .alphaBetaIterativeDeepening(let maxDepth):
-			strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, evaluator: evaluator, support: support)
-		}
-
-		// Clear the old exploration strategy and start again
-		if isExploring {
-			beginExploration()
+			strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, evaluator: options.evaluator, support: support)
 		}
 	}
 
 	// MARK: - Play
 
 	/// Clear the current exploration and begin exploring a state in the background.
-	private func beginExploration() {
+	func beginExploration() {
 		guard state.currentPlayer == support.hiveMindPlayer else { return }
 		let nextExplorationId = currentExplorationId + 1
 		currentExplorationId = nextExplorationId
@@ -134,22 +114,7 @@ class HiveMind: Actor {
 		explorationThread?.start()
 	}
 
-	/// Explore a single state and update the best move.
-	///
-	/// - Parameters:
-	///   - state: the state to explore
-	private func explore(_ state: GameState, withId id: Int) {
-		let exploreState = GameState(from: state)
-
-		strategy.play(exploreState) { [weak self] movement in
-			/// Threads don't necessarily stop execution when you cancel them in Swift so we ensure only the most recent exploration can update the best move by capturing the ID of this exploration and comparing it against the most recent ID.
-			if id == currentExplorationId {
-				self?.bestExploredMoved = movement
-			}
-		}
-	}
-
-	/// Update the state with a move and restart exploration.
+	/// Update the state with a move
 	///
 	/// - Parameters:
 	///   - movement: the movement to apply to the current state
@@ -193,13 +158,37 @@ class HiveMind: Actor {
 		if isExploring == false {
 			completion(bestMove)
 		} else {
-			DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + minExplorationTime) {
+			DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + options.minExplorationTime) {
 				self.explorationThread?.cancel()
 				self.explorationThread = nil
 
 				let selectedMove = self.bestMove
 				completion(selectedMove)
 				self.apply(movement: selectedMove)
+			}
+		}
+	}
+
+	/// Cancel running operations and clean up state
+	func exit() {
+		explorationThread?.cancel()
+		explorationThread = nil
+	}
+
+
+	// MARK: - Private
+
+	/// Explore a single state and update the best move.
+	///
+	/// - Parameters:
+	///   - state: the state to explore
+	private func explore(_ state: GameState, withId id: Int) {
+		let exploreState = GameState(from: state)
+
+		strategy.play(exploreState) { [weak self] movement in
+			/// Threads don't necessarily stop execution when you cancel them in Swift so we ensure only the most recent exploration can update the best move by capturing the ID of this exploration and comparing it against the most recent ID.
+			if id == currentExplorationId {
+				self?.bestExploredMoved = movement
 			}
 		}
 	}

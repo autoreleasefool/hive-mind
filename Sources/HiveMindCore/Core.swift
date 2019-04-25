@@ -36,21 +36,21 @@ public struct Core {
 
 			arguments = try parser.parse(CommandLine.arguments)
 		} catch {
-			print("Failed to parse arguments: \(error.localizedDescription)")
-			print("Exiting...")
+			logger.write("Failed to parse arguments: \(error.localizedDescription)")
+			logger.write("Exiting...")
 		}
 
 		func start(_ ioProcessor: IOProcessor) {
 			do {
 				try ioProcessor.start()
 			} catch {
-				print("Failed to start \(ioProcessor): \(error)")
+				logger.write("Failed to start \(ioProcessor): \(error)")
 			}
 
 			do {
 				try ioProcessor.run()
 			} catch {
-				print("Error while runnnig \(ioProcessor): \(error)")
+				logger.write("Error while runnnig \(ioProcessor): \(error)")
 			}
 		}
 
