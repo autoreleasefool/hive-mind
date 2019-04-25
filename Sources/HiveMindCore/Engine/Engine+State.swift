@@ -18,6 +18,9 @@ extension Engine {
 		case waitingForOpponent
 		case exiting
 
+		// swiftlint:disable cyclomatic_complexity function_body_length
+		// Explicitly handling each state + event for clarity. Flow is explained below.
+
 		func handle(event: Engine.Event) -> Engine.State? {
 			switch (self, event) {
 			// Always exit when exit event is received
@@ -77,6 +80,8 @@ extension Engine {
 				return nil
 			}
 		}
+
+		// swiftlint:enable cyclomatic_complexity, function_body_length
 	}
 
 	enum Event: StateMachineEvent {

@@ -175,7 +175,6 @@ class HiveMind {
 		explorationThread = nil
 	}
 
-
 	// MARK: - Private
 
 	/// Explore a single state and update the best move.
