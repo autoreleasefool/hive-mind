@@ -59,7 +59,12 @@ extension Engine: StateMachineDelegate {
 		case .newGameStarting(let options):
 			actor.options = options
 		case .playingMove(let movement):
-			actor.apply(movement: movement)
+			guard actor.apply(movement: movement) else {
+				logger.error("Failed to apply move `\(movement)`")
+				stateMachine.on(event: .exited)
+				return
+			}
+
 			let event: Event = actor.isHiveMindCurrentPlayer ? .becomingHiveMindTurn : .becomingOpponentTurn
 			stateMachine.on(event: event)
 		case .launching, .standby, .waitingForOpponent, .waitingToPlay:
