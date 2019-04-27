@@ -125,7 +125,7 @@ extension Engine {
 			case .movement(let movement): return .movement(movement)
 			case .play: return .play
 			case .new(let options): return .newGame(options)
-			case .exit, .unknown: return nil
+			case .exit, .unknown, .ready: return nil
 			}
 		}
 	}

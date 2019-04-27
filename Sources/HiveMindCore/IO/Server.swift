@@ -38,8 +38,8 @@ class Server: IOProcessor {
 	/// AI Actor
 	private let actor: HiveMind
 
-	/// Handle inputs and outputs from the HiveMind
-	private var engine: Engine!
+	/// Delegate
+	private weak var delegate: IOProcessorDelegate?
 
 	/// Primary HTTPServer
 	private var server: HTTPServer!
@@ -61,9 +61,9 @@ class Server: IOProcessor {
 
 	// MARK: - IOProcessor
 
-	func start() throws {
+	func start(delegate: IOProcessorDelegate) throws {
+		self.delegate = delegate
 		self.group = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
-		self.engine = Engine(actor: actor, ioProcessor: self)
 	}
 
 	func run() throws {
@@ -78,7 +78,7 @@ class Server: IOProcessor {
 				socket.onText { [weak self] _, text in
 					guard let self = self else { return }
 					let command = self.parse(text)
-					self.engine.handle(command)
+					self.delegate?.handle(command)
 				}
 		})
 
@@ -93,6 +93,7 @@ class Server: IOProcessor {
 			}).wait()
 
 		logger.debug("HiveMind has initialized, listening on port \(configuration.port)")
+		delegate?.handle(.ready)
 
 		try server.onClose.wait()
 	}
@@ -135,7 +136,7 @@ class Server: IOProcessor {
 		switch command {
 		case .exit:
 			exit()
-		case .movement, .new, .play, .unknown:
+		case .movement, .new, .play, .unknown, .ready:
 			break
 		}
 	}

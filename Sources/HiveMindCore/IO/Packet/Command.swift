@@ -9,6 +9,7 @@ import Foundation
 import HiveEngine
 
 enum Command {
+	case ready
 	case new(HiveMind.Options)
 	case play
 	case movement(Movement)

@@ -15,9 +15,9 @@ public struct Core {
 		var arguments: Arguments?
 		do {
 			try parser.add(
-				arg: "server",
+				arg: "enableCmd",
 				ofType: .flag,
-				description: "Accept input through a WebSocket"
+				description: "Accept input through the Command Line"
 			)
 
 			try parser.add(
@@ -34,38 +34,26 @@ public struct Core {
 				defaultValue: .double(10.0)
 			)
 
-			arguments = try parser.parse(CommandLine.arguments)
+			arguments = try parser.parse(Array(CommandLine.arguments.dropFirst()))
 		} catch {
 			logger.write("Failed to parse arguments: \(error.localizedDescription)")
 			logger.write("Exiting...")
 		}
 
-		func start(_ ioProcessor: IOProcessor) {
-			do {
-				try ioProcessor.start()
-			} catch {
-				logger.write("Failed to start \(ioProcessor): \(error)")
-			}
-
-			do {
-				try ioProcessor.run()
-			} catch {
-				logger.write("Error while runnnig \(ioProcessor): \(error)")
-			}
-		}
-
 		if let args = arguments {
 			let actor = HiveMind()
 
-			if args.isFlagPresent(flag: "server") {
+			let processor: IOProcessor
+			if args.isFlagPresent(flag: "enableCmd") {
+				processor = CommandLineTool(actor: actor)
+			} else {
 				let portValue = args.argumentValue(of: "port", as: Int.self)!
 				let configuration = Server.Configuration(port: portValue)
-				let server = try Server(configuration: configuration, actor: actor)
-				start(server)
-			} else {
-				let tool = CommandLineTool(actor: actor)
-				start(tool)
+				processor = try Server(configuration: configuration, actor: actor)
 			}
+
+			let engine = Engine(actor: actor, ioProcessor: processor)
+			engine.start()
 		}
 
 	}

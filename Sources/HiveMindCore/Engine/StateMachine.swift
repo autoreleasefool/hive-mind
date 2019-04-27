@@ -43,6 +43,7 @@ struct StateMachine<State: StateMachineState, Event: StateMachineEvent, Delegate
 	private weak var delegate: Delegate?
 
 	init(initialState: State, delegate: Delegate) {
+		logger.debug("[State Machine] initial state is \(initialState)")
 		self.state = initialState
 		self.delegate = delegate
 	}
@@ -50,11 +51,13 @@ struct StateMachine<State: StateMachineState, Event: StateMachineEvent, Delegate
 	mutating func on(event: Event) {
 		let originalState = self.state
 		guard let newState = state.handle(event: event) else {
+			logger.debug("Failed to handle \(event), state is \(state)")
 			delegate?.failedToHandle(event: event)
 			return
 		}
 
 		self.state = newState
+		logger.debug("Transitioning \(originalState) -> \(state)")
 		delegate?.didTransition(to: state, from: originalState, on: event)
 	}
 }

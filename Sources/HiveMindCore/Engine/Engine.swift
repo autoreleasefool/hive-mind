@@ -17,7 +17,7 @@ class Engine {
 	private var stateMachine: StateMachine<State, Event, Engine>!
 
 	/// Send messages
-	private weak var ioProcessor: IOProcessor?
+	private var ioProcessor: IOProcessor
 
 	init(actor: HiveMind, ioProcessor: IOProcessor) {
 		self.actor = actor
@@ -26,12 +26,27 @@ class Engine {
 		self.stateMachine = StateMachine(initialState: .launching, delegate: self)
 	}
 
-	/// Handle input commands and delegate to the HiveMind appropriately
-	///
-	/// - Parameters:
-	///   - command: the command to handle
+	/// Initialize the engine
+	func start() {
+		do {
+			try ioProcessor.start(delegate: self)
+		} catch {
+			logger.write("Failed to start \(ioProcessor): \(error)")
+		}
+
+		do {
+			try ioProcessor.run()
+		} catch {
+			logger.write("Error while runnnig \(ioProcessor): \(error)")
+		}
+	}
+}
+
+extension Engine: IOProcessorDelegate {
 	func handle(_ command: Command) {
 		switch command {
+		case .ready:
+			stateMachine.on(event: .initialized)
 		case .exit:
 			stateMachine.on(event: .exited)
 		case .movement(let movement):
@@ -54,7 +69,7 @@ extension Engine: StateMachineDelegate {
 		case .exploring:
 			actor.play { [weak self] in
 				self?.stateMachine.on(event: .bestMoveFound($0))
-				self?.ioProcessor?.send(.movement($0))
+				self?.ioProcessor.send(.movement($0))
 			}
 		case .newGameStarting(let options):
 			actor.options = options

@@ -16,8 +16,8 @@ class CommandLineTool: IOProcessor {
 	/// AI actor
 	private let actor: HiveMind
 
-	/// Handle inputs and outputs from the HiveMind
-	private var engine: Engine!
+	/// Delegate
+	private weak var delegate: IOProcessorDelegate?
 
 	init(actor: HiveMind) {
 		self.actor = actor
@@ -25,12 +25,13 @@ class CommandLineTool: IOProcessor {
 
 	// MARK: - IOProcessor
 
-	func start() throws {
-		self.engine = Engine(actor: actor, ioProcessor: self)
+	func start(delegate: IOProcessorDelegate) throws {
+		self.delegate = delegate
 	}
 
 	func run() throws {
 		isRunning = true
+		delegate?.handle(.ready)
 		waitForInput()
 	}
 
@@ -45,7 +46,7 @@ class CommandLineTool: IOProcessor {
 		while isRunning {
 			let input = readLine()
 			let command = parse(input)
-			engine.handle(command)
+			delegate?.handle(command)
 			handle(command)
 		}
 
@@ -76,7 +77,7 @@ class CommandLineTool: IOProcessor {
 		switch command {
 		case .exit:
 			isRunning = false
-		case .movement, .new, .play, .unknown:
+		case .movement, .new, .play, .unknown, .ready:
 			break
 		}
 	}

@@ -26,19 +26,25 @@ class Logger {
 		self.level = level
 	}
 
+	private func truncate(filename: String) -> String {
+		return String(filename.split(separator: "/").last ?? "")
+	}
+
 	/// Print a message, only if debug logging is enabled
 	func debug(_ msg: String..., separator: String = " ", file: StaticString = #file) {
 		guard resolve(.debug) else { return }
-		print("[\(file)]", msg.joined(separator: separator))
+		let filename = truncate(filename: "\(file)")
+		print("[\(filename)]", msg.joined(separator: separator))
 	}
 
 	/// Print an error and a message, only if error logging is enabled
 	func error(error: Error? = nil, _ msg: String..., separator: String = " ", file: StaticString = #file) {
 		guard resolve(.error) else { return }
+		let filename = truncate(filename: "\(file)")
 		if let error = error {
-			print("[\(file)]", error, msg.joined(separator: separator))
+			print("[\(filename)]", error, msg.joined(separator: separator))
 		} else {
-			print("[\(file)]", msg.joined(separator: separator))
+			print("[\(filename)]", msg.joined(separator: separator))
 		}
 	}
 
