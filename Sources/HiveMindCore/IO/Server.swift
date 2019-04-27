@@ -106,7 +106,7 @@ class Server: IOProcessor {
 	// MARK: - Private
 
 	/// Close the WebSocket
-	private func exit() {
+	func exit() {
 		socket.close()
 		group.shutdownGracefully { _ in }
 	}
@@ -129,15 +129,5 @@ class Server: IOProcessor {
 		}
 
 		return Command.from(command: rawCommand, withValues: values)
-	}
-
-	/// Handle commands appropriately
-	private func handle(_ command: Command) {
-		switch command {
-		case .exit:
-			exit()
-		case .movement, .new, .play, .unknown, .ready:
-			break
-		}
 	}
 }

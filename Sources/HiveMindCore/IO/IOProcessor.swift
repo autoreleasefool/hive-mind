@@ -22,5 +22,7 @@ protocol IOProcessor: class {
 	func run() throws
 	/// Send a response
 	func send(_ output: Output)
+	/// Close the IO channels
+	func exit()
 }
 

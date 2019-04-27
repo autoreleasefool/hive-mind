@@ -39,6 +39,10 @@ class CommandLineTool: IOProcessor {
 		logger.write(output.description)
 	}
 
+	func exit() {
+		isRunning = false
+	}
+
 	// MARK: - Private
 
 	/// Wait for input from STDIN and parse the input provided. Loops until `isRunning` is false
@@ -47,7 +51,6 @@ class CommandLineTool: IOProcessor {
 			let input = readLine()
 			let command = parse(input)
 			delegate?.handle(command)
-			handle(command)
 		}
 
 		logger.debug("Exiting...")
@@ -70,15 +73,5 @@ class CommandLineTool: IOProcessor {
 		}
 
 		return Command.from(command: rawCommand, withValues: values)
-	}
-
-	/// Handle commands appropriately
-	private func handle(_ command: Command) {
-		switch command {
-		case .exit:
-			isRunning = false
-		case .movement, .new, .play, .unknown, .ready:
-			break
-		}
 	}
 }

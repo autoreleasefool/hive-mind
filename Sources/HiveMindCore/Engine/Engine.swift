@@ -72,6 +72,7 @@ extension Engine: StateMachineDelegate {
 		switch to {
 		case .exiting:
 			actor.exit()
+			ioProcessor.exit()
 		case .exploring:
 			actor.play { [weak self] in
 				self?.dispatch(event: .bestMoveFound($0))
@@ -86,6 +87,10 @@ extension Engine: StateMachineDelegate {
 				logger.error("Failed to apply move `\(movement)`")
 				dispatch(event: .exited)
 				return
+			}
+
+			if case .waitingForOpponent = from {
+				ioProcessor.send(.success)
 			}
 
 			let event: Event = actor.isHiveMindCurrentPlayer ? .becomingHiveMindTurn : .becomingOpponentTurn
