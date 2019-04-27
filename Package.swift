@@ -10,7 +10,7 @@ let package = Package(
 		.library(name: "HiveMindCore", targets: ["HiveMindCore"])
 	],
 	dependencies: [
-		.package(url: "https://github.com/josephroquedev/hive-engine.git", .branch("master")),
+		.package(url: "https://github.com/josephroquedev/hive-engine.git", from: "1.2.0"),
 		.package(url: "https://github.com/vapor/websocket.git", from: "1.1.2")
 	],
 	targets: [
