@@ -40,21 +40,27 @@ class Engine {
 			logger.write("Error while runnnig \(ioProcessor): \(error)")
 		}
 	}
+
+	fileprivate func dispatch(event: Event) {
+		DispatchQueue.global().async {
+			self.stateMachine.on(event: event)
+		}
+	}
 }
 
 extension Engine: IOProcessorDelegate {
 	func handle(_ command: Command) {
 		switch command {
 		case .ready:
-			stateMachine.on(event: .initialized)
+			dispatch(event: .initialized)
 		case .exit:
-			stateMachine.on(event: .exited)
+			dispatch(event: .exited)
 		case .movement(let movement):
-			stateMachine.on(event: .receivedInput(.movement(movement)))
+			dispatch(event: .receivedInput(.movement(movement)))
 		case .new(let options):
-			stateMachine.on(event: .receivedInput(.newGame(options)))
+			dispatch(event: .receivedInput(.newGame(options)))
 		case .play:
-			stateMachine.on(event: .receivedInput(.play))
+			dispatch(event: .receivedInput(.play))
 		case .unknown:
 			break
 		}
@@ -68,20 +74,22 @@ extension Engine: StateMachineDelegate {
 			actor.exit()
 		case .exploring:
 			actor.play { [weak self] in
-				self?.stateMachine.on(event: .bestMoveFound($0))
+				self?.dispatch(event: .bestMoveFound($0))
 				self?.ioProcessor.send(.movement($0))
 			}
 		case .newGameStarting(let options):
 			actor.options = options
+			let event: Event = options.isFirst ? .becomingHiveMindTurn : .becomingOpponentTurn
+			dispatch(event: event)
 		case .playingMove(let movement):
 			guard actor.apply(movement: movement) else {
 				logger.error("Failed to apply move `\(movement)`")
-				stateMachine.on(event: .exited)
+				dispatch(event: .exited)
 				return
 			}
 
 			let event: Event = actor.isHiveMindCurrentPlayer ? .becomingHiveMindTurn : .becomingOpponentTurn
-			stateMachine.on(event: event)
+			dispatch(event: event)
 		case .launching, .standby, .waitingForOpponent, .waitingToPlay:
 			break
 		}
