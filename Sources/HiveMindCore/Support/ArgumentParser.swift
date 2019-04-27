@@ -45,12 +45,22 @@ enum ArgumentType: String {
 }
 
 /// Values for arguments
-enum ArgumentValue {
+enum ArgumentValue: CustomStringConvertible {
 	case int(Int)
 	case double(Double)
 	case string(String)
 	case bool(Bool)
 	case flag
+
+	var description: String {
+		switch self {
+		case .int(let value): return "\(value)"
+		case .double(let value): return "\(value)"
+		case .string(let value): return "\(value)"
+		case .bool(let value): return "\(value)"
+		case .flag: return "none"
+		}
+	}
 }
 
 /// An argument for the program
@@ -64,9 +74,9 @@ struct Argument {
 	/// Indicates if the argument is required to be passed in
 	let required: Bool
 	/// The default value of the argument, if any. Must be valid for the given `ArgumentType`
-	let defaultValue: Any?
+	let defaultValue: ArgumentValue?
 
-	init(identifier: String, description: String?, argumentType: ArgumentType, required: Bool, defaultValue: Any?) throws {
+	init(identifier: String, description: String?, argumentType: ArgumentType, required: Bool, defaultValue: ArgumentValue?) throws {
 		self.identifier = Argument.identifier(from: identifier)
 		self.description = description
 		self.argumentType = argumentType
@@ -77,21 +87,13 @@ struct Argument {
 
 		switch argumentType {
 		case .int:
-			if defaultValue is Int == false {
-				throw ArgumentError.invalidDefaultType(Int.self, type(of: value))
-			}
+			guard case .int = value else { throw ArgumentError.invalidDefaultType(Int.self, type(of: value)) }
 		case .double:
-			if defaultValue is Double == false {
-				throw ArgumentError.invalidDefaultType(Double.self, type(of: value))
-			}
+			guard case .double = value else { throw ArgumentError.invalidDefaultType(Double.self, type(of: value)) }
 		case .string:
-			if value is String == false {
-				throw ArgumentError.invalidDefaultType(String.self, type(of: value))
-			}
+			guard case .string = value else { throw ArgumentError.invalidDefaultType(String.self, type(of: value)) }
 		case .bool:
-			if value is Bool == false {
-				throw ArgumentError.invalidDefaultType(Bool.self, type(of: value))
-			}
+			guard case .bool = value else { throw ArgumentError.invalidDefaultType(Bool.self, type(of: value)) }
 		case .flag:
 			throw ArgumentError.invalidDefaultType(nil, type(of: value))
 		}
@@ -136,7 +138,7 @@ struct ArgumentParser {
 	///   - description: describe the effect of the argument
 	///   - required: true if the argument is required, false if it is not
 	///   - defaultValue: default value for the argument, or nil if a value must be passed
-	mutating func add(arg: String, ofType type: ArgumentType, description: String? = nil, required: Bool = false, defaultValue: Any? = nil) throws {
+	mutating func add(arg: String, ofType type: ArgumentType, description: String? = nil, required: Bool = false, defaultValue: ArgumentValue? = nil) throws {
 		let argument = try Argument(identifier: arg, description: description, argumentType: type, required: required, defaultValue: defaultValue)
 
 		if arguments[argument.identifier] != nil {
@@ -197,8 +199,12 @@ struct ArgumentParser {
 		}
 
 		for arg in arguments.values {
-			if arg.required && parsedArgs.argumentValue(of: arg.identifier) == nil {
-				throw ArgumentError.missingRequiredParam(arg.identifier)
+			if parsedArgs.argumentValue(of: arg.identifier) == nil {
+				if arg.required {
+					throw ArgumentError.missingRequiredParam(arg.identifier)
+				} else if let defaultValue = arg.defaultValue {
+					parsedArgs.arguments[arg.identifier] = defaultValue
+				}
 			}
 		}
 
@@ -226,7 +232,14 @@ struct ArgumentParser {
 			output += "\n\t"
 
 			let required = arg.required ? " [required]" : ""
-			let defaults = arg.defaultValue != nil ? ", default: \(arg.defaultValue ?? "none")" : ""
+
+			let defaults: String
+			if let defaultValue = arg.defaultValue {
+				defaults = ", default: \(defaultValue.description)"
+			} else {
+				defaults = ""
+			}
+
 			if let desc = arg.description {
 				output += "\(arg)\(required) <\(arg.argumentType.rawValue)>: \(desc)\(defaults)"
 			} else {

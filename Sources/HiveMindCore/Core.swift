@@ -24,14 +24,14 @@ public struct Core {
 				arg: "port",
 				ofType: .int,
 				description: "Port number to run WebSocket on",
-				defaultValue: Server.Configuration.DefaultPortNumber
+				defaultValue: .int(Server.Configuration.DefaultPortNumber)
 			)
 
 			try parser.add(
 				arg: "time",
 				ofType: .double,
 				description: "Maximum amount of time the HiveMind should explore",
-				defaultValue: 10.0
+				defaultValue: .double(10.0)
 			)
 
 			arguments = try parser.parse(CommandLine.arguments)
