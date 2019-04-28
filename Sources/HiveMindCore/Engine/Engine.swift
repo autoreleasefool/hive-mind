@@ -55,6 +55,8 @@ extension Engine: IOProcessorDelegate {
 			dispatch(event: .initialized)
 		case .exit:
 			dispatch(event: .exited)
+		case .quitGame:
+			dispatch(event: .quit)
 		case .movement(let movement):
 			dispatch(event: .receivedInput(.movement(movement)))
 		case .new(let options):
@@ -70,6 +72,11 @@ extension Engine: IOProcessorDelegate {
 extension Engine: StateMachineDelegate {
 	func didTransition(to: State, from: State, on: Event) {
 		switch to {
+		case .standby:
+			if case .launching = from {
+				break
+			}
+			actor.restart()
 		case .exiting:
 			actor.exit()
 			ioProcessor.exit()
@@ -95,7 +102,7 @@ extension Engine: StateMachineDelegate {
 
 			let event: Event = actor.isHiveMindCurrentPlayer ? .becomingHiveMindTurn : .becomingOpponentTurn
 			dispatch(event: event)
-		case .launching, .standby, .waitingForOpponent, .waitingToPlay:
+		case .launching, .waitingForOpponent, .waitingToPlay:
 			break
 		}
 	}

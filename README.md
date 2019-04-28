@@ -46,6 +46,8 @@ To interact with the HiveMind, you can provide various commands over the WebSock
 	* Parse a given `HiveEngine.Movement` (encoded as JSON) and update the HiveMind's internal state. This is how opponent's moves are received
 * `[play, p]`
 	* Instruct the HiveMind to explore the current state. It will respond with the best move it finds after `ExplorationTime`
+* `[quit]`
+    * Instruct the HiveMind to end the current game, but remain active to begin another.
 * `[exit]`
 	* Instruct the HiveMind to quit and end the process.
 
@@ -64,7 +66,7 @@ To interact with the HiveMind, you can provide various commands over the WebSock
 2. Run the following command to build a debug or release version, respectively:
     * `swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.13"`
     * `swift build -c release -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.13"`
-3. Begin an instance with `.build/debug/HiveMind` or `build/release/HiveMind`
+3. Begin an instance with `.build/debug/HiveMind` or `.build/release/HiveMind`
 
 ### Requirements
 

@@ -14,6 +14,7 @@ enum Command {
 	case play
 	case movement(Movement)
 	case exit
+	case quitGame
 	case unknown
 
 	/// Parse a `String` and return the corresponding `Command`
@@ -27,6 +28,8 @@ enum Command {
 			return Command.new(from: values)
 		case "move", "m":
 			return Command.movement(from: values)
+		case "quit":
+			return .quitGame
 		default:
 			return .unknown
 		}

@@ -29,6 +29,10 @@ extension Engine {
 			case (.exiting, _):
 				return nil
 
+			// Always restart when the quit event is received
+			case (_, .quit):
+				return .standby
+
 			// Can only transition launching -> standby
 			case (.launching, .initialized):
 				return .standby
@@ -92,6 +96,7 @@ extension Engine {
 		case becomingHiveMindTurn
 		case becomingOpponentTurn
 		case exited
+		case quit
 
 		var description: String {
 			switch self {
@@ -102,6 +107,7 @@ extension Engine {
 			case .becomingOpponentTurn: return "[Opponent Turn]"
 			case .gameEnded(let winners): return "[Game End] Winner(s): \(winners)"
 			case .exited: return "[Exit]"
+			case .quit: return "[Quit]"
 			}
 		}
 	}
@@ -125,7 +131,7 @@ extension Engine {
 			case .movement(let movement): return .movement(movement)
 			case .play: return .play
 			case .new(let options): return .newGame(options)
-			case .exit, .unknown, .ready: return nil
+			case .exit, .unknown, .ready, .quitGame: return nil
 			}
 		}
 	}

@@ -33,7 +33,14 @@ class HiveMind {
 	}
 
 	/// The current state being explored
-	private let state: GameState
+	private var state: GameState {
+		didSet {
+			support = GameStateSupport(isFirst: options.isFirst, state: state, cache: cache)
+			updateExplorationStrategy()
+			bestExploredMove = nil
+			stateExplored = false
+		}
+	}
 
 	/// Cache calculated `GameState` values for faster processing
 	private let cache: StateCache
@@ -170,6 +177,15 @@ class HiveMind {
 	func exit() {
 		explorationThread?.cancel()
 		explorationThread = nil
+	}
+
+	/// Cancel running operations and return to initial state.
+	func restart() {
+		currentExplorationId += 1
+		explorationThread?.cancel()
+		explorationThread = nil
+		state = GameState()
+		state.requireMovementValidation = false
 	}
 
 	// MARK: - Private

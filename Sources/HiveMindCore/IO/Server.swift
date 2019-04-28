@@ -72,14 +72,15 @@ class Server: IOProcessor {
 			guard self?.socket == nil else { return nil }
 			logger.debug("Connection to WebSocket opened.")
 			return [:]
-			}, onUpgrade: { [weak self] socket, _ in
-				self?.socket = socket
+		}, onUpgrade: { [weak self] socket, _ in
+			self?.socket = socket
 
-				socket.onText { [weak self] _, text in
-					guard let self = self else { return }
-					let command = self.parse(text)
-					self.delegate?.handle(command)
-				}
+			socket.onText { [weak self] _, text in
+				guard let self = self else { return }
+				let command = self.parse(text)
+				self.delegate?.handle(command)
+				self.handle(command)
+			}
 		})
 
 		self.server = try HTTPServer.start(
@@ -129,5 +130,16 @@ class Server: IOProcessor {
 		}
 
 		return Command.from(command: rawCommand, withValues: values)
+	}
+
+	/// Handle commands from the WebSocket
+	private func handle(_ command: Command) {
+		switch command {
+		case .quitGame:
+			socket.close(code: .goingAway)
+			socket = nil
+		case .exit, .movement, .new, .play, .ready, .unknown:
+			break
+		}
 	}
 }
