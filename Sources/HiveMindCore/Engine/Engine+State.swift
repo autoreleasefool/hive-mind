@@ -18,6 +18,19 @@ extension Engine {
 		case waitingForOpponent
 		case exiting
 
+		var description: String {
+			switch self {
+			case .launching: return "launching"
+			case .standby: return "standby"
+			case .newGameStarting: return "newGameStarting"
+			case .waitingToPlay: return "waitingToPlay"
+			case .exploring: return "exploring"
+			case .playingMove: return "playingMove"
+			case .waitingForOpponent: return "waitingForOpponent"
+			case .exiting: return "exiting"
+			}
+		}
+
 		// swiftlint:disable cyclomatic_complexity function_body_length
 		// Explicitly handling each state + event for clarity. Flow is explained below.
 

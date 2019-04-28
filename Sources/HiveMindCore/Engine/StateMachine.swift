@@ -10,7 +10,7 @@
 protocol StateMachineEvent: CustomStringConvertible { }
 
 /// Valid states for the `StateMachine`
-protocol StateMachineState {
+protocol StateMachineState: CustomStringConvertible {
 	associatedtype Event
 
 	/// Handle an `Event` and return a new state if the event was accepted, or nil if the event was invalid.
