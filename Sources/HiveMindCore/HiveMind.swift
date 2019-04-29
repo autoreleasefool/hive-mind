@@ -13,8 +13,8 @@ class HiveMind {
 	struct Options {
 		/// Indicates if the HiveMind is the first player (white) or the second (black)
 		let isFirst: Bool
-		/// Minimum time that the HiveMind should explore a state before it plays
-		let minExplorationTime: TimeInterval
+		/// Maximum time that the HiveMind should explore a state before it plays
+		let maxExplorationTime: TimeInterval
 		/// The strategy used to explore a state
 		let strategyType: ExplorationStrategyType
 		/// The strategy used to evaluate a state
@@ -22,11 +22,11 @@ class HiveMind {
 
 		init(
 			isFirst: Bool = true,
-			minExplorationTime: TimeInterval = 10,
-			strategyType: ExplorationStrategyType = .alphaBeta(depth: 2),
+			maxExplorationTime: TimeInterval = 10,
+			strategyType: ExplorationStrategyType = .alphaBetaIterativeDeepening(maxDepth: 4),
 			evaluator: Evaluator = BasicEvaluator()) {
 			self.isFirst = isFirst
-			self.minExplorationTime = minExplorationTime
+			self.maxExplorationTime = maxExplorationTime
 			self.strategyType = strategyType
 			self.evaluator = evaluator
 		}
@@ -38,7 +38,6 @@ class HiveMind {
 			support = GameStateSupport(isFirst: options.isFirst, state: state, cache: cache)
 			updateExplorationStrategy()
 			bestExploredMove = nil
-			stateExplored = false
 		}
 	}
 
@@ -58,25 +57,11 @@ class HiveMind {
 	/// Strategy which the HiveMind will employ for exploration
 	private var strategy: ExplorationStrategy!
 
-	/// Indicate if the current state has been explored at all
-	private var stateExplored: Bool = false
 	/// The best move that the HiveMind has come up with so far
 	private var bestExploredMove: Movement?
 	/// The best move the HiveMind has come up with so far, or the first move available if it hasn't come up with any moves
 	private var bestMove: Movement {
 		return bestExploredMove ?? state.sortMoves(evaluator: options.evaluator, with: support).first!
-	}
-
-	/// ID of the thread currently executing
-	private var currentExplorationId: Int = 0
-	/// Enable thread safe access to `responsiveBestMove`
-	private let responsiveMoveLock = NSLock()
-	/// Thread exploring the current state
-	private(set) var explorationThread: Thread?
-
-	/// Returns true if HiveMind is currently exploring a GameState
-	var isExploring: Bool {
-		return explorationThread?.isExecuting ?? false
 	}
 
 	/// True if the HiveMind is the current player in the state, false otherwise
@@ -90,17 +75,13 @@ class HiveMind {
 		self.state.requireMovementValidation = false
 	}
 
-	deinit {
-		exit()
-	}
-
-	/// Update the exploration strategy and restart exploration of the current state.
+	/// Update the exploration strategy
 	private func updateExplorationStrategy() {
 		switch options.strategyType {
 		case .alphaBeta(let depth):
-			strategy = AlphaBeta(depth: depth, evaluator: options.evaluator, support: support)
+			strategy = AlphaBeta(depth: depth)
 		case .alphaBetaIterativeDeepening(let maxDepth):
-			strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth, evaluator: options.evaluator, support: support)
+			strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth)
 		}
 	}
 
@@ -109,19 +90,8 @@ class HiveMind {
 	/// Clear the current exploration and begin exploring a state in the background.
 	func beginExploration() {
 		guard state.currentPlayer == support.hiveMindPlayer else { return }
-		stateExplored = true
-		let nextExplorationId = currentExplorationId + 1
-		currentExplorationId = nextExplorationId
-
-		explorationThread?.cancel()
-		explorationThread = Thread { [weak self] in
-			guard let self = self else { return }
-			self.explore(self.state, withId: nextExplorationId)
-			self.explorationThread = nil
-			logger.debug("Finished exploration")
-		}
-
-		explorationThread?.start()
+		explore(state)
+		logger.debug("Finished exploration")
 	}
 
 	/// Update the state with a move. Returns true if the movement was valid, false otherwise
@@ -129,10 +99,7 @@ class HiveMind {
 	/// - Parameters:
 	///   - movement: the movement to apply to the current state
 	func apply(movement: Movement) -> Bool {
-		defer { responsiveMoveLock.unlock() }
-		responsiveMoveLock.lock()
-
-		logger.debug("-----\nApplying move \(movement)...")
+		logger.debug("Applying move \(movement) -----")
 		logger.debug("Current state - Move: \(state.move), Player: \(state.currentPlayer)")
 
 		let currentMove = state.move
@@ -144,46 +111,26 @@ class HiveMind {
 			return false
 		}
 
-		stateExplored = false
 		bestExploredMove = nil
 
 		logger.debug("Updated state - Move: \(state.move), Player: \(state.currentPlayer)")
-		logger.debug("Done move\n-----")
+		logger.debug("Done move -----")
 
 		return true
 	}
 
 	/// Return the best move from the current state.
-	///
-	/// - Parameters:
-	///   - completion: called with the best movement after exploration completes
-	func play(completion: @escaping (Movement) -> Void) {
-		if stateExplored && isExploring == false {
-			completion(bestMove)
+	func play() -> Movement {
+		if let bestExploredMove = self.bestExploredMove {
+			return bestExploredMove
 		} else {
-			if stateExplored == false {
-				beginExploration()
-			}
-
-			DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + options.minExplorationTime) {
-				self.explorationThread?.cancel()
-				self.explorationThread = nil
-				completion(self.bestMove)
-			}
+			beginExploration()
+			return bestMove
 		}
-	}
-
-	/// Cancel running operations and clean up state
-	func exit() {
-		explorationThread?.cancel()
-		explorationThread = nil
 	}
 
 	/// Cancel running operations and return to initial state.
 	func restart() {
-		currentExplorationId += 1
-		explorationThread?.cancel()
-		explorationThread = nil
 		state = GameState()
 		state.requireMovementValidation = false
 	}
@@ -194,14 +141,15 @@ class HiveMind {
 	///
 	/// - Parameters:
 	///   - state: the state to explore
-	private func explore(_ state: GameState, withId id: Int) {
+	private func explore(_ state: GameState) {
 		let exploreState = GameState(from: state)
 
-		strategy.play(exploreState) { [weak self] movement in
-			/// Threads don't necessarily stop execution when you cancel them in Swift so we ensure only the most recent exploration can update the best move by capturing the ID of this exploration and comparing it against the most recent ID.
-			if id == currentExplorationId {
-				self?.bestExploredMove = movement
-			}
+		let startTime = Date()
+		let endTime = Date(timeInterval: options.maxExplorationTime, since: startTime)
+		var exploration = Exploration(startTime: startTime, deadline: endTime, support: support, evaluator: options.evaluator, statesEvaluated: 0)
+
+		strategy.explore(exploreState, exploration: &exploration) { [weak self] movement in
+			self?.bestExploredMove = movement
 		}
 	}
 }

@@ -39,7 +39,7 @@ enum Command {
 	private static func new(from values: [String]?) -> Command {
 		if let firstValue = values?.first, let isFirst = Bool(firstValue) {
 			if let secondValue = values?.dropFirst().first, let explorationTime = Double(secondValue) {
-				return .new(HiveMind.Options(isFirst: isFirst, minExplorationTime: explorationTime))
+				return .new(HiveMind.Options(isFirst: isFirst, maxExplorationTime: explorationTime))
 			} else {
 				return .new(HiveMind.Options(isFirst: isFirst))
 			}

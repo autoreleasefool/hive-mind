@@ -6,37 +6,60 @@
 //  Copyright © 2019 Joseph Roque. All rights reserved.
 //
 
+import Foundation
 import HiveEngine
+
+enum ExplorationError: LocalizedError {
+	case outOfTime
+
+	var errorDescription: String? {
+		switch self {
+		case .outOfTime: return "Exploration ran out of time before finishing."
+		}
+	}
+}
+
+struct Exploration {
+	/// Time that the Exploration began
+	let startTime: Date
+	/// Time that the Exploration must be completed by
+	let deadline: Date
+
+	/// Cached state properties
+	let support: GameStateSupport
+	/// Evaluation methods
+	let evaluator: Evaluator
+
+	/// Total number of states evaluated in this exploration
+	var statesEvaluated: Int = 0
+}
 
 protocol ExplorationStrategy: class {
 	typealias Step = (Movement) -> Void
 
-	/// Total number of states evaluated
-	var statesEvaluated: Int { get set }
-	/// Cached state properties
-	var support: GameStateSupport { get }
-	/// Evaluation function
-	var evaluator: Evaluator { get }
-
 	/// Begin exploring the given state. Calls `step` with each new best move as one is found.
-	func play(_ state: GameState, step: Step)
+	func explore(_ state: GameState, exploration: inout Exploration, step: Step)
 
 	/// Evaluate a game state
-	func evaluate(state: GameState) -> Int
+	func evaluate(_ state: GameState, exploration: inout Exploration) throws -> Int
 }
 
 extension ExplorationStrategy {
-	func evaluate(state: GameState) -> Int {
-		statesEvaluated += 1
-		if statesEvaluated % 10000 == 0 {
-			logger.debug("States evaluated: \(statesEvaluated)")
+	func evaluate(_ state: GameState, exploration: inout Exploration) throws -> Int {
+		guard Date() < exploration.deadline else {
+			throw ExplorationError.outOfTime
 		}
 
-		if let value = support.cache[state] {
+		exploration.statesEvaluated += 1
+		if exploration.statesEvaluated % 10000 == 0 {
+			logger.debug("States evaluated: \(exploration.statesEvaluated)")
+		}
+
+		if let value = exploration.support.cache[state] {
 			return value
 		} else {
-			let stateValue = evaluator.eval(state: state, with: support)
-			support.cache[state] = stateValue
+			let stateValue = exploration.evaluator.eval(state: state, with: exploration.support)
+			exploration.support.cache[state] = stateValue
 			return stateValue
 		}
 	}

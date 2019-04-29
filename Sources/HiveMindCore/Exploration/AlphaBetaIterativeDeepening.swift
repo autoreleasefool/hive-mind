@@ -12,23 +12,21 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 
 	private let maxDepth: Int
 
-	init(maxDepth: Int, evaluator: Evaluator, support: GameStateSupport) {
+	init(maxDepth: Int) {
 		self.maxDepth = maxDepth
-		self.evaluator = evaluator
-		self.support = support
 	}
 
 	// MARK: ExplorationStrategy
 
-	var statesEvaluated: Int = 0
-	let support: GameStateSupport
-	let evaluator: Evaluator
-
-	func play(_ state: GameState, step: Step) {
+	func explore(_ state: GameState, exploration: inout Exploration, step: Step) {
 		var currentDepth = 1
-		while currentDepth <= maxDepth {
+		while currentDepth < maxDepth {
 			logger.debug("Starting exploring at depth \(currentDepth)")
-			alphaBetaRoot(depth: currentDepth, state: state, step: step)
+			do {
+				try alphaBetaRoot(depth: currentDepth, state: state, exploration: &exploration, step: step)
+			} catch {
+				logger.error(error: error, "Exploration canceled.")
+			}
 			currentDepth += 1
 		}
 	}
@@ -36,18 +34,23 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	// MARK: Alpha Beta exploration
 
 	/// Root of the exploration
-	private func alphaBetaRoot(depth: Int, state: GameState, step: Step) {
-		let moves = state.sortMoves(evaluator: evaluator, with: support)
+	private func alphaBetaRoot(
+		depth: Int,
+		state: GameState,
+		exploration: inout Exploration,
+		step: Step
+	) throws {
+		let moves = state.sortMoves(evaluator: exploration.evaluator, with: exploration.support)
 		var bestValue = Int.min
 		var bestMove = moves.first!
 
-		moves.forEach {
-			state.apply($0)
-			let value = alphaBetaEvaluate(depth: depth, state: state, alpha: Int.min, beta: Int.max)
+		for move in moves {
+			state.apply(move)
+			let value = try alphaBetaEvaluate(depth: depth, state: state, exploration: &exploration, alpha: Int.min, beta: Int.max)
 			state.undoMove()
 			if value > bestValue {
 				bestValue = value
-				bestMove = $0
+				bestMove = move
 				step(bestMove)
 
 				logger.debug("Found new best move: \(bestMove)")
@@ -56,20 +59,26 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	}
 
 	/// Exploration helper method
-	private func alphaBetaEvaluate(depth: Int, state: GameState, alpha: Int, beta: Int) -> Int {
+	private func alphaBetaEvaluate(
+		depth: Int,
+		state: GameState,
+		exploration: inout Exploration,
+		alpha: Int,
+		beta: Int
+	) throws -> Int {
 		if depth == 0 {
-			return evaluate(state: state)
+			return try evaluate(state, exploration: &exploration)
 		}
 
 		var updatedAlpha = alpha
 
-		let moves = state.sortMoves(evaluator: evaluator, with: support)
-		let isMinimizing = state.currentPlayer != support.hiveMindPlayer
+		let moves = state.sortMoves(evaluator: exploration.evaluator, with: exploration.support)
+		let isMinimizing = state.currentPlayer != exploration.support.hiveMindPlayer
 		if isMinimizing {
 			var updatedBeta = beta
 			for move in moves {
 				state.apply(move)
-				updatedBeta = min(updatedBeta, -alphaBetaEvaluate(depth: depth - 1, state: state, alpha: alpha, beta: updatedBeta))
+				updatedBeta = min(updatedBeta, try -alphaBetaEvaluate(depth: depth - 1, state: state, exploration: &exploration, alpha: alpha, beta: updatedBeta))
 				state.undoMove()
 				if updatedBeta < alpha {
 					return updatedBeta
@@ -79,7 +88,7 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 		} else {
 			for move in moves {
 				state.apply(move)
-				updatedAlpha = max(updatedAlpha, alphaBetaEvaluate(depth: depth - 1, state: state, alpha: updatedAlpha, beta: beta))
+				updatedAlpha = max(updatedAlpha, try alphaBetaEvaluate(depth: depth - 1, state: state, exploration: &exploration, alpha: updatedAlpha, beta: beta))
 				state.undoMove()
 				if beta < updatedAlpha {
 					return updatedAlpha

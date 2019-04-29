@@ -78,13 +78,11 @@ extension Engine: StateMachineDelegate {
 			}
 			actor.restart()
 		case .exiting:
-			actor.exit()
 			ioProcessor.exit()
 		case .exploring:
-			actor.play { [weak self] in
-				self?.dispatch(event: .bestMoveFound($0))
-				self?.ioProcessor.send(.movement($0))
-			}
+			let move = actor.play()
+			dispatch(event: .bestMoveFound(move))
+			ioProcessor.send(.movement(move))
 		case .newGameStarting(let options):
 			actor.options = options
 			let event: Event = options.isFirst ? .becomingHiveMindTurn : .becomingOpponentTurn
