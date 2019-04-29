@@ -11,10 +11,12 @@ import HiveEngine
 
 enum ExplorationError: LocalizedError {
 	case outOfTime
+	case threadCancelled
 
 	var errorDescription: String? {
 		switch self {
 		case .outOfTime: return "Exploration ran out of time before finishing."
+		case .threadCancelled: return "Thread was cancelled by parent."
 		}
 	}
 }
@@ -32,6 +34,16 @@ struct Exploration {
 
 	/// Total number of states evaluated in this exploration
 	var statesEvaluated: Int = 0
+
+	/// Indicates if the exploration has been cancelled.
+	var cancelled: Bool = false
+
+	init(startTime: Date, deadline: Date, support: GameStateSupport, evaluator: Evaluator) {
+		self.startTime = startTime
+		self.deadline = deadline
+		self.support = support
+		self.evaluator = evaluator
+	}
 }
 
 protocol ExplorationStrategy: class {
@@ -48,6 +60,10 @@ extension ExplorationStrategy {
 	func evaluate(_ state: GameState, exploration: inout Exploration) throws -> Int {
 		guard Date() < exploration.deadline else {
 			throw ExplorationError.outOfTime
+		}
+
+		guard exploration.cancelled == false else {
+			throw ExplorationError.threadCancelled
 		}
 
 		exploration.statesEvaluated += 1

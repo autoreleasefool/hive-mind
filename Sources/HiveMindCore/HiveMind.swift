@@ -146,7 +146,7 @@ class HiveMind {
 
 		let startTime = Date()
 		let endTime = Date(timeInterval: options.maxExplorationTime, since: startTime)
-		var exploration = Exploration(startTime: startTime, deadline: endTime, support: support, evaluator: options.evaluator, statesEvaluated: 0)
+		var exploration = Exploration(startTime: startTime, deadline: endTime, support: support, evaluator: options.evaluator)
 
 		strategy.explore(exploreState, exploration: &exploration) { [weak self] movement in
 			self?.bestExploredMove = movement
