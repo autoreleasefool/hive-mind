@@ -106,6 +106,16 @@ struct Argument {
 	}
 }
 
+extension Argument: Comparable {
+	public static func == (lhs: Argument, rhs: Argument) -> Bool {
+		return lhs.identifier == rhs.identifier
+	}
+
+	public static func < (lhs: Argument, rhs: Argument) -> Bool {
+		return lhs.identifier < rhs.identifier
+	}
+}
+
 struct ArgumentParser {
 
 	let name: String
@@ -128,6 +138,8 @@ struct ArgumentParser {
 	init(name: String, description: String) {
 		self.name = name
 		self.description = description
+
+		try! add(arg: "help", ofType: .flag, description: "Output the help message")
 	}
 
 	/// Add an argument to the parser.
@@ -155,7 +167,7 @@ struct ArgumentParser {
 	///
 	/// - Parameters:
 	///   - args the list of arguments to parse
-	func parse(_ args: [String] = CommandLine.arguments) throws -> Arguments {
+	func parse(_ args: [String]) throws -> Arguments {
 		var usedArgs: Set<String> = Set()
 		var parsedArgs = Arguments()
 
@@ -208,6 +220,10 @@ struct ArgumentParser {
 			}
 		}
 
+		if parsedArgs.isFlagPresent(flag: "help") {
+			logger.write(help())
+		}
+
 		return parsedArgs
 	}
 
@@ -217,7 +233,7 @@ struct ArgumentParser {
 	func help() -> String {
 		var output = "\(name) - \(description)"
 
-		for flag in flags {
+		for flag in flags.sorted() {
 			output += "\n\t"
 
 			let required = flag.required ? " [required]" : ""
@@ -228,7 +244,7 @@ struct ArgumentParser {
 			}
 		}
 
-		for arg in valueArguments {
+		for arg in valueArguments.sorted() {
 			output += "\n\t"
 
 			let required = arg.required ? " [required]" : ""

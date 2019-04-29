@@ -23,7 +23,7 @@ public struct Core {
 			try parser.add(
 				arg: "port",
 				ofType: .int,
-				description: "Port number to run WebSocket on",
+				description: "Port number to run WebSocket on. Ignored when `enableCmd` flag is provided",
 				defaultValue: .int(Server.Configuration.DefaultPortNumber)
 			)
 
@@ -37,6 +37,7 @@ public struct Core {
 			arguments = try parser.parse(Array(CommandLine.arguments.dropFirst()))
 		} catch {
 			logger.write("Failed to parse arguments: \(error.localizedDescription)")
+			logger.write(parser.help())
 			logger.write("Exiting...")
 		}
 
