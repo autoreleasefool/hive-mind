@@ -42,7 +42,7 @@ class Logger {
 		guard resolve(.error) else { return }
 		let filename = truncate(filename: "\(file)")
 		if let error = error {
-			print("[\(filename)]", error, msg.joined(separator: separator))
+			print("[\(filename)]", msg.joined(separator: separator), error)
 		} else {
 			print("[\(filename)]", msg.joined(separator: separator))
 		}
