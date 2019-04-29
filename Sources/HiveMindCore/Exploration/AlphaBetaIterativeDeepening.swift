@@ -19,15 +19,15 @@ class AlphaBetaIterativeDeepening: ExplorationStrategy {
 	// MARK: ExplorationStrategy
 
 	func explore(_ state: GameState, exploration: inout Exploration, step: Step) {
-		var currentDepth = 1
-		while currentDepth < maxDepth {
-			logger.debug("Starting exploring at depth \(currentDepth)")
-			do {
+		do {
+			var currentDepth = 1
+			while currentDepth < maxDepth {
+				logger.debug("Starting exploring at depth \(currentDepth)")
 				try alphaBetaRoot(depth: currentDepth, state: state, exploration: &exploration, step: step)
-			} catch {
-				logger.error(error: error, "Exploration canceled.")
+				currentDepth += 1
 			}
-			currentDepth += 1
+		} catch {
+			logger.error(error: error, "Exploration canceled.")
 		}
 	}
 
