@@ -471,7 +471,6 @@
 		OBJ_900 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* StateMachine.swift */; };
 		OBJ_901 /* BasicEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* BasicEvaluator.swift */; };
 		OBJ_902 /* Evaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Evaluator.swift */; };
-		OBJ_903 /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* AlphaBeta.swift */; };
 		OBJ_904 /* AlphaBetaIterativeDeepening.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* AlphaBetaIterativeDeepening.swift */; };
 		OBJ_905 /* ExplorationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* ExplorationStrategy.swift */; };
 		OBJ_906 /* GameState+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* GameState+Extensions.swift */; };
@@ -2296,7 +2295,6 @@
 		OBJ_217 /* HeaderValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderValue.swift; sourceTree = "<group>"; };
 		OBJ_218 /* LosslessDataConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosslessDataConvertible.swift; sourceTree = "<group>"; };
 		OBJ_219 /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
-		OBJ_22 /* AlphaBeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaBeta.swift; sourceTree = "<group>"; };
 		OBJ_220 /* NestedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedData.swift; sourceTree = "<group>"; };
 		OBJ_221 /* NotFound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFound.swift; sourceTree = "<group>"; };
 		OBJ_222 /* OptionalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalType.swift; sourceTree = "<group>"; };
@@ -3304,7 +3302,6 @@
 		OBJ_21 /* Exploration */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_22 /* AlphaBeta.swift */,
 				OBJ_23 /* AlphaBetaIterativeDeepening.swift */,
 				OBJ_24 /* ExplorationStrategy.swift */,
 			);
@@ -5526,7 +5523,6 @@
 				OBJ_900 /* StateMachine.swift in Sources */,
 				OBJ_901 /* BasicEvaluator.swift in Sources */,
 				OBJ_902 /* Evaluator.swift in Sources */,
-				OBJ_903 /* AlphaBeta.swift in Sources */,
 				OBJ_904 /* AlphaBetaIterativeDeepening.swift in Sources */,
 				OBJ_905 /* ExplorationStrategy.swift in Sources */,
 				OBJ_906 /* GameState+Extensions.swift in Sources */,

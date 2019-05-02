@@ -78,8 +78,6 @@ class HiveMind {
 	/// Update the exploration strategy
 	private func updateExplorationStrategy() {
 		switch options.strategyType {
-		case .alphaBeta(let depth):
-			strategy = AlphaBeta(depth: depth)
 		case .alphaBetaIterativeDeepening(let maxDepth):
 			strategy = AlphaBetaIterativeDeepening(maxDepth: maxDepth)
 		}
