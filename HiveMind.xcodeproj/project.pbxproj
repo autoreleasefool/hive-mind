@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		CA35C2682278761800C75DE2 /* ZobristHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35C2672278761800C75DE2 /* ZobristHash.swift */; };
 		OBJ_1000 /* COperatingSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Core::COperatingSystem::Product" /* COperatingSystem.framework */; };
 		OBJ_1001 /* Bits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Core::Bits::Product" /* Bits.framework */; };
 		OBJ_1002 /* Debugging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Core::Debugging::Product" /* Debugging.framework */; };
@@ -2176,6 +2177,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA35C2672278761800C75DE2 /* ZobristHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZobristHash.swift; sourceTree = "<group>"; };
 		"Core::Async::Product" /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Async.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Core::Bits::Product" /* Bits.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Core::COperatingSystem::Product" /* COperatingSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = COperatingSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2997,6 +2999,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_12 /* StateCache.swift */,
+				CA35C2672278761800C75DE2 /* ZobristHash.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -3873,7 +3876,7 @@
 			path = .build/checkouts/websocket/Sources/WebSocket;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3886,7 +3889,6 @@
 				OBJ_413 /* LICENSE */,
 				OBJ_414 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_57 /* HTTP 3.2.0 */ = {
@@ -4959,7 +4961,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_379 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -5533,6 +5535,7 @@
 				OBJ_909 /* CommandLineTool.swift in Sources */,
 				OBJ_910 /* IOProcessor.swift in Sources */,
 				OBJ_911 /* Command.swift in Sources */,
+				CA35C2682278761800C75DE2 /* ZobristHash.swift in Sources */,
 				OBJ_912 /* Output.swift in Sources */,
 				OBJ_913 /* Server.swift in Sources */,
 				OBJ_914 /* ArgumentParser.swift in Sources */,
