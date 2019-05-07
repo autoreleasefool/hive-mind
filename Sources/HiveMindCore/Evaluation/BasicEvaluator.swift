@@ -36,7 +36,7 @@ struct BasicEvaluator: Evaluator {
 		}
 
 		// Don't let the opponent shut you out
-		if state.anyMovesAvailable(for: state.currentPlayer) == false {
+		if state.availableMoves.count == 0 {
 			return Int.min + 1
 		}
 
@@ -61,6 +61,8 @@ struct BasicEvaluator: Evaluator {
 			return 500_000 + eval(unit: unit, in: state, with: support)
 		case .yoink(_, let unit, _):
 			return eval(unit: unit, in: state, with: support)
+		case .pass:
+			return 0
 		}
 	}
 

@@ -41,6 +41,10 @@ class HiveMind {
 		}
 	}
 
+	private static var defaultGameState: GameState {
+		return GameState(options: [.ladyBug, .mosquito, .pillBug, .disableMovementValidation, .allowSpecialAbilityAfterYoink, .restrictedOpening])
+	}
+
 	/// Cache calculated `GameState` values for faster processing
 	private let cache: StateCache
 
@@ -71,8 +75,7 @@ class HiveMind {
 
 	init() {
 		self.cache = StateCache()
-		self.state = GameState()
-		self.state.requireMovementValidation = false
+		self.state = HiveMind.defaultGameState
 	}
 
 	/// Update the exploration strategy
@@ -129,8 +132,7 @@ class HiveMind {
 
 	/// Cancel running operations and return to initial state.
 	func restart() {
-		state = GameState()
-		state.requireMovementValidation = false
+		state = HiveMind.defaultGameState
 	}
 
 	// MARK: - Private
