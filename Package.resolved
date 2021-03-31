@@ -21,7 +21,7 @@
       },
       {
         "package": "HiveEngine",
-        "repositoryURL": "https://github.com/josephroquedev/hive-engine.git",
+        "repositoryURL": "https://github.com/autoreleasefool/hive-engine.git",
         "state": {
           "branch": null,
           "revision": "b0d19ae7d4afddd05e8fe54f9192804f5a131c52",
