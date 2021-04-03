@@ -83,3 +83,7 @@ To interact with the HiveMind, you can provide various commands over the WebSock
    - Run `swiftlint` from the root of the repository.
    - There should be no errors or violations. If there are, please fix them before opening a PR.
 2. Open a PR with your changes 👍
+
+## Notice
+
+Hive Mind is not affiliated with Gen42 Games in any way.
